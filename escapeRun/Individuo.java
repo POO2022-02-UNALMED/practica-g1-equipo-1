@@ -13,6 +13,13 @@ public abstract class Individuo {
         this.speed = speed;
     }
     
+    //Metodo para agarrar
+    public void agarrar(){
+        //input de que quiere agarrar
+        
+    }
+
+
     // METODOS PELEAR
     public abstract void atacar(Individuo i);
     // METODOS GET

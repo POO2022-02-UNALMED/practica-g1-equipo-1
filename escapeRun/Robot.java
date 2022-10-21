@@ -10,6 +10,12 @@ public class Robot extends Individuo {
         super(300, 3, 7);
     }
     
+    //Metodos de busqueda
+    public void buscar(){
+        
+    }
+
+
     //METODOS PELEAR
     @Override
     public void atacar(Individuo i) {
