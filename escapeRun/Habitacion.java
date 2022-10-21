@@ -16,6 +16,15 @@ public class Habitacion {
 		this.robot = robot;
 	}
 
+	//Desbloquar puerta con una herramienta
+	public String desbloquar() {
+		if (bloqueada == true) {
+			//agregar lo que hace
+			
+		}
+		return "Puerta desbloquada, puede avanzar";
+	}
+	
 	//Getter y setters
 	public int getNumero() {
 		return numero;

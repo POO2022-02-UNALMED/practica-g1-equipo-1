@@ -26,5 +26,7 @@ public class Jarvis {
 	public void setAhorro(Ahorro ahorro) {
 		this.ahorro = ahorro;
 	}
+	
+	//los metodos son para las funcionalidades
 
 }
