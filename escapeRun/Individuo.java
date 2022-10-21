@@ -1,9 +1,11 @@
 
 package escapeRun;
+import java.util.ArrayList;
 
 public abstract class Individuo {
     private int health, armor,speed;
     private boolean stunned = false;
+    private ArrayList<Herramientas> inventory = new ArrayList<>();
     
     public Individuo(int health,int armor, int speed){
         this.health = health;
@@ -25,6 +27,9 @@ public abstract class Individuo {
     }
     public boolean isStunned(){
         return stunned;
+    }
+    public ArrayList<Herramientas> getInventory(){
+        return inventory;
     }
     
     //METODOS SET

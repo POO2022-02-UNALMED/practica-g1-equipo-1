@@ -21,6 +21,9 @@ public class Intruso extends Individuo{
     public void atacar(Individuo r){
         r.setHealth(r.getHealth()-ATTACK);
     }
+    public void atacar(Individuo r, int bonus){
+        r.setHealth(r.getHealth()-ATTACK-bonus);
+    }
     
     //METODOS GET
     public static int getATTACK(){
