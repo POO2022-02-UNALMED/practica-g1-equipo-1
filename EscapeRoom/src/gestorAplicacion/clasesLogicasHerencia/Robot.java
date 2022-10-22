@@ -10,7 +10,7 @@ public class Robot extends Individuo {
 
     
     public Robot() {
-        super(300, 3, 7);
+        super(300, 3, 7, 0);
     }
     
     //Metodos de busqueda

@@ -7,7 +7,7 @@ public abstract class Individuo {
     private int health, armor, speed, location;
     private boolean stunned = false;
     private ArrayList<Herramientas> inventory = new ArrayList<>();
-    private ArrayList<int> ubicaciones = new ArrayList<>();
+    private ArrayList<Habitacion> ubicaciones = new ArrayList<>();
     
     public Individuo(int health,int armor, int speed, int location){
         this.health = health;
