@@ -41,6 +41,11 @@ public class Main {
 		Herramientas inyeccion = new Herramientas("Inyección de adrenalina", false, false, true, 0, 0, 0, 50);
 		inyeccion.setDescripion("Inyectadora con líquido verde, lleva marcada las siglas S.H.I.E.L.D."
 				+ "\nSi lo usas recuperarás tu salud.");
+		
+		System.out.println("Elige en que habitacion iniciaras: ");
+		System.out.println("1. Habitacion enigma");
+		System.out.println("Presiona cualquier tecla para comenzar");
+		in.nextLine();
 
 		// ciclo de turnos del jugador
 		while (x) {// COLOCAR CONDICION (hasta que gane o quede sin vida)
