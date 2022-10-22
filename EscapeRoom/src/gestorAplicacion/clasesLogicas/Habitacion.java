@@ -21,7 +21,7 @@ public class Habitacion {
 	//Desbloquar puerta con una herramienta
 	public String desbloquar() {
 		if (bloqueada == true) {
-			//agregar lo que hace
+			//buscar una clave de acceso y desbloquar la puerta
 			
 		}
 		return "Puerta desbloquada, puede avanzar";

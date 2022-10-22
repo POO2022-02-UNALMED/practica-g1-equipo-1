@@ -1,4 +1,6 @@
 package gestorAplicacion.clasesLogicasHerencia;
+import java.util.ArrayList;
+
 import gestorAplicacion.clasesLogicas.*;
 
 /*
@@ -13,11 +15,22 @@ import gestorAplicacion.clasesLogicas.*;
  * @author LENOVO
  */
 public class Intruso extends Individuo{
+	private Habitacion habitacion;
+	private ArrayList<Herramientas> invetario = new ArrayList<>(); //Creo que el unico que debe tener inventario es el intruso
     private static final int ATTACK = 10;
     
     public Intruso() {
         super(100, 0, 10);
     }
+    
+    //Interacciones
+    public void agarrar(){
+        //input de que quiere agarrar
+    	//Hacer for por habitacion buscando los objetos y agregandolos a esta lista y borrandolos de la habitacion'
+    	
+        
+    }
+    
     
     //METODOS PELEAR
     @Override

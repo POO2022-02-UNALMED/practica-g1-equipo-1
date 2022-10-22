@@ -26,19 +26,19 @@ public class Main {
 		Robot robot = new Robot();
 
 		// instanias de Herramientas
-		Herramientas escudoCapitanAmerica = new Herramientas("Escudo del Capitán America", false, false, true, 0, 2, 1,
-				0);
+		Herramientas escudoCapitanAmerica = new Herramientas(true,"Escudo del Capitán America", false, false, true, 0, 2, 1,
+				0); //Le puse que si tiene alarma
 		escudoCapitanAmerica.setDescripion(
 				"Escudo de vibranium con los colores de la bandera, te sientes inspirado solo al llevarlo contigo."
 						+ "\nSi lo usas serás más difícil de golpear por ese turno.");
-		Herramientas martilloThor = new Herramientas("Martillo de Thor", true, true, true, 10, 0, 0, 0);
+		Herramientas martilloThor = new Herramientas(true,"Martillo de Thor", true, true, true, 10, 0, 0, 0);
 		martilloThor.setDescripion(
 				"Martillo mágico con el que puedes atacar, sientes como fluye energía eléctrica por tu cuerpo."
 						+ "\nSi lo usas puedes aturdir a tu adversario con un rayo.");
-		Herramientas lanzaTelaranas = new Herramientas("Lanza Telarañas", false, true, true, 0, 0, 2, 0);
+		Herramientas lanzaTelaranas = new Herramientas(true,"Lanza Telarañas", false, true, true, 0, 0, 2, 0);
 		lanzaTelaranas.setDescripion("Dispositivo lanza telarañas, probablemente pertenece a Spiderman."
 				+ "\nSi lo usas lanzas una telaraña... Obviamente.");
-		Herramientas inyeccion = new Herramientas("Inyección de adrenalina", false, false, true, 0, 0, 0, 50);
+		Herramientas inyeccion = new Herramientas(false,"Inyección de adrenalina", false, false, true, 0, 0, 0, 50);
 		inyeccion.setDescripion("Inyectadora con líquido verde, lleva marcada las siglas S.H.I.E.L.D."
 				+ "\nSi lo usas recuperarás tu salud.");
 		
