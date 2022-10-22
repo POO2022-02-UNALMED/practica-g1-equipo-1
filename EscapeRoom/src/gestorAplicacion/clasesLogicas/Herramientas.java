@@ -3,13 +3,15 @@ package gestorAplicacion.clasesLogicas;
 
 
 public class Herramientas {
+	private boolean alarma;
     private String description = "objeto generico";
     private final String name;
     private final boolean weapon, shocker, usable;
     private final int bonusDamage, bonusArmor, bonusSpeed, bonusHealth;
     
-    public Herramientas(String name, boolean weapon,boolean shocker, boolean usable, int bdamage, int barmor, int bspeed, int bhealth){
-        this.name = name;
+    public Herramientas(boolean alarma, String name, boolean weapon,boolean shocker, boolean usable, int bdamage, int barmor, int bspeed, int bhealth){
+        this.alarma = alarma;
+    	this.name = name;
         this.weapon = weapon;
         this.shocker = shocker;
         this.usable = usable;
@@ -20,7 +22,8 @@ public class Herramientas {
     }
     
     public Herramientas(String name){//para crear objetos como computadores,ventanas o cosas que no se puedan recoger.
-        this.name = name;
+        this.alarma = false;
+    	this.name = name;
         this.weapon = false;
         this.shocker = false;
         this.usable = false;
@@ -31,10 +34,16 @@ public class Herramientas {
     }
     
     //METODOS GET
+    
     public String getName(){
         return name;
     }
-    public String getDescription(){
+    
+	public void setAlarma(boolean alarma) {
+		this.alarma = alarma;
+	}
+
+	public String getDescription(){
         return description;
     }
     public boolean isWeapon(){
@@ -64,4 +73,7 @@ public class Herramientas {
         description = i;
     }
 
+    public boolean isAlarma() {
+		return alarma;
+	}
 }
