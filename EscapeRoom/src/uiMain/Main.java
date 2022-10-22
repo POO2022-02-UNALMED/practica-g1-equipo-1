@@ -28,14 +28,17 @@ public class Main {
 		ArrayList<Herramientas> objetosh2 = new ArrayList<Herramientas>();
 		ArrayList<Herramientas> objetosh3 = new ArrayList<Herramientas>();
 		ArrayList<Herramientas> objetosh4 = new ArrayList<Herramientas>();
+		//Objetos del robot (Ninguno)
+		ArrayList<Herramientas> objetosh0 = new ArrayList<Herramientas>();
+		
 		
 		// instancias de intruso y robot
 		Intruso intruso = new Intruso();
 		Robot robot = new Robot();
 
-		// instanias de Herramientas
+		// instancias de Herramientas
 		Herramientas clave = new Herramientas(false,"Clave para desbloquear alguna habitacion",false,false,true,0,0,0,0);
-		objetosh2.add(clave);
+		objetosh2.add(clave); // Revisar
 		
 		Herramientas mascaraIronMan = new Herramientas(true,"El objetivo final",false,false,false,0,0,0,0); //Si algo cuadrar esto
 		objetosh4.add(mascaraIronMan);
@@ -69,17 +72,64 @@ public class Main {
 				+ "\nSi lo usas recuperarÃ¡s tu salud.");
 		objetosh4.add(inyeccion);
 		
-		System.out.println("Elige en que habitacion iniciaras: ");
-		System.out.println("1. Habitacion enigma");
-		System.out.println("Presiona cualquier tecla para comenzar");
-		in.nextLine();
+		System.out.println("Ahora iniciaras en la habitación 1 ");
 
 		
-		//Instancias de habitaciÃ³n
+		//Instancias de habitacion
 		Habitacion Numero1 = new Habitacion(1, false, objetosh1 , intruso, null);
 		Habitacion Numero2 = new Habitacion(2, false, objetosh2 , null, null);
 		Habitacion Numero3 = new Habitacion(3, false, objetosh3 , null, null);
 		Habitacion Numero4 = new Habitacion(4, true, objetosh4 , null, null);
+		//Instancias de habitacion de inicio del robot
+		Habitacion Numero0 = new Habitacion(0, true, objetosh0 , robot, null);
+		
+		//Inicio de habitaciones de intruso y robot, el intruso inicia en la habitación 1 y el robot en Habitacion 0
+		
+		System.out.println("En esta habitación debes escoger los materiales necesarios para crear"+
+		"\nun poderoso martillo, elige bien: "+"\n1. Acero asgardiano y Madera roble"+"\n2. Hierro asgardiano y Madera abedul"
+				+"\n3. Uru asgardiano y Madera Groot");
+		
+		//creacion del asistente jarvis
+		Jarvis jarvis = new Jarvis();
+		
+		int opcionmaterial=in.nextInt();
+		int contadorintentos;
+		switch (opcionmaterial) {
+		case 1:
+			//Orientacion de Jarvis
+		case 2:
+			//Orientacion de Jarvis 
+		case 3:
+			// Felicitacion  de Jarvis
+			
+			intruso.agarrar();
+			Numero1.setIntruso(null);
+			Numero2.setIntruso(intruso);
+			Numero1.setRobot(robot);
+			opcionmaterial=0;
+			
+		
+		}
+		
+		System.out.println("El Robot ha iniciado la marcha, elige sabiamente durante tu recorrido para no ser alcanzado");
+		System.out.println("En esta habitación debes escoger los materiales necesarios para crear"+
+		"\nuna llave , elige bien: "+"\n1. Acero asgardiano y Madera roble"+"\n2. Hierro asgardiano y Madera abedul"
+				+"\n3. Uru asgardiano y Madera Groot");
+		;
+		switch (opcionmaterial) {
+		case 1:
+			
+		case 2:
+			
+		case 3:
+			intruso.agarrar();
+			
+			
+		
+		}
+		
+		
+		
 		
 		// Ir pasando recogiendo cosas
 		
