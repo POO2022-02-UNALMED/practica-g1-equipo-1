@@ -1,4 +1,4 @@
-package gestorAplicacion;
+package gestorAplicacion.clasesLogicas;
 
 
 import java.util.ArrayList;

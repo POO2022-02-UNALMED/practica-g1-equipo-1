@@ -1,5 +1,6 @@
 package uiMain;
-
+import gestorAplicacion.clasesLogicas.*;
+import gestorAplicacion.clasesLogicasHerencia.*;
 import java.util.Scanner;
 import gestorAplicacion.*;
 public class Main {

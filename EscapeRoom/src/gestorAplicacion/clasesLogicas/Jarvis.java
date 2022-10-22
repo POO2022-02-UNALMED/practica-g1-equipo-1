@@ -1,5 +1,5 @@
-package gestorAplicacion;
-
+package gestorAplicacion.clasesLogicas;
+import gestorAplicacion.clasesLogicasHerencia.*;
 
 public class Jarvis {
 	private Intruso intruso;

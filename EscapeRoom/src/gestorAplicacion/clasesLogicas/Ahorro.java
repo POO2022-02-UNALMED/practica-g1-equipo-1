@@ -1,4 +1,4 @@
-package gestorAplicacion;
+package gestorAplicacion.clasesLogicas;
 
 public class Ahorro {
 	private Habitacion habitacion;

@@ -1,5 +1,5 @@
-package gestorAplicacion;
-
+package gestorAplicacion.clasesLogicasHerencia;
+import gestorAplicacion.clasesLogicas.*;
 //HOLA
 
 
