@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public abstract class Individuo {
     private int health, armor, speed, location;
     private boolean stunned = false;
-    private ArrayList<Herramientas> inventory = new ArrayList<>();
     private ArrayList<Habitacion> ubicaciones = new ArrayList<>();
     
     public Individuo(int health,int armor, int speed, int location){
@@ -33,9 +32,7 @@ public abstract class Individuo {
     public boolean isStunned(){
         return stunned;
     }
-    public ArrayList<Herramientas> getInventory(){
-        return inventory;
-    }
+    
     
     //METODOS SET
     public void setHealth(int i){

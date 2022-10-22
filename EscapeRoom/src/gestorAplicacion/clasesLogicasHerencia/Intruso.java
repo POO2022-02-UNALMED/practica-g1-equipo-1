@@ -16,19 +16,30 @@ import gestorAplicacion.clasesLogicas.*;
  */
 public class Intruso extends Individuo{
 	private Habitacion habitacion;
-	private ArrayList<Herramientas> invetario = new ArrayList<>(); //Creo que el unico que debe tener inventario es el intruso
+	 private ArrayList<Herramientas> inventory = new ArrayList<>(); //Creo que el unico que debe tener inventario es el intruso
     private static final int ATTACK = 10;
     
-    public Intruso() {
-        super(100, 0, 10);
+    public Intruso(int health, int armor, int speed, int location) {
+		super(health, armor, speed, location);
+		
+	}
+
+	public Intruso() {
+        this(100,0,0,0);
+        
     }
     
     //Interacciones
-    public void agarrar(){
-        //input de que quiere agarrar
+    public void agarrar(){ //Agrega al inventario los obejtos de la habitacion y los elimina de los objetos de la habitacion 
+    	for (int i=0;i<habitacion.getListaObjetos().size();i++) {
+    		inventory.add(habitacion.getListaObjetos().get(i));
+    		habitacion.setListaObjetos(null);
+    	}
     	//Hacer for por habitacion buscando los objetos y agregandolos a esta lista y borrandolos de la habitacion'
-    	
-        
+    }
+    
+    public void usar(Herramientas herra) {
+    		
     }
     
     
@@ -44,6 +55,14 @@ public class Intruso extends Individuo{
     //METODOS GET
     public static int getATTACK(){
         return ATTACK;
+    }
+    
+    public ArrayList<Herramientas> getInventory(){
+        return inventory;
+    }
+    
+    public Habitacion getHAbitacion(){
+    	return habitacion;
     }
     
     //METODOS SET

@@ -1,6 +1,8 @@
 package uiMain;
 import gestorAplicacion.clasesLogicas.*;
 import gestorAplicacion.clasesLogicasHerencia.*;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 import gestorAplicacion.*;
 public class Main {
@@ -21,32 +23,72 @@ public class Main {
 		System.out.println("\nPresiona cualquier tecla para comenzar");
 		in.nextLine();
 
+		//Arrays necesarios
+		ArrayList<Herramientas> objetosh1 = new ArrayList<Herramientas>();
+		ArrayList<Herramientas> objetosh2 = new ArrayList<Herramientas>();
+		ArrayList<Herramientas> objetosh3 = new ArrayList<Herramientas>();
+		ArrayList<Herramientas> objetosh4 = new ArrayList<Herramientas>();
+		
 		// instancias de intruso y robot
 		Intruso intruso = new Intruso();
 		Robot robot = new Robot();
 
 		// instanias de Herramientas
+		Herramientas clave = new Herramientas(false,"Clave para desbloquear alguna habitacion",false,false,true,0,0,0,0);
+		objetosh2.add(clave);
+		
+		Herramientas mascaraIronMan = new Herramientas(true,"El objetivo final",false,false,false,0,0,0,0); //Si algo cuadrar esto
+		objetosh4.add(mascaraIronMan);
+		
+		Herramientas diamante = new Herramientas(true,"Un diamanre",false,false,true,0,0,0,0);
+		objetosh3.add(diamante);
+
+		Herramientas llaveInglesa = new Herramientas(false,"Llave inglesa",false,false,true,0,0,0,0); //Si algo cuadrar esto
+		objetosh1.add(llaveInglesa);
+
 		Herramientas escudoCapitanAmerica = new Herramientas(true,"Escudo del Capitán America", false, false, true, 0, 2, 1,
 				0); //Le puse que si tiene alarma
 		escudoCapitanAmerica.setDescripion(
 				"Escudo de vibranium con los colores de la bandera, te sientes inspirado solo al llevarlo contigo."
 						+ "\nSi lo usas serás más difícil de golpear por ese turno.");
+		objetosh2.add(escudoCapitanAmerica);
+		
 		Herramientas martilloThor = new Herramientas(true,"Martillo de Thor", true, true, true, 10, 0, 0, 0);
 		martilloThor.setDescripion(
 				"Martillo mágico con el que puedes atacar, sientes como fluye energía eléctrica por tu cuerpo."
 						+ "\nSi lo usas puedes aturdir a tu adversario con un rayo.");
+		objetosh4.add(martilloThor);
+		
 		Herramientas lanzaTelaranas = new Herramientas(true,"Lanza Telarañas", false, true, true, 0, 0, 2, 0);
 		lanzaTelaranas.setDescripion("Dispositivo lanza telarañas, probablemente pertenece a Spiderman."
 				+ "\nSi lo usas lanzas una telaraña... Obviamente.");
+		objetosh1.add(lanzaTelaranas);
+		
 		Herramientas inyeccion = new Herramientas(false,"Inyección de adrenalina", false, false, true, 0, 0, 0, 50);
 		inyeccion.setDescripion("Inyectadora con líquido verde, lleva marcada las siglas S.H.I.E.L.D."
 				+ "\nSi lo usas recuperarás tu salud.");
+		objetosh4.add(inyeccion);
 		
 		System.out.println("Elige en que habitacion iniciaras: ");
 		System.out.println("1. Habitacion enigma");
 		System.out.println("Presiona cualquier tecla para comenzar");
 		in.nextLine();
 
+		
+		//Instancias de habitación
+		Habitacion Numero1 = new Habitacion(1, false, objetosh1 , intruso, null);
+		Habitacion Numero2 = new Habitacion(2, false, objetosh2 , null, null);
+		Habitacion Numero3 = new Habitacion(3, false, objetosh3 , null, null);
+		Habitacion Numero4 = new Habitacion(4, true, objetosh4 , null, null);
+		
+		// Ir pasando recogiendo cosas
+		
+		//Hacer un input de ir a la siguiente habitacion
+		//Hacer un input de recoger cosas
+		//Hacer un input de usar cosas
+		
+		
+		
 		// ciclo de turnos del jugador
 		while (x) {// COLOCAR CONDICION (hasta que gane o quede sin vida)
 
