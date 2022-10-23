@@ -27,5 +27,10 @@ public class Robot extends Individuo {
         return ATTACK;
     }
 
+    @Override
+    public void ayudaJarvis() {
+        //retorna la ubicacion del robot
+    }
+
    
 }

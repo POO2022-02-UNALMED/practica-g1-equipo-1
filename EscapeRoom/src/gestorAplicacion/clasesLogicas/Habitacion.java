@@ -3,12 +3,12 @@ package gestorAplicacion.clasesLogicas;
 
 import java.util.ArrayList;
 
-public class Habitacion {
+public class Habitacion implements Jarvis{
 	private int numero; //Que numero es la habitacion
 	private boolean bloqueada; //Si tiene bloqueo o no
 	private ArrayList<Herramientas> listaObjetos = new ArrayList<>();//El listado de objetos de cada habitacion
 	private Individuo intruso, robot; //Si hay alguien en la habitacion
-    private Habitacion norte, sur, este, oeste;	
+        private Habitacion norte, sur, este, oeste;	
 	public Habitacion(int numero, boolean bloqueada, ArrayList<Herramientas> listaObjetos, Individuo intruso,
 			Individuo robot) { //Se podria modificar este constructor para que se inicialice con lo que queremos o crear el vacio
 		this.numero = numero;
@@ -16,8 +16,8 @@ public class Habitacion {
 		this.listaObjetos = listaObjetos;
 		this.intruso = intruso;
 		this.robot = robot;
-		
-		switch(numero) {
+                		
+		/*switch(numero) {
 		case 1:
 			this.setHabitacionesContiguas(Numero4, null, Numero2, null);
 		case 2:
@@ -36,7 +36,7 @@ public class Habitacion {
 			this.setHabitacionesContiguas(norte, sur, este, oeste);
 		case 9:
 			this.setHabitacionesContiguas(norte, sur, este, oeste);
-		}
+		}*/
 	}
 
 	//Desbloquar puerta con una herramienta
@@ -91,7 +91,7 @@ public class Habitacion {
             this.oeste = oeste;
         }
         public Habitacion getNorte(){
-            return norte.numero;
+            return norte;
         } 
         public Habitacion getSur(){
             return sur;
@@ -102,4 +102,9 @@ public class Habitacion {
         public Habitacion getOeste(){
             return oeste;
         }
+
+    @Override
+    public void ayudaJarvis() {
+        //da informacion de la habitacion
+    }
 }

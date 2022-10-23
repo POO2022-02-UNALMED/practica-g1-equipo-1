@@ -1,6 +1,6 @@
 package gestorAplicacion.clasesLogicas;
 
-public class Ahorro {
+public class Ahorro implements Jarvis {
 	private Habitacion habitacion;
 	//No se si poner interruptor
 
@@ -18,4 +18,9 @@ public class Ahorro {
 	
 	//Getter y setters
 	//HOLA PRUEBA
+
+    @Override
+    public void ayudaJarvis() {
+        //apaga y prende equipos
+    }
 }

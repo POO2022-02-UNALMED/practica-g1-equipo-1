@@ -3,7 +3,7 @@ package gestorAplicacion.clasesLogicas;
 
 import java.util.ArrayList;
 
-public abstract class Individuo {
+public abstract class Individuo implements Jarvis{
     private int health, armor, speed;
     private boolean stunned = false;
     private ArrayList<Integer> locations = new ArrayList<>();
@@ -56,7 +56,6 @@ public abstract class Individuo {
     public void setUbicacion(Habitacion ubicacion){
         this.ubicacion = ubicacion;
     }
-    
     
     
     //METODOS SET
