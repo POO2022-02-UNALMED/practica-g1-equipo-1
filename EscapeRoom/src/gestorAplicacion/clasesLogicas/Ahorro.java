@@ -20,7 +20,7 @@ public class Ahorro implements Jarvis {
 	//HOLA PRUEBA
 
     @Override
-    public void ayudaJarvis() {
-        //apaga y prende equipos
+    public String ayudaJarvis() {
+        return "apaga y prende equipos";
     }
 }

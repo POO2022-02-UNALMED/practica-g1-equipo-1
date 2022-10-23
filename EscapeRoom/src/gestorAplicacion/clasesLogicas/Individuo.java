@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public abstract class Individuo implements Jarvis{
     private int health, armor, speed;
     private boolean stunned = false;
-    private ArrayList<Integer> locations = new ArrayList<>();
+    private ArrayList<Integer> historial = new ArrayList<>();
     private Habitacion ubicacion;
     
     public Individuo(int health,int armor, int speed){

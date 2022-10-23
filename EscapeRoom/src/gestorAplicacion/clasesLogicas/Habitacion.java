@@ -104,7 +104,15 @@ public class Habitacion implements Jarvis{
         }
 
     @Override
-    public void ayudaJarvis() {
-        //da informacion de la habitacion
+    public String ayudaJarvis() {
+        String a;
+        if(intruso != null ){
+            a = "estas ahi";
+        } else if(robot != null){
+            a = "el robot esta ahi";
+        } else {
+            a = "no hay nadie ahi";
+        }
+        return "En esta habitacion hay " + listaObjetos.size() + " objetos, " + a;//y ya pasaste o no has pasado por ahi
     }
 }
