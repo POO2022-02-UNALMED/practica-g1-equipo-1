@@ -17,6 +17,9 @@ public class Habitacion implements Jarvis{
 		this.listaObjetos = listaObjetos;
 		this.intruso = intruso;
 		this.robot = robot;
+                this.luces = Ahorro.APAGADO;
+                this.alarma = Ahorro.APAGADO;
+                this.computador = Ahorro.APAGADO;
 
 		/*switch(numero) {
 		case 1:
@@ -84,6 +87,17 @@ public class Habitacion implements Jarvis{
 	public void setRobot(Individuo robot) {
 		this.robot = robot;
 	}
+        
+        public void setAlarma(Ahorro a){
+            alarma = a;
+        }
+        public void setLuces(Ahorro a){
+            luces = a;
+        }
+        public void setComputador(Ahorro a){
+            alarma = a;
+        }
+        
 	
         public void setHabitacionesContiguas(Habitacion norte, Habitacion sur, Habitacion este, Habitacion oeste){
             this.norte = norte;

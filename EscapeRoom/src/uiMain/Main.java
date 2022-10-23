@@ -109,6 +109,7 @@ public class Main {
 		//Inicio de habitaciones de intruso y robot, el intruso inicia en la habitaci�n 0 y el robot en Habitacion 8
 		
 		intruso.setUbicacion(Numero1);
+                intruso.getUbicacion().setLuces(Ahorro.ENCENDIDO);
 		robot.setUbicacion(Numero9);
 		
 		
@@ -268,14 +269,13 @@ public class Main {
 				 for(Habitacion Hab:habitacionesDisponibles) {
 					 if (!Objects.isNull(Hab)) {
 						 if (opcionHab == Hab.getNumero()) {
-							 intruso.setUbicacion(Hab);
-							 break;
+                                                     intruso.getUbicacion().setLuces(Ahorro.APAGADO);//apaga las luces
+                                                     intruso.setUbicacion(Hab);
+                                                     intruso.getUbicacion().setLuces(Ahorro.ENCENDIDO);//enciende las luces de la habitacion siguiente
+                                                     break;
 						 }
 					}
 				 }
-				 
-				 
-                           
 				break;
 			case 2:
 				break;
