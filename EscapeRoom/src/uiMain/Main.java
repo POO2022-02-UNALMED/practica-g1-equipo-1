@@ -18,6 +18,8 @@ public class Main {
 		Individuo iniciativa[] = new Individuo[2]; // organiza los turnos de combate
 		boolean cargaRobot = false; // se utiliza para el ataque cargado del robot
 		int desicionRobot; // se utiliza para el turno de robot en la pelea
+                int j, bloquear; //variables de apoyo para ciclos
+                boolean huir = true;
 
 		System.out.println("Bienvenidos, Breve introduccion y tutorial aqui!!");
 		System.out.println("\nPresiona cualquier tecla para comenzar");
@@ -144,13 +146,11 @@ public class Main {
 
 			System.out.println("Descripcion de la escena que ve");
 
-			if (robot.getUbicacion()== intruso.getUbicacion()) {// COLOCAR CONDICION (si la ubicacion del jugador == ubicacion robot)
+			if (robot.getUbicacion()== intruso.getUbicacion()) {//si la ubicacion del jugador == ubicacion robot
 				System.out.println("El robot te ha encontrado! preparate para luchar!!");
-				while (true) {// COLOCAR COONDICION (hasta que la vida de alguno < 0, o el jugador logre
-								// escapar)
-					if (robot.getSpeed() + Main.lanzarDados(5) > intruso.getSpeed() + Main.lanzarDados(5)) {// define el
-																											// orden de
-																											// turnos
+				while (intruso.getHealth() > 0 && robot.getHealth() > 0 && huir) {// COLOCAR COONDICION (hasta que la vida de alguno < 0, o el jugador logre escapar)
+                                    bloquear = 0;
+					if (robot.getSpeed() + Main.lanzarDados(5) > intruso.getSpeed() + Main.lanzarDados(5)) {// define el orden de turnos
 						iniciativa[0] = robot;
 						iniciativa[1] = intruso;
 					} else {
@@ -160,41 +160,62 @@ public class Main {
 					for (int i = 0; i < 2; i++) {
 						if (iniciativa[i].equals(intruso)) {// acciones del jugador
 							System.out.println("Es tu turno:");
-							System.out.println("1. Atacar" + "\n2. Bloquear" + "\n3. Usar" + "\n4. Huir");
-							opcion = in.nextInt();
+                                                        if (intruso.isStunned()){
+                                                            System.out.println("Estas aturdido, no puedes moverte");
+                                                            intruso.stun(false);
+                                                            opcion = -1;
+                                                        } else {
+                                                            System.out.println("1. Atacar" + "\n2. Bloquear" + "\n3. Usar" + "\n4. Huir");
+							    opcion = in.nextInt();
+                                                        }
 							switch (opcion) {
 							case 1:
 								System.out.println("¿Con que desea atacar?");
 								System.out.println("1. A puñetazos");
-								int j = 2;
-								for (Herramientas inventory : intruso.getInventory()) {// muestra en pantalla las armas
-																						// que tiene en inventario
-									System.out.println(j + ". " + inventory.getName());
+								j = 2;
+								for (Herramientas arma : intruso.getInventory()) {// muestra en pantalla las armas que tiene en inventario
+                                                                        if (arma.isWeapon()){
+                                                                        System.out.println(j + ". " + arma.getName());
+                                                                        }
 									j++;
 								}
 								opcion = in.nextInt();
 								if (opcion == 1 && Main.lanzarDados(5) >= robot.getArmor()) {
 									intruso.atacar(robot);// ataca a punetazos
-									System.out.println(
-											"Le diste un puño al robot, probablemente te dolió mas a ti que a él.");
+									System.out.println("Le diste un puño al robot, probablemente te dolió mas a ti que a él.");
 									System.out.println("Te sobas la mano.");
 								} else if (Main.lanzarDados(5) >= robot.getArmor()) {
-									intruso.atacar(robot, intruso.getInventory().get(opcion - 2).getBonusDamage());// ataca
-																													// +
-																													// el
-																													// bonus
-																													// del
-																													// arma
+									intruso.atacar(robot, intruso.getInventory().get(opcion - 2).getBonusDamage());// ataca + el bonus del arma
+                                                                        System.out.println("Atacaste al robot exitosamente");
 								} else {
-									System.out.println("El Robot bloqueo tu ataque!");// hay una probabilidad de que el
-																						// robot bloquee
+									System.out.println("El Robot bloqueo tu ataque!");// hay una probabilidad de que el robot bloquee
 								}
 								break;
-							case 2:// aumenta tu armadura por un turno
+							case 2:
+                                                            System.out.println("Tomas una posición defensiva y te preparas para recibir el ataque");
+                                                            bloquear = 2;
 								break;
-							case 3:// utiliza un objeto especial
+							case 3:
+                                                            j = 1;
+                                                            System.out.println("¿Qué deseas utilizar?:");
+                                                            for (Herramientas objeto : intruso.getInventory()) {// muestra en pantalla los objetos que tiene en inventario
+                                                                        if (objeto.isUsable()){
+                                                                        System.out.println(j + ". " + objeto.getName());
+                                                                        }
+									j++;
+                                                            }
+                                                            opcion = in.nextInt();
+                                                            //metodo para usar herramienta
+                                                            
 								break;
-							case 4:// intentas huir del combate
+                                                        case 4:
+                                                            if(intruso.getSpeed()+Main.lanzarDados(5)>=4){
+                                                                huir = false;
+                                                                System.out.print("Tu agilidad te permitió saltar fuera del combate");
+                                                            } else {
+                                                                System.out.println("Intentas huir, pero el robot te cierra el paso, mas suerte la proxima vez");
+                                                            }
+                                                        
 								break;
 							default:
 								break;
@@ -204,7 +225,7 @@ public class Main {
 							System.out.println("Es el turno del robot:");
 							if (cargaRobot) {// ataque cargado
 								desicionRobot = 100;// esta linea evita que haga otra cosa en el turno
-								if (Main.lanzarDados(5) >= intruso.getArmor()) {
+								if (Main.lanzarDados(5) >= intruso.getArmor() + bloquear) {
 									robot.atacar(intruso);
 									robot.atacar(intruso);
 									robot.atacar(intruso);
@@ -219,8 +240,9 @@ public class Main {
 							}
 							// ataque normal
 							if (desicionRobot < 6) {// del 1 al 5 ataque normal
-								if (Main.lanzarDados(5) >= intruso.getArmor()) {
+								if (Main.lanzarDados(5) >= intruso.getArmor() + bloquear) {
 									robot.atacar(intruso);
+                                                                        System.out.println("El robot te acaba de asestar un golpe");
 								} else {
 									System.out.println("Bloqueaste el golpe del robot");
 								}
@@ -229,10 +251,16 @@ public class Main {
 								cargaRobot = true;
 								System.out.println("El pecho del robot comienza a brillar con fuerza");
 							} else if (desicionRobot == 8 || desicionRobot == 9) {// 8 o 9 stunear
-
+                                                                if (Main.lanzarDados(5) >= intruso.getArmor() + bloquear) {
+									intruso.stun(true);
+                                                                        System.out.println("El robot te electrocutó, estarás aturdido por el siguiente turno");
+								} else {
+									System.out.println("Bloqueaste el golpe del robot");
+								}
 							} else if (desicionRobot == 10) {// 10 roba un objeto
 								// robar objeto
 							}
+                                                        bloquear = 0;
 
 						}
 					}
