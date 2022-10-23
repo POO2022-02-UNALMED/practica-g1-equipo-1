@@ -78,14 +78,31 @@ public class Main {
 
 		
 		//Instancias de habitacion
+		
+		
 		Habitacion Numero1 = new Habitacion(1, false, objetosh1 , intruso, null);
 		Habitacion Numero2 = new Habitacion(2, false, objetosh2 , null, null);
 		Habitacion Numero3 = new Habitacion(3, false, objetosh3 , null, null);
 		Habitacion Numero4 = new Habitacion(4, true, objetosh4 , null, null);
-		//Instancias de habitacion de inicio del robot
-		Habitacion Numero0 = new Habitacion(0, true, objetosh0 , robot, null);
+		Habitacion Numero5 = new Habitacion(5, true, objetosh5 , null, null);
+		Habitacion Numero6 = new Habitacion(6, true, objetosh6 , null, null);
+		Habitacion Numero7 = new Habitacion(7, true, objetosh7 , null, null);
+		Habitacion Numero8 = new Habitacion(8, true, objetosh8 , null, null);
+		Habitacion Numero9 = new Habitacion(9, true, objetosh9 , null, robot);
 		
-		//Inicio de habitaciones de intruso y robot, el intruso inicia en la habitaci�n 1 y el robot en Habitacion 0
+		Numero1.setHabitacionesContiguas(Numero4, null, Numero2, null);
+		Numero2.setHabitacionesContiguas(Numero5, null, Numero3, Numero1);
+		Numero3.setHabitacionesContiguas(Numero6, null, null, Numero2);
+		Numero4.setHabitacionesContiguas(Numero7, Numero1, Numero5, null);
+		Numero5.setHabitacionesContiguas(Numero8, Numero2, Numero6, Numero4);
+		Numero6.setHabitacionesContiguas(Numero9, Numero3, null, Numero5);
+		Numero7.setHabitacionesContiguas(null, Numero4, Numero8, null);
+		Numero8.setHabitacionesContiguas(null, Numero5, Numero9, Numero7);
+		Numero9.setHabitacionesContiguas(null, Numero6, null, Numero8);
+		
+		//Inicio de habitaciones de intruso y robot, el intruso inicia en la habitacion 1 y el robot en Habitacion 9
+		
+		
 		
 		
 		

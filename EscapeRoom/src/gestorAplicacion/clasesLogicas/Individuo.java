@@ -53,6 +53,10 @@ public abstract class Individuo {
     public Habitacion getUbicacion(){
         return ubicacion;
     }
+    public void setUbicacion(Habitacion ubicacion){
+        this.ubicacion = ubicacion;
+    }
+    
     
     
     //METODOS SET
