@@ -8,7 +8,7 @@ public class Habitacion {
 	private boolean bloqueada; //Si tiene bloqueo o no
 	private ArrayList<Herramientas> listaObjetos = new ArrayList<>();//El listado de objetos de cada habitacion
 	private Individuo intruso, robot; //Si hay alguien en la habitacion
-	
+        private Habitacion norte, sur, este, oeste;	
 	public Habitacion(int numero, boolean bloqueada, ArrayList<Herramientas> listaObjetos, Individuo intruso,
 			Individuo robot) { //Se podria modificar este constructor para que se inicialice con lo que queremos o crear el vacio
 		this.numero = numero;
@@ -31,7 +31,6 @@ public class Habitacion {
 	public int getNumero() {
 		return numero;
 	}
-
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
@@ -39,7 +38,6 @@ public class Habitacion {
 	public boolean isBloqueada() {
 		return bloqueada;
 	}
-
 	public void setBloqueada(boolean bloqueada) {
 		this.bloqueada = bloqueada;
 	}
@@ -47,7 +45,6 @@ public class Habitacion {
 	public ArrayList<Herramientas> getListaObjetos() {
 		return listaObjetos;
 	}
-
 	public void setListaObjetos(ArrayList<Herramientas> listaObjetos) {
 		this.listaObjetos = listaObjetos;
 	}
@@ -55,7 +52,6 @@ public class Habitacion {
 	public Individuo getIntruso() {
 		return intruso;
 	}
-
 	public void setIntruso(Individuo intruso) {
 		this.intruso = intruso;
 	}
@@ -63,9 +59,26 @@ public class Habitacion {
 	public Individuo getRobot() {
 		return robot;
 	}
-
 	public void setRobot(Individuo robot) {
 		this.robot = robot;
 	}
 	
+        public void setHabitacionesContiguas(Habitacion norte, Habitacion sur, Habitacion este, Habitacion oeste){
+            this.norte = norte;
+            this.sur = sur;
+            this.este = este;
+            this.oeste = oeste;
+        }
+        public Habitacion getNorte(){
+            return norte;
+        } 
+        public Habitacion getSur(){
+            return sur;
+        }
+        public Habitacion getEste(){
+            return este;
+        }
+        public Habitacion getOeste(){
+            return oeste;
+        }
 }

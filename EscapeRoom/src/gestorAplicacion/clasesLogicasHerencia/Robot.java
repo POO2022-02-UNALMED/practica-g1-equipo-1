@@ -1,8 +1,5 @@
 package gestorAplicacion.clasesLogicasHerencia;
 import gestorAplicacion.clasesLogicas.*;
-//HOLA
-
-
 
 
 public class Robot extends Individuo {

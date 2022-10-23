@@ -3,7 +3,7 @@ package gestorAplicacion.clasesLogicas;
 
 
 public class Herramientas {
-	private boolean alarma;
+    private boolean alarma;
     private String description = "objeto generico";
     private final String name;
     private final boolean weapon, shocker, usable;
@@ -39,11 +39,10 @@ public class Herramientas {
         return name;
     }
     
-	public void setAlarma(boolean alarma) {
-		this.alarma = alarma;
-	}
-
-	public String getDescription(){
+    public void setAlarma(boolean alarma) {
+        this.alarma = alarma;
+    }
+    public String getDescription(){
         return description;
     }
     public boolean isWeapon(){
@@ -72,8 +71,7 @@ public class Herramientas {
     public void setDescripion(String i){
         description = i;
     }
-
     public boolean isAlarma() {
-		return alarma;
-	}
+        return alarma;
+    }
 }

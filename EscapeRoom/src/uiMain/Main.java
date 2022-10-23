@@ -11,7 +11,7 @@ public class Main {
 		return (int) Math.floor(Math.random() * (caras) + 1);
 	}
 
-	public static void main(String[] args) { //Inicio de metodo main
+	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		int opcion; // aqui se guardan las opciones que va seleccionando el jugador
 		boolean x = true; // variable temporal, mientras colocamos bien las condiciones
@@ -43,33 +43,33 @@ public class Main {
 		Herramientas mascaraIronMan = new Herramientas(true,"El objetivo final",false,false,false,0,0,0,0); //Si algo cuadrar esto
 		objetosh4.add(mascaraIronMan);
 		
-		Herramientas diamante = new Herramientas(true,"Un diamante",false,false,true,0,0,0,0);
+		Herramientas diamante = new Herramientas(true,"Un diamanre",false,false,true,0,0,0,0);
 		objetosh3.add(diamante);
 
 		Herramientas llaveInglesa = new Herramientas(false,"Llave inglesa",false,false,true,0,0,0,0); //Si algo cuadrar esto
 		objetosh1.add(llaveInglesa);
 
-		Herramientas escudoCapitanAmerica = new Herramientas(true,"Escudo del Capitan America", false, false, true, 0, 2, 1,
+		Herramientas escudoCapitanAmerica = new Herramientas(true,"Escudo del Capitán America", false, false, true, 0, 2, 1,
 				0); //Le puse que si tiene alarma
 		escudoCapitanAmerica.setDescripion(
-				"Escudo de vibranium con los colores de la bandera americana, te sientes inspirado solo al llevarlo contigo."
-						+ "\nSi lo usas seras mas dificil de golpear por ese turno.");
+				"Escudo de vibranium con los colores de la bandera, te sientes inspirado solo al llevarlo contigo."
+						+ "\nSi lo usas serás más difícil de golpear por ese turno.");
 		objetosh2.add(escudoCapitanAmerica);
 		
 		Herramientas martilloThor = new Herramientas(true,"Martillo de Thor", true, true, true, 10, 0, 0, 0);
 		martilloThor.setDescripion(
-				"Martillo magico con el que puedes atacar, sientes como fluye energia electrica por tu cuerpo."
+				"Martillo mágico con el que puedes atacar, sientes como fluye energía eléctrica por tu cuerpo."
 						+ "\nSi lo usas puedes aturdir a tu adversario con un rayo.");
 		objetosh4.add(martilloThor);
 		
-		Herramientas lanzaTelaranas = new Herramientas(true,"Lanza Telaranas", false, true, true, 0, 0, 2, 0);
-		lanzaTelaranas.setDescripion("Dispositivo lanza telaranas, probablemente pertenece a Spiderman."
-				+ "\nSi lo usas lanzas una telarana... Obviamente.");
+		Herramientas lanzaTelaranas = new Herramientas(true,"Lanza Telarañas", false, true, true, 0, 0, 2, 0);
+		lanzaTelaranas.setDescripion("Dispositivo lanza telarañas, probablemente pertenece a Spiderman."
+				+ "\nSi lo usas lanzas una telaraña... Obviamente.");
 		objetosh1.add(lanzaTelaranas);
 		
-		Herramientas inyeccion = new Herramientas(false,"Inyeccion de adrenalina", false, false, true, 0, 0, 0, 50);
-		inyeccion.setDescripion("Inyectadora con liquido verde, lleva marcada las siglas S.H.I.E.L.D."
-				+ "\nSi lo usas recuperaras tu salud.");
+		Herramientas inyeccion = new Herramientas(false,"Inyección de adrenalina", false, false, true, 0, 0, 0, 50);
+		inyeccion.setDescripion("Inyectadora con líquido verde, lleva marcada las siglas S.H.I.E.L.D."
+				+ "\nSi lo usas recuperarás tu salud.");
 		objetosh4.add(inyeccion);
 		
 		System.out.println("Ahora iniciaras en la habitaci�n 1 ");
@@ -85,8 +85,8 @@ public class Main {
 		
 		//Inicio de habitaciones de intruso y robot, el intruso inicia en la habitaci�n 1 y el robot en Habitacion 0
 		
-		System.out.println("En esta habitacion debes escoger los materiales necesarios para crear"+
-		"\n una llave inglesa y un poderoso martillo, elige bien: "+"\n1. Acero asgardiano y Madera roble"+"\n2. Hierro asgardiano y Madera abedul"
+		System.out.println("En esta habitaci�n debes escoger los materiales necesarios para crear"+
+		"\nun poderoso martillo, elige bien: "+"\n1. Acero asgardiano y Madera roble"+"\n2. Hierro asgardiano y Madera abedul"
 				+"\n3. Uru asgardiano y Madera Groot");
 		
 		//creacion del asistente jarvis
@@ -94,84 +94,39 @@ public class Main {
 		
 		int opcionmaterial=in.nextInt();
 		int contadorintentos;
-		
-		if (opcionmaterial == 1 || opcionmaterial ==2 ) {
-		//Orientacion de Jarvis 
-		}
-		else {
+		switch (opcionmaterial) {
+		case 1:
+			//Orientacion de Jarvis
+		case 2:
+			//Orientacion de Jarvis 
+		case 3:
 			// Felicitacion  de Jarvis
 			
 			intruso.agarrar();
 			Numero1.setIntruso(null);
 			Numero2.setIntruso(intruso);
-			intruso.setHabitacion(Numero2);
 			Numero1.setRobot(robot);
-			opcionmaterial=0;//
-		}
-		
-		
-		
-		System.out.println("El Robot ha iniciado la marcha, elige sabiamente durante tu recorrido para no ser alcanzado");
-		System.out.println("En esta habitacion debes escoger los materiales necesarios para crear"+
-				"\n una llave inglesa y un poderoso martillo, elige bien: "+"\n1. Acero asgardiano y Madera roble"+
-				"\n2. Hierro asgardiano y Madera abedul"+
-				"\n3. Uru asgardiano y Madera Groot");
-		
-		int opcionmaterial2=in.nextInt();
-		if (opcionmaterial == 1 || opcionmaterial ==2 ) {
-		//Orientacion de Jarvis 
-		}
-		else {
-		// Felicitacion  de Jarvis
-			intruso.agarrar();
-			Numero2.setIntruso(null);
-			Numero3.setIntruso(intruso);
-			intruso.setHabitacion(Numero3);
-			Numero2.setRobot(robot);
 			opcionmaterial=0;
+			
+		
 		}
 		
 		System.out.println("El Robot ha iniciado la marcha, elige sabiamente durante tu recorrido para no ser alcanzado");
-		System.out.println("En esta habitacion debes escoger los materiales necesarios para crear"+
-				"\n una llave inglesa y un poderoso martillo, elige bien: "+"\n1. Acero asgardiano y Madera roble"+
-				"\n2. Hierro asgardiano y Madera abedul"+
-				"\n3. Uru asgardiano y Madera Groot");
+		System.out.println("En esta habitaci�n debes escoger los materiales necesarios para crear"+
+		"\nuna llave , elige bien: "+"\n1. Acero asgardiano y Madera roble"+"\n2. Hierro asgardiano y Madera abedul"
+				+"\n3. Uru asgardiano y Madera Groot");
 		
-		int opcionmaterial3=in.nextInt();
-		if (opcionmaterial == 1 || opcionmaterial ==2 ) {
-		//Orientacion de Jarvis 
-		}
-		else {
-		// Felicitacion  de Jarvis
-			intruso.agarrar();
-			Numero3.setIntruso(null);
-			Numero4.setIntruso(intruso);
-			intruso.setHabitacion(Numero4);
-			Numero3.setRobot(robot);
-			opcionmaterial=0;
-		}
-
-		
-		System.out.println("El Robot ha iniciado la marcha, elige sabiamente durante tu recorrido para no ser alcanzado");
-		System.out.println("En esta habitacion debes escoger los materiales necesarios para crear"+
-				"\n una llave inglesa y un poderoso martillo, elige bien: "+"\n1. Acero asgardiano y Madera roble"+
-				"\n2. Hierro asgardiano y Madera abedul"+
-				"\n3. Uru asgardiano y Madera Groot");
-		
-		int opcionmaterial4=in.nextInt();
-		if (opcionmaterial == 1 || opcionmaterial ==2 ) {
-		//Orientacion de Jarvis 
-		}
-		else {
-		// Felicitacion  de Jarvisss
+		switch (opcionmaterial) {
+		case 1:
+			
+		case 2:
+			
+		case 3:
 			intruso.agarrar();
 			
 			
-			
-			Numero4.setRobot(robot);
-			opcionmaterial=0;
-			
-		}		
+		
+		}
 		
 		
 		
@@ -189,7 +144,7 @@ public class Main {
 
 			System.out.println("Descripcion de la escena que ve");
 
-			if (x) {// COLOCAR CONDICION (si la ubicacion del jugador == ubicacion robot)
+			if (robot.getUbicacion()== intruso.getUbicacion()) {// COLOCAR CONDICION (si la ubicacion del jugador == ubicacion robot)
 				System.out.println("El robot te ha encontrado! preparate para luchar!!");
 				while (true) {// COLOCAR COONDICION (hasta que la vida de alguno < 0, o el jugador logre
 								// escapar)
@@ -288,6 +243,7 @@ public class Main {
 			opcion = in.nextInt();
 			switch (opcion) {// aqui se implementan las diferentes funcionalidades
 			case 1:
+                            //hacia donde 1norte, 2sur, 3este, 4oeste
 				break;
 			case 2:
 				break;
@@ -305,6 +261,6 @@ public class Main {
 			System.out.println("mensaje de perdiste");
 		}
 
-	}//Final de metodo main
+	}
 
 }
