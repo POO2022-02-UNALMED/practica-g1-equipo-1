@@ -3,6 +3,8 @@ import gestorAplicacion.clasesLogicas.*;
 import gestorAplicacion.clasesLogicasHerencia.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Objects;
 import java.util.Scanner;
 import gestorAplicacion.*;
 public class Main {
@@ -104,7 +106,8 @@ public class Main {
                 
 		//Inicio de habitaciones de intruso y robot, el intruso inicia en la habitaci�n 0 y el robot en Habitacion 8
 		
-		
+		intruso.setUbicacion(Numero1);
+		robot.setUbicacion(Numero9);
 		
 		
 		// Ir pasando recogiendo cosas
@@ -244,7 +247,31 @@ public class Main {
 			opcion = in.nextInt();
 			switch (opcion) {// aqui se implementan las diferentes funcionalidades
 			case 1:
-                            //hacia donde 1norte, 2sur, 3este, 4oeste
+				 ArrayList<Habitacion> habitacionesDisponibles = new ArrayList<>();
+				 int ordenHab[] = new int[4];
+				 habitacionesDisponibles.add(intruso.getUbicacion().getNorte());
+				 habitacionesDisponibles.add(intruso.getUbicacion().getSur());
+				 habitacionesDisponibles.add(intruso.getUbicacion().getEste());
+				 habitacionesDisponibles.add(intruso.getUbicacion().getOeste());
+				 
+				 for(Habitacion Hab:habitacionesDisponibles) {
+					 if (Objects.isNull(Hab)) {
+						 continue;
+						
+					}else {
+						
+						
+						System.out.println("Puedes moverte a la habitacion numero: "+Hab.getNumero());
+					}
+				 }
+				 
+				 System.out.println("Donde quieres moverte?");
+				 int opcionHab=in.nextInt();
+				 
+				 intruso.setUbicacion(habitacionesDisponibles.get(opcionHab));
+				 
+				 
+                           
 				break;
 			case 2:
 				break;
