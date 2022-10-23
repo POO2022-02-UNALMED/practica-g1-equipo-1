@@ -91,6 +91,8 @@ public class Main {
 		Habitacion Numero7 = new Habitacion(7, true, objetosh7 , null, null);
 		Habitacion Numero8 = new Habitacion(8, true, objetosh8 , null, null);
 		Habitacion Numero9 = new Habitacion(9, true, objetosh9 , null, robot);
+                
+                Habitacion[] casa = new Habitacion[] {Numero1, Numero2, Numero3, Numero4, Numero5, Numero6, Numero7, Numero8, Numero9};
 		
 		Numero1.setHabitacionesContiguas(Numero4, null, Numero2, null);
 		Numero2.setHabitacionesContiguas(Numero5, null, Numero3, Numero1);
@@ -249,6 +251,26 @@ public class Main {
 			case 2:
 				break;
 			case 3:
+                            System.out.println("Tus habilidades en Hacking te permiten tomar control de la IA Jarvis..."
+                                    + "\nJ.A.R.V.I.S.: ¿En qué te puedo asistir?"
+                                    + "\n1. Dame informacion acerca de las habitaciones."
+                                    + "\n2. Dame informacion acerca del robot."
+                                    + "\n3. Apaga las luces para que el robot no me encuentre."
+                                    + "\n4. No sé que hacer, dame una pista.");
+                            opcion = in.nextInt();
+                            switch(opcion){
+                                case 1:
+                                    System.out.println("De qué habitación necesitas saber?");
+                                    opcion = in.nextInt();
+                                    System.out.println(casa[opcion-1].ayudaJarvis());
+                                    break;
+                                case 2:
+                                    System.out.println(robot.ayudaJarvis());
+                                case 3:
+                                    //apaga las luces de la habitacion actual
+                                case 4:
+                                    //pista dependiendo del avance o al azar
+                            }
 				break;
 			default:
 				break;

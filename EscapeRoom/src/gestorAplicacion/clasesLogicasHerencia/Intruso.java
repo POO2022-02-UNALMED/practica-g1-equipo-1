@@ -53,8 +53,8 @@ public class Intruso extends Individuo{
     //METODOS SET
 
     @Override
-    public void ayudaJarvis() {
-        //da pistas de como avanzar
+    public String ayudaJarvis() {
+        return "dar pista";
     }
     
 }
