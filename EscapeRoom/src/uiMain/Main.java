@@ -72,7 +72,7 @@ public class Main {
 				+ "\nSi lo usas recuperaras tu salud.");
 		objetosh4.add(inyeccion);
 		
-		System.out.println("Ahora iniciaras en la habitación 1 ");
+		System.out.println("Ahora iniciaras en la habitaciï¿½n 1 ");
 
 		
 		//Instancias de habitacion
@@ -83,14 +83,14 @@ public class Main {
 		//Instancias de habitacion de inicio del robot
 		Habitacion Numero0 = new Habitacion(0, true, objetosh0 , robot, null);
 		
-		//Inicio de habitaciones de intruso y robot, el intruso inicia en la habitación 1 y el robot en Habitacion 0
+		//Inicio de habitaciones de intruso y robot, el intruso inicia en la habitaciï¿½n 1 y el robot en Habitacion 0
 		
 		System.out.println("En esta habitacion debes escoger los materiales necesarios para crear"+
 		"\n una llave inglesa y un poderoso martillo, elige bien: "+"\n1. Acero asgardiano y Madera roble"+"\n2. Hierro asgardiano y Madera abedul"
 				+"\n3. Uru asgardiano y Madera Groot");
 		
 		//creacion del asistente jarvis
-		Jarvis jarvis = new Jarvis();
+		//Jarvis jarvis = new Jarvis();
 		
 		int opcionmaterial=in.nextInt();
 		int contadorintentos;
