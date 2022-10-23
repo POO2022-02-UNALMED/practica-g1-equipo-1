@@ -112,18 +112,11 @@ public class Main {
 		// 0 y el robot en Habitacion 8
 
 		intruso.setUbicacion(Numero1);
-<<<<<<< HEAD
                 intruso.getUbicacion().setLuces(Ahorro.ENCENDIDO);
                 intruso.addHistorial();
 		robot.setUbicacion(Numero9);
                 robot.addHistorial();
-		
-		
-=======
-		intruso.getUbicacion().setLuces(Ahorro.ENCENDIDO);
-		robot.setUbicacion(Numero9);
 
->>>>>>> 1d1e262ecc1cec538b4c73d87c40e85a1fbb7658
 		// Ir pasando recogiendo cosas
 
 		// Hacer un input de ir a la siguiente habitacion
@@ -272,40 +265,10 @@ public class Main {
 			opcion = in.nextInt();
 			switch (opcion) {// aqui se implementan las diferentes funcionalidades
 			case 1:
-<<<<<<< HEAD
 				 System.out.println(intruso.habitacionesDisponibles());
 				 System.out.println("Donde quieres moverte?");
 				 int opcionHab=in.nextInt();
 				 intruso.mover(casa[opcionHab-1]);
-=======
-				ArrayList<Habitacion> habitacionesDisponibles = new ArrayList<>();
-				habitacionesDisponibles.add(intruso.getUbicacion().getNorte());
-				habitacionesDisponibles.add(intruso.getUbicacion().getSur());
-				habitacionesDisponibles.add(intruso.getUbicacion().getEste());
-				habitacionesDisponibles.add(intruso.getUbicacion().getOeste());
-
-				for (Habitacion Hab : habitacionesDisponibles) {
-					if (!Objects.isNull(Hab)) {
-						System.out.println("Puedes moverte a la habitacion numero: " + Hab.getNumero());
-						continue;
-					}
-				}
-
-				System.out.println("Donde quieres moverte?");
-				int opcionHab = in.nextInt();
-
-				for (Habitacion Hab : habitacionesDisponibles) {
-					if (!Objects.isNull(Hab)) {
-						if (opcionHab == Hab.getNumero()) {
-							intruso.getUbicacion().setLuces(Ahorro.APAGADO);// apaga las luces
-							intruso.setUbicacion(Hab);
-							intruso.getUbicacion().setLuces(Ahorro.ENCENDIDO);// enciende las luces de la habitacion
-																				// siguiente
-							break;
-						}
-					}
-				}
->>>>>>> 1d1e262ecc1cec538b4c73d87c40e85a1fbb7658
 				break;
 			case 2:
 				break;
