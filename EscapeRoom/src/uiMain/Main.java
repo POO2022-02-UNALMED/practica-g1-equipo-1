@@ -130,7 +130,48 @@ public class Main {
 			Numero2.setRobot(robot);
 			opcionmaterial=0;
 		}
+		
+		System.out.println("El Robot ha iniciado la marcha, elige sabiamente durante tu recorrido para no ser alcanzado");
+		System.out.println("En esta habitacion debes escoger los materiales necesarios para crear"+
+				"\n una llave inglesa y un poderoso martillo, elige bien: "+"\n1. Acero asgardiano y Madera roble"+
+				"\n2. Hierro asgardiano y Madera abedul"+
+				"\n3. Uru asgardiano y Madera Groot");
+		
+		int opcionmaterial3=in.nextInt();
+		if (opcionmaterial == 1 || opcionmaterial ==2 ) {
+		//Orientacion de Jarvis 
+		}
+		else {
+		// Felicitacion  de Jarvis
+			intruso.agarrar();
+			Numero3.setIntruso(null);
+			Numero4.setIntruso(intruso);
+			intruso.setHabitacion(Numero4);
+			Numero3.setRobot(robot);
+			opcionmaterial=0;
+		}
 
+		
+		System.out.println("El Robot ha iniciado la marcha, elige sabiamente durante tu recorrido para no ser alcanzado");
+		System.out.println("En esta habitacion debes escoger los materiales necesarios para crear"+
+				"\n una llave inglesa y un poderoso martillo, elige bien: "+"\n1. Acero asgardiano y Madera roble"+
+				"\n2. Hierro asgardiano y Madera abedul"+
+				"\n3. Uru asgardiano y Madera Groot");
+		
+		int opcionmaterial4=in.nextInt();
+		if (opcionmaterial == 1 || opcionmaterial ==2 ) {
+		//Orientacion de Jarvis 
+		}
+		else {
+		// Felicitacion  de Jarvisss
+			intruso.agarrar();
+			
+			
+			
+			Numero4.setRobot(robot);
+			opcionmaterial=0;
+			
+		}		
 		
 		
 		
