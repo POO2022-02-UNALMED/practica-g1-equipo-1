@@ -250,27 +250,29 @@ public class Main {
 			switch (opcion) {// aqui se implementan las diferentes funcionalidades
 			case 1:
 				 ArrayList<Habitacion> habitacionesDisponibles = new ArrayList<>();
-				 int ordenHab[] = new int[4];
 				 habitacionesDisponibles.add(intruso.getUbicacion().getNorte());
 				 habitacionesDisponibles.add(intruso.getUbicacion().getSur());
 				 habitacionesDisponibles.add(intruso.getUbicacion().getEste());
 				 habitacionesDisponibles.add(intruso.getUbicacion().getOeste());
 				 
 				 for(Habitacion Hab:habitacionesDisponibles) {
-					 if (Objects.isNull(Hab)) {
+					 if (!Objects.isNull(Hab)) {
+						 System.out.println("Puedes moverte a la habitacion numero: "+Hab.getNumero());
 						 continue;
-						
-					}else {
-						
-						
-						System.out.println("Puedes moverte a la habitacion numero: "+Hab.getNumero());
+					 }
 					}
-				 }
 				 
 				 System.out.println("Donde quieres moverte?");
 				 int opcionHab=in.nextInt();
 				 
-				 intruso.setUbicacion(habitacionesDisponibles.get(opcionHab));
+				 for(Habitacion Hab:habitacionesDisponibles) {
+					 if (!Objects.isNull(Hab)) {
+						 if (opcionHab == Hab.getNumero()) {
+							 intruso.setUbicacion(Hab);
+							 break;
+						 }
+					}
+				 }
 				 
 				 
                            
