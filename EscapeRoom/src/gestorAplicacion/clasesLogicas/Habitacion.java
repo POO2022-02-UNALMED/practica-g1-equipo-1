@@ -91,8 +91,14 @@ public class Habitacion implements Jarvis{
         public void setAlarma(Ahorro a){
             alarma = a;
         }
+        public Ahorro getAlarma(){
+            return alarma;
+        }
         public void setLuces(Ahorro a){
             luces = a;
+        }
+        public Ahorro getLuces(){
+            return luces;
         }
         public void setComputador(Ahorro a){
             alarma = a;

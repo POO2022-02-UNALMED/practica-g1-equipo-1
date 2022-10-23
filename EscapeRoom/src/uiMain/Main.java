@@ -265,10 +265,22 @@ public class Main {
 			opcion = in.nextInt();
 			switch (opcion) {// aqui se implementan las diferentes funcionalidades
 			case 1:
+                                 //Movimiento del intruso
 				 System.out.println(intruso.habitacionesDisponibles());
 				 System.out.println("Donde quieres moverte?");
 				 int opcionHab=in.nextInt();
 				 intruso.mover(casa[opcionHab-1]);
+                                 
+                                 //Movimiento del robot
+                                 robot.escuchar(casa);
+                                 robot.escanear();
+                                 if(robot.isNextTo()){
+                                     //no se mueve
+                                 }else if (robot.isAware()){
+                                     //algoritmo de busqueda aqui
+                                 } else {
+                                     robot.mover(casa[robot.decidirDireccion()-1]);//movimiento aleatorio
+                                 }
 				break;
 			case 2:
 				break;

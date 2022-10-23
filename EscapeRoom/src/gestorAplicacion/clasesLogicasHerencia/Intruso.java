@@ -67,6 +67,7 @@ public class Intruso extends Individuo{
         this.getUbicacion().setLuces(Ahorro.APAGADO);//apaga las luces
         this.setUbicacion(hab);
         this.getUbicacion().setLuces(Ahorro.ENCENDIDO);//enciende las luces de la habitacion siguiente
-        this.addHistorial();    }
+        this.addHistorial();    
+    }
     
 }

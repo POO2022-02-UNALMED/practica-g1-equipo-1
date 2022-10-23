@@ -1,17 +1,41 @@
 package gestorAplicacion.clasesLogicasHerencia;
 import gestorAplicacion.clasesLogicas.*;
+import java.util.ArrayList;
+import java.util.Objects;
+import uiMain.Main;
 
 
 public class Robot extends Individuo {
         private static final int ATTACK = 12;
-        private boolean aware;//atributo que guarda si el robot sabe donde esta el intruso
+        private boolean aware,nextTo;//atributo que guarda si el robot sabe donde esta el intruso
 
     
     public Robot() {
         super(300, 3, 7);
+        aware = false;
+        nextTo = false;
     }
     
     //Metodos de busqueda
+    public void escuchar(Habitacion[] casa){
+        for(int i = 0; i < casa.length; i++){
+            if(casa[i].getAlarma().equals(Ahorro.ACTIVADO)){
+                this.aware = true;
+                break;
+            } else {
+                this.aware = false;
+            }
+        }
+    }
+    public void escanear(){
+        if (this.getUbicacion().getNorte().getLuces().equals(Ahorro.ENCENDIDO) 
+                || this.getUbicacion().getSur().getLuces().equals(Ahorro.ENCENDIDO) 
+                || this.getUbicacion().getEste().getLuces().equals(Ahorro.ENCENDIDO) 
+                || this.getUbicacion().getOeste().getLuces().equals(Ahorro.ENCENDIDO) ){
+            nextTo = true;
+            
+        }
+    }
     public void buscar(){
         
     }
@@ -30,6 +54,9 @@ public class Robot extends Individuo {
     public boolean isAware(){
         return aware;
     }
+    public boolean isNextTo(){
+        return nextTo;
+    }
     
     //METODOS SET
     public void setAware(boolean b){
@@ -39,7 +66,7 @@ public class Robot extends Individuo {
     @Override
     public String ayudaJarvis() {
         String a;
-        if(aware){
+        if(aware || nextTo){
             a = "sabe dónde estás.";
         } else {
             a = "no nota tu presencia... aún.";
@@ -58,5 +85,20 @@ public class Robot extends Individuo {
         this.addHistorial();   
     }
 
-   
+   public int decidirDireccion(){
+       ArrayList<Habitacion> disponibles = new ArrayList<>();
+	disponibles.add(this.getUbicacion().getNorte());
+	disponibles.add(this.getUbicacion().getSur());
+	disponibles.add(this.getUbicacion().getEste());
+	disponibles.add(this.getUbicacion().getOeste());
+        int[] i = null;
+        int j = 0;
+        for(Habitacion Hab: disponibles) {
+            if (!Objects.isNull(Hab)) {
+                i[j] = Hab.getNumero();
+                j++;
+	    }
+	}
+        return i[Main.lanzarDados(i.length)-1];
+   }
 }
