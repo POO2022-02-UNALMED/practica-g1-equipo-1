@@ -106,7 +106,7 @@ public class Main {
 			Numero2.setIntruso(intruso);
 			intruso.setHabitacion(Numero2);
 			Numero1.setRobot(robot);
-			opcionmaterial=0;
+			opcionmaterial=0;//
 		}
 		
 		
