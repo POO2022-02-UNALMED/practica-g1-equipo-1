@@ -8,12 +8,14 @@ import uiMain.Main;
 public class Robot extends Individuo {
         private static final int ATTACK = 12;
         private boolean aware,nextTo;//atributo que guarda si el robot sabe donde esta el intruso
+        private boolean cargaRobot; //para ataque cargado
 
     
     public Robot() {
         super(300, 3, 7);
         aware = false;
         nextTo = false;
+        cargaRobot = false;
     }
     
     //Metodos de busqueda
@@ -46,6 +48,42 @@ public class Robot extends Individuo {
     public void atacar(Individuo i) {
         i.setHealth(i.getHealth()-ATTACK);
     }
+    public String ataqueCargado(Individuo i, int bloquear){
+        cargaRobot = false;
+        if (Main.lanzarDados(5) >= i.getArmor() + bloquear) {
+            this.atacar(i);
+            this.atacar(i);
+            this.atacar(i);
+            return "El robot lanza un poderoso laser hacia ti!!";
+        } else {
+            return "El robot lanza un poderoso laser hacia ti! Por suerte, logras esquivarlo";
+	}
+    }
+    public String turno(int desicion,Individuo i, int bloquear){
+        if (desicion < 6) {// del 1 al 5 ataque normal
+            if (Main.lanzarDados(5) >= i.getArmor() + bloquear) {
+                this.atacar(i);
+                return "El robot te acaba de asestar un golpe";
+            } else {
+                return "Bloqueaste el golpe del robot";
+	    }
+
+	} else if (desicion == 6 || desicion == 7) {// 6 o 7 recarga de ataque cargado
+            cargaRobot = true;
+            return "El pecho del robot comienza a brillar con fuerza";
+	} else if (desicion == 8 || desicion == 9) {// 8 o 9 stunear
+            if (Main.lanzarDados(5) >= i.getArmor() + bloquear) {
+                i.stun(true);
+                return "El robot te electrocutó, estarás aturdido por el siguiente turno";
+	    } else {
+		return "Bloqueaste el golpe del robot";
+	    }
+	} else if (desicion == 10) {// 10 roba un objeto
+	    return "robar objeto";
+	} else {
+            return "";
+        }
+    }
     
     //METODOS GET
     public static int getATTACK(){
@@ -56,6 +94,9 @@ public class Robot extends Individuo {
     }
     public boolean isNextTo(){
         return nextTo;
+    }
+    public boolean isCargaRobot(){
+        return cargaRobot;
     }
     
     //METODOS SET

@@ -213,54 +213,22 @@ public class Main {
 							default:
 								break;
 							}
-
 						} else {// acciones del robot
 							System.out.println("Es el turno del robot:");
-							if (cargaRobot) {// ataque cargado
+							if (robot.isCargaRobot()) {// ataque cargado
 								desicionRobot = 100;// esta linea evita que haga otra cosa en el turno
-								if (Main.lanzarDados(5) >= intruso.getArmor() + bloquear) {
-									robot.atacar(intruso);
-									robot.atacar(intruso);
-									robot.atacar(intruso);
-									System.out.println("El robot lanza un poderoso laser hacia ti!!");
-								} else {
-									System.out.println(
-											"El robot lanza un poderoso laser hacia ti! Por suerte, logras esquivarlo");
-								}
-								cargaRobot = false;
+								System.out.println(robot.ataqueCargado(intruso, bloquear));
 							} else {
 								desicionRobot = Main.lanzarDados(10);
 							}
-							// ataque normal
-							if (desicionRobot < 6) {// del 1 al 5 ataque normal
-								if (Main.lanzarDados(5) >= intruso.getArmor() + bloquear) {
-									robot.atacar(intruso);
-									System.out.println("El robot te acaba de asestar un golpe");
-								} else {
-									System.out.println("Bloqueaste el golpe del robot");
-								}
-
-							} else if (desicionRobot == 6 || desicionRobot == 7) {// 6 o 7 recarga de ataque cargado
-								cargaRobot = true;
-								System.out.println("El pecho del robot comienza a brillar con fuerza");
-							} else if (desicionRobot == 8 || desicionRobot == 9) {// 8 o 9 stunear
-								if (Main.lanzarDados(5) >= intruso.getArmor() + bloquear) {
-									intruso.stun(true);
-									System.out.println(
-											"El robot te electrocutó, estarás aturdido por el siguiente turno");
-								} else {
-									System.out.println("Bloqueaste el golpe del robot");
-								}
-							} else if (desicionRobot == 10) {// 10 roba un objeto
-								// robar objeto
-							}
+							// otras acciones
+							robot.turno(desicionRobot, intruso, bloquear);
 							bloquear = 0;
-
 						}
 					}
 				}
 			}
-
+                        
 			System.out.println("¿Que deseas hacer?:" + "\n1. Moverte" + "\n2. Interactuar" + "\n3. Hablar con Jarvis");
 			opcion = in.nextInt();
 			switch (opcion) {// aqui se implementan las diferentes funcionalidades
