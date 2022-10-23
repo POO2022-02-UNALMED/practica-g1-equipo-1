@@ -87,49 +87,6 @@ public class Main {
 		
 		//Inicio de habitaciones de intruso y robot, el intruso inicia en la habitaci�n 1 y el robot en Habitacion 0
 		
-		System.out.println("En esta habitaci�n debes escoger los materiales necesarios para crear"+
-		"\nun poderoso martillo, elige bien: "+"\n1. Acero asgardiano y Madera roble"+"\n2. Hierro asgardiano y Madera abedul"
-				+"\n3. Uru asgardiano y Madera Groot");
-		
-		//creacion del asistente jarvis
-		//Jarvis jarvis = new Jarvis();
-		
-		int opcionmaterial=in.nextInt();
-		int contadorintentos;
-		switch (opcionmaterial) {
-		case 1:
-			//Orientacion de Jarvis
-		case 2:
-			//Orientacion de Jarvis 
-		case 3:
-			// Felicitacion  de Jarvis
-			
-			intruso.agarrar();
-			Numero1.setIntruso(null);
-			Numero2.setIntruso(intruso);
-			Numero1.setRobot(robot);
-			opcionmaterial=0;
-			
-		
-		}
-		
-		System.out.println("El Robot ha iniciado la marcha, elige sabiamente durante tu recorrido para no ser alcanzado");
-		System.out.println("En esta habitaci�n debes escoger los materiales necesarios para crear"+
-		"\nuna llave , elige bien: "+"\n1. Acero asgardiano y Madera roble"+"\n2. Hierro asgardiano y Madera abedul"
-				+"\n3. Uru asgardiano y Madera Groot");
-		
-		switch (opcionmaterial) {
-		case 1:
-			
-		case 2:
-			
-		case 3:
-			intruso.agarrar();
-			
-			
-		
-		}
-		
 		
 		
 		
