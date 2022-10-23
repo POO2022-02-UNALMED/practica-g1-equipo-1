@@ -26,12 +26,15 @@ public class Main {
 		in.nextLine();
 
 		//Arrays necesarios
-		ArrayList<Herramientas> objetosh1 = new ArrayList<Herramientas>();
-		ArrayList<Herramientas> objetosh2 = new ArrayList<Herramientas>();
-		ArrayList<Herramientas> objetosh3 = new ArrayList<Herramientas>();
-		ArrayList<Herramientas> objetosh4 = new ArrayList<Herramientas>();
-		//Objetos del robot (Ninguno)
-		ArrayList<Herramientas> objetosh0 = new ArrayList<Herramientas>();
+		ArrayList<Herramientas> objetosh1 = new ArrayList();
+		ArrayList<Herramientas> objetosh2 = new ArrayList();
+		ArrayList<Herramientas> objetosh3 = new ArrayList();
+		ArrayList<Herramientas> objetosh4 = new ArrayList();
+                ArrayList<Herramientas> objetosh5 = new ArrayList();
+                ArrayList<Herramientas> objetosh6 = new ArrayList();
+                ArrayList<Herramientas> objetosh7 = new ArrayList();
+                ArrayList<Herramientas> objetosh8 = new ArrayList();
+                ArrayList<Herramientas> objetosh9 = new ArrayList();
 		
 		
 		// instancias de intruso y robot
@@ -39,37 +42,36 @@ public class Main {
 		Robot robot = new Robot();
 
 		// instancias de Herramientas
-		Herramientas clave = new Herramientas(false,"Clave para desbloquear alguna habitacion",false,false,true,0,0,0,0);
+		Objetos clave = new Objetos(false,"Clave para desbloquear alguna habitacion",false,0,0);
 		objetosh2.add(clave); // Revisar
 		
-		Herramientas mascaraIronMan = new Herramientas(true,"El objetivo final",false,false,false,0,0,0,0); //Si algo cuadrar esto
+		Objetos mascaraIronMan = new Objetos(true,"El objetivo final",false,0,0); //Si algo cuadrar esto
 		objetosh4.add(mascaraIronMan);
 		
-		Herramientas diamante = new Herramientas(true,"Un diamanre",false,false,true,0,0,0,0);
+		Objetos diamante = new Objetos(true,"Un diamante",false,0,0);
 		objetosh3.add(diamante);
 
-		Herramientas llaveInglesa = new Herramientas(false,"Llave inglesa",false,false,true,0,0,0,0); //Si algo cuadrar esto
+		Objetos llaveInglesa = new Objetos(false,"Llave inglesa",false,0,0); //Si algo cuadrar esto
 		objetosh1.add(llaveInglesa);
 
-		Herramientas escudoCapitanAmerica = new Herramientas(true,"Escudo del Capitán America", false, false, true, 0, 2, 1,
-				0); //Le puse que si tiene alarma
+		Objetos escudoCapitanAmerica = new Objetos(true,"Escudo del Capitán America", false, 2, 1); //Le puse que si tiene alarma
 		escudoCapitanAmerica.setDescripion(
 				"Escudo de vibranium con los colores de la bandera, te sientes inspirado solo al llevarlo contigo."
 						+ "\nSi lo usas serás más difícil de golpear por ese turno.");
 		objetosh2.add(escudoCapitanAmerica);
 		
-		Herramientas martilloThor = new Herramientas(true,"Martillo de Thor", true, true, true, 10, 0, 0, 0);
+		Armas martilloThor = new Armas(true,"Martillo de Thor", 10, 0);
 		martilloThor.setDescripion(
 				"Martillo mágico con el que puedes atacar, sientes como fluye energía eléctrica por tu cuerpo."
 						+ "\nSi lo usas puedes aturdir a tu adversario con un rayo.");
 		objetosh4.add(martilloThor);
 		
-		Herramientas lanzaTelaranas = new Herramientas(true,"Lanza Telarañas", false, true, true, 0, 0, 2, 0);
+		Objetos lanzaTelaranas = new Objetos(true,"Lanza Telarañas", true, 2, 0);
 		lanzaTelaranas.setDescripion("Dispositivo lanza telarañas, probablemente pertenece a Spiderman."
 				+ "\nSi lo usas lanzas una telaraña... Obviamente.");
 		objetosh1.add(lanzaTelaranas);
 		
-		Herramientas inyeccion = new Herramientas(false,"Inyección de adrenalina", false, false, true, 0, 0, 0, 50);
+		Objetos inyeccion = new Objetos(false,"Inyección de adrenalina", false, 0, 50);
 		inyeccion.setDescripion("Inyectadora con líquido verde, lleva marcada las siglas S.H.I.E.L.D."
 				+ "\nSi lo usas recuperarás tu salud.");
 		objetosh4.add(inyeccion);
@@ -78,7 +80,7 @@ public class Main {
 
 		
 		//Instancias de habitacion
-		
+               //Instancias de habitacion
 		
 		Habitacion Numero1 = new Habitacion(1, false, objetosh1 , intruso, null);
 		Habitacion Numero2 = new Habitacion(2, false, objetosh2 , null, null);
@@ -99,10 +101,8 @@ public class Main {
 		Numero7.setHabitacionesContiguas(null, Numero4, Numero8, null);
 		Numero8.setHabitacionesContiguas(null, Numero5, Numero9, Numero7);
 		Numero9.setHabitacionesContiguas(null, Numero6, null, Numero8);
-		
-		//Inicio de habitaciones de intruso y robot, el intruso inicia en la habitacion 1 y el robot en Habitacion 9
-		
-		
+                
+		//Inicio de habitaciones de intruso y robot, el intruso inicia en la habitaci�n 0 y el robot en Habitacion 8
 		
 		
 		
@@ -147,10 +147,8 @@ public class Main {
 								System.out.println("¿Con que desea atacar?");
 								System.out.println("1. A puñetazos");
 								j = 2;
-								for (Herramientas arma : intruso.getInventory()) {// muestra en pantalla las armas que tiene en inventario
-                                                                        if (arma.isWeapon()){
+								for (Armas arma : intruso.getWeaponInventory()) {// muestra en pantalla las armas que tiene en inventario
                                                                         System.out.println(j + ". " + arma.getName());
-                                                                        }
 									j++;
 								}
 								opcion = in.nextInt();
@@ -159,7 +157,7 @@ public class Main {
 									System.out.println("Le diste un puño al robot, probablemente te dolió mas a ti que a él.");
 									System.out.println("Te sobas la mano.");
 								} else if (Main.lanzarDados(5) >= robot.getArmor()) {
-									intruso.atacar(robot, intruso.getInventory().get(opcion - 2).getBonusDamage());// ataca + el bonus del arma
+									intruso.atacar(robot, intruso.getWeaponInventory().get(opcion - 2).getBonusDamage());// ataca + el bonus del arma
                                                                         System.out.println("Atacaste al robot exitosamente");
 								} else {
 									System.out.println("El Robot bloqueo tu ataque!");// hay una probabilidad de que el robot bloquee
@@ -172,15 +170,16 @@ public class Main {
 							case 3:
                                                             j = 1;
                                                             System.out.println("¿Qué deseas utilizar?:");
-                                                            for (Herramientas objeto : intruso.getInventory()) {// muestra en pantalla los objetos que tiene en inventario
-                                                                        if (objeto.isUsable()){
+                                                            for (Objetos objeto : intruso.getObjectInventory()) {// muestra en pantalla los objetos que tiene en inventario
                                                                         System.out.println(j + ". " + objeto.getName());
-                                                                        }
 									j++;
                                                             }
                                                             opcion = in.nextInt();
-                                                            //metodo para usar herramienta
-                                                            
+                                                            if (intruso.getObjectInventory().get(opcion).isShocker()){
+                                                                intruso.getObjectInventory().get(opcion).usar(robot);
+                                                            } else {
+                                                                intruso.getObjectInventory().get(opcion).usar(intruso);  
+                                                            }               
 								break;
                                                         case 4:
                                                             if(intruso.getSpeed()+Main.lanzarDados(5)>=4){
