@@ -2,11 +2,12 @@ package gestorAplicacion.clasesLogicas;
 
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class Individuo implements Jarvis{
     private int health, armor, speed;
     private boolean stunned = false;
-    private ArrayList<Integer> historial = new ArrayList<>();
+    private static ArrayList<String> historial = new ArrayList<>();
     private Habitacion ubicacion;
     
     public Individuo(int health,int armor, int speed){
@@ -15,24 +16,23 @@ public abstract class Individuo implements Jarvis{
         this.speed = speed;
     }
     //Metodos para moverse
-    public void mover(int j){
-        switch (j){
-            case 1:
-                ubicacion = ubicacion.getNorte();
-                break;
-            case 2:
-                ubicacion = ubicacion.getSur();
-                break;
-            case 3: 
-                ubicacion = ubicacion.getEste();
-                break;
-            case 4:
-                ubicacion = ubicacion.getOeste();
-                break;
-            default:
-                break;
-        }
+    public abstract void mover(Habitacion hab);
+    
+    public String habitacionesDisponibles(){
+        ArrayList<Habitacion> disponibles = new ArrayList<>();
+	disponibles.add(this.getUbicacion().getNorte());
+	disponibles.add(this.getUbicacion().getSur());
+	disponibles.add(this.getUbicacion().getEste());
+	disponibles.add(this.getUbicacion().getOeste());
+        String mensaje = "Puedes moverte a la habitacion numero: ";
+        for(Habitacion Hab: disponibles) {
+            if (!Objects.isNull(Hab)) {
+                mensaje += Hab.getNumero() + " ";
+	    }
+	}
+        return mensaje;
     }
+    public abstract void addHistorial();
     //Metodo para agarrar
     
     // METODOS PELEAR
@@ -55,6 +55,9 @@ public abstract class Individuo implements Jarvis{
     }
     public void setUbicacion(Habitacion ubicacion){
         this.ubicacion = ubicacion;
+    }
+    public static ArrayList<String> getHistorial(){
+        return historial;
     }
     
     

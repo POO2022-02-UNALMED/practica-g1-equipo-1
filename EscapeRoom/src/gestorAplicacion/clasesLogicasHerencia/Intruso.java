@@ -56,5 +56,17 @@ public class Intruso extends Individuo{
     public String ayudaJarvis() {
         return "dar pista";
     }
+
+    @Override
+    public void addHistorial() {
+        Intruso.getHistorial().add("Intruso se movio a la habitacion " + this.getUbicacion().getNumero());
+    }
+
+    @Override
+    public void mover(Habitacion hab) {
+        this.getUbicacion().setLuces(Ahorro.APAGADO);//apaga las luces
+        this.setUbicacion(hab);
+        this.getUbicacion().setLuces(Ahorro.ENCENDIDO);//enciende las luces de la habitacion siguiente
+        this.addHistorial();    }
     
 }

@@ -46,6 +46,17 @@ public class Robot extends Individuo {
         }
         return "El robot se encuentra en la habitacion" + this.getUbicacion().getNumero() + ", tiene " + this.getHealth() + " puntos de vida y " + a;
     }
+    
+    @Override
+    public void addHistorial() {
+        Robot.getHistorial().add("Robot se movio a la habitacion " + this.getUbicacion().getNumero());
+    }
+
+    @Override
+    public void mover(Habitacion hab) {
+        this.setUbicacion(hab);
+        this.addHistorial();   
+    }
 
    
 }

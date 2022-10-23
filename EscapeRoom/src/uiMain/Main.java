@@ -110,7 +110,9 @@ public class Main {
 		
 		intruso.setUbicacion(Numero1);
                 intruso.getUbicacion().setLuces(Ahorro.ENCENDIDO);
+                intruso.addHistorial();
 		robot.setUbicacion(Numero9);
+                robot.addHistorial();
 		
 		
 		// Ir pasando recogiendo cosas
@@ -250,32 +252,10 @@ public class Main {
 			opcion = in.nextInt();
 			switch (opcion) {// aqui se implementan las diferentes funcionalidades
 			case 1:
-				 ArrayList<Habitacion> habitacionesDisponibles = new ArrayList<>();
-				 habitacionesDisponibles.add(intruso.getUbicacion().getNorte());
-				 habitacionesDisponibles.add(intruso.getUbicacion().getSur());
-				 habitacionesDisponibles.add(intruso.getUbicacion().getEste());
-				 habitacionesDisponibles.add(intruso.getUbicacion().getOeste());
-				 
-				 for(Habitacion Hab:habitacionesDisponibles) {
-					 if (!Objects.isNull(Hab)) {
-						 System.out.println("Puedes moverte a la habitacion numero: "+Hab.getNumero());
-						 continue;
-					 }
-					}
-				 
+				 System.out.println(intruso.habitacionesDisponibles());
 				 System.out.println("Donde quieres moverte?");
 				 int opcionHab=in.nextInt();
-				 
-				 for(Habitacion Hab:habitacionesDisponibles) {
-					 if (!Objects.isNull(Hab)) {
-						 if (opcionHab == Hab.getNumero()) {
-                                                     intruso.getUbicacion().setLuces(Ahorro.APAGADO);//apaga las luces
-                                                     intruso.setUbicacion(Hab);
-                                                     intruso.getUbicacion().setLuces(Ahorro.ENCENDIDO);//enciende las luces de la habitacion siguiente
-                                                     break;
-						 }
-					}
-				 }
+				 intruso.mover(casa[opcionHab-1]);
 				break;
 			case 2:
 				break;
