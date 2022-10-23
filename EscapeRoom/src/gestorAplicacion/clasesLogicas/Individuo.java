@@ -4,15 +4,14 @@ package gestorAplicacion.clasesLogicas;
 import java.util.ArrayList;
 
 public abstract class Individuo {
-    private int health, armor, speed, location;
+    private int health, armor, speed;
     private boolean stunned = false;
-    private ArrayList<Habitacion> ubicaciones = new ArrayList<>();
+    private ArrayList<Integer> locations = new ArrayList<>();
     
-    public Individuo(int health,int armor, int speed, int location){
+    public Individuo(int health,int armor, int speed){
         this.health = health;
         this.armor = armor;
         this.speed = speed;
-        this.location = location;
     }
     
     //Metodo para agarrar

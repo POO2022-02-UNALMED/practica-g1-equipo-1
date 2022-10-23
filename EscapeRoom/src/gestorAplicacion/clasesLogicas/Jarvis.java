@@ -7,11 +7,20 @@ public class Jarvis {
 	private Ahorro ahorro;
 	
 	//Talvez poner constructor
+	public Jarvis(Intruso intruso, Habitacion habitacion, Ahorro ahorro) {
+		this.intruso = intruso;
+		this.habitacion = habitacion;
+		this.ahorro = ahorro;
+	}
 	
+
+
+
 	//getters y setters
 	public Intruso getIntruso() {
 		return intruso;
 	}
+
 	public void setIntruso(Intruso intruso) {
 		this.intruso = intruso;
 	}
