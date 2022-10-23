@@ -9,6 +9,7 @@ public class Habitacion implements Jarvis{
 	private ArrayList<Herramientas> listaObjetos = new ArrayList<>();//El listado de objetos de cada habitacion
 	private Individuo intruso, robot; //Si hay alguien en la habitacion
         private Habitacion norte, sur, este, oeste;	
+        private Ahorro luces, alarma, computador;
 	public Habitacion(int numero, boolean bloqueada, ArrayList<Herramientas> listaObjetos, Individuo intruso,
 			Individuo robot) { //Se podria modificar este constructor para que se inicialice con lo que queremos o crear el vacio
 		this.numero = numero;
@@ -16,7 +17,7 @@ public class Habitacion implements Jarvis{
 		this.listaObjetos = listaObjetos;
 		this.intruso = intruso;
 		this.robot = robot;
-                		
+
 		/*switch(numero) {
 		case 1:
 			this.setHabitacionesContiguas(Numero4, null, Numero2, null);
