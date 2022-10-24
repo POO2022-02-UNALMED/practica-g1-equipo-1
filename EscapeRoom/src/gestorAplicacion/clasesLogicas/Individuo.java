@@ -29,10 +29,12 @@ public abstract class Individuo implements Jarvis{
         for(Habitacion Hab: disponibles) {
             if (!Objects.isNull(Hab) && Hab.isBloqueada()) {
                 mensaje2 += Hab.getNumero() + " Porque está Bloqueada ";
-	    }
+            }
             if (!Objects.isNull(Hab)) {
                 mensaje += Hab.getNumero() + " ";
-	    }
+            }
+        }
+        return mensaje+"/n"+mensaje2;
 	}
     
     public String habitacionesaDesbloquear() {
@@ -54,7 +56,7 @@ public abstract class Individuo implements Jarvis{
     }
         
     
-        return mensaje;
+        return mensaje+"/n"+mensaje2;
     }
     public abstract void addHistorial();
     //Metodo para agarrar
