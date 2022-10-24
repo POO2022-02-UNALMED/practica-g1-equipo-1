@@ -168,7 +168,7 @@ public class Main {
 									intruso.atacar(robot);// ataca a punetazos
 									System.out.println("Le diste un puño al robot, probablemente te dolió mas a ti que a él.");
 									System.out.println("Te sobas la mano.");
-								} else if (dados >= robot.getArmor()) {
+								} else if (opcion != 1 && dados >= robot.getArmor()) {// se a�ade opcion diferente de 1
 									intruso.atacar(robot,intruso.getWeaponInventory().get(opcion - 2).getBonusDamage());// ataca + el
 																											// bonus del
 																											// arma
