@@ -238,15 +238,14 @@ public class Main {
 				 
                                  
                                  //Movimiento del robot
+                                 robot.apagarAlarma();
                                  robot.escuchar(casa);
                                  robot.escanear();
                                  if(robot.isNextTo()){
                                      robot.mover(robot.getGoingTo());
                                      
                                  }else if (robot.isAware()){
-                                	 robot.mover(casa[robot.decidirDireccion()-1]);//movimiento aleatorio tambi�n
-                                	       
-                                	 
+                                	 robot.mover(robot.buscar(casa));//camino mas corto a la habitacion con alarma
                                  } else {
                                      robot.mover(casa[robot.decidirDireccion()-1]);//movimiento aleatorio
                                  }
