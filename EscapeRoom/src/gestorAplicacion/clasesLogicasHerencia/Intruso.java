@@ -19,6 +19,7 @@ public class Intruso extends Individuo{
         
     }
 	
+	
 	public String mostrarArmas() {
 		String mensaje = "Tienes estas armas:  ";
         for(Armas arma: weaponInventory) {
@@ -98,11 +99,7 @@ public class Intruso extends Individuo{
     }
     
     //METODOS SET
-
-    @Override
-    public String ayudaJarvis() {
-        return "dar pista";
-    }
+    
 
     @Override
     public void addHistorial() {
@@ -125,5 +122,33 @@ public class Intruso extends Individuo{
     	}
    
     }
-    //prueba
+    
+  //Metodos de jarvis
+    
+    public String infohabitacion() {
+    	String mensaje = "Las habitaciones son: ";
+    	for (Habitacion habita: habitacionesJarvis) {
+    	    mensaje += habita.getNumero() + " ";
+    	}
+    	return mensaje ;
+    }
+
+    public String infoRobot() {
+        String ultimo =Robot.getHistorial().get(Robot.getHistorial().size()-1);
+    	return  ultimo;
+    }
+    
+    @Override
+    public String ayudaJarvis() { //tipo dato aleatorio
+    	Habitacion habitacionAzar = habitacionesJarvis.get((int) Math.floor(Math.random() * (habitacionesJarvis.size()) -1)); //get un numero al azar, mirar bien si si retorna como quiero
+        if(habitacionAzar.getListaObjetos() == null) {
+        	return "En la habitacion "+habitacionAzar.getNumero()+" no hay objetos." ;
+        }
+        else {
+        	for (String nombres: habitacionesJarvis) { //que esto de los nombres de los objetos de las habitaciones y los returne abajo
+        		
+        	}
+        	return "En la habitacion "+habitacionAzar.getNumero()+" hay estos objetos: " ; //Recorrer la lista de objetos y devolverla
+        }
+    }
 }

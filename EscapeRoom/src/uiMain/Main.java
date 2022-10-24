@@ -104,6 +104,8 @@ public class Main {
 		Habitacion[] casa = new Habitacion[] { Numero1, Numero2, Numero3, Numero4, Numero5, Numero6, Numero7, Numero8,
 				Numero9 };
 
+		ArrayList<Habitacion> habitacionesJarvis = new ArrayList<>();
+		
 		Numero1.setHabitacionesContiguas(Numero4, null, Numero2, null);
 		Numero2.setHabitacionesContiguas(Numero5, null, Numero3, Numero1);
 		Numero3.setHabitacionesContiguas(Numero6, null, null, Numero2);

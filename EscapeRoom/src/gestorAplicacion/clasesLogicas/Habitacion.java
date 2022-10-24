@@ -20,6 +20,8 @@ public class Habitacion implements Jarvis{
                 this.luces = Ahorro.APAGADO;
                 this.alarma = Ahorro.APAGADO;
                 this.computador = Ahorro.APAGADO;
+                
+                Individuo.habitacionesJarvis.add(this);
 	}
 
 	//Desbloquar puerta con una herramienta
