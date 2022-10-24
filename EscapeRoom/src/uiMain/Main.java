@@ -93,11 +93,11 @@ public class Main {
 		Habitacion Numero1 = new Habitacion(1, false, objetosh1, intruso, null);
 		Habitacion Numero2 = new Habitacion(2, false, objetosh2, null, null);
 		Habitacion Numero3 = new Habitacion(3, false, objetosh3, null, null);
-		Habitacion Numero4 = new Habitacion(4, true, objetosh4, null, null);
+		Habitacion Numero4 = new Habitacion(4, false, objetosh4, null, null);
 		Habitacion Numero5 = new Habitacion(5, true, objetosh5, null, null);
-		Habitacion Numero6 = new Habitacion(6, true, objetosh6, null, null);
+		Habitacion Numero6 = new Habitacion(6, false, objetosh6, null, null);
 		Habitacion Numero7 = new Habitacion(7, true, objetosh7, null, null);
-		Habitacion Numero8 = new Habitacion(8, true, objetosh8, null, null);
+		Habitacion Numero8 = new Habitacion(8, false, objetosh8, null, null);
 		Habitacion Numero9 = new Habitacion(9, true, objetosh9, null, robot);
 
 		Habitacion[] casa = new Habitacion[] { Numero1, Numero2, Numero3, Numero4, Numero5, Numero6, Numero7, Numero8,
