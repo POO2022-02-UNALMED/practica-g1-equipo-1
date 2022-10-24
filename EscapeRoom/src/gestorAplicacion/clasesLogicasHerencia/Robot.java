@@ -9,6 +9,7 @@ public class Robot extends Individuo {
         private static final int ATTACK = 12;
         private boolean aware,nextTo;//atributo que guarda si el robot sabe donde esta el intruso
         private boolean cargaRobot; //para ataque cargado
+        private Habitacion goingTo;//hacia donde se va a mover
 
     
     public Robot() {
@@ -30,14 +31,22 @@ public class Robot extends Individuo {
         }
     }
     public void escanear(){
-        if (this.getUbicacion().getNorte().getLuces().equals(Ahorro.ENCENDIDO) 
-                || this.getUbicacion().getSur().getLuces().equals(Ahorro.ENCENDIDO) 
-                || this.getUbicacion().getEste().getLuces().equals(Ahorro.ENCENDIDO) 
-                || this.getUbicacion().getOeste().getLuces().equals(Ahorro.ENCENDIDO) ){
-            nextTo = true;
-            
-        }
+        ArrayList<Habitacion> disponibles = new ArrayList<>();
+	disponibles.add(this.getUbicacion().getNorte());
+	disponibles.add(this.getUbicacion().getSur());
+	disponibles.add(this.getUbicacion().getEste());
+	disponibles.add(this.getUbicacion().getOeste());
+        for(Habitacion Hab: disponibles) {
+            if (!Objects.isNull(Hab) && Hab.getLuces().equals(Ahorro.ENCENDIDO)) {
+                nextTo = true;
+                goingTo = Hab;
+                break;
+	    } else {
+                nextTo = false;
+            }
+	}
     }
+    
     public void buscar(){
         
     }
@@ -98,6 +107,9 @@ public class Robot extends Individuo {
     public boolean isCargaRobot(){
         return cargaRobot;
     }
+    public Habitacion getGoingTo(){
+        return goingTo;
+    }
     
     //METODOS SET
     public void setAware(boolean b){
@@ -112,7 +124,7 @@ public class Robot extends Individuo {
         } else {
             a = "no nota tu presencia... aún.";
         }
-        return "El robot se encuentra en la habitacion" + this.getUbicacion().getNumero() + ", tiene " + this.getHealth() + " puntos de vida y " + a;
+        return "El robot se encuentra en la habitacion " + this.getUbicacion().getNumero() + ", tiene " + this.getHealth() + " puntos de vida y " + a;
     }
     
     @Override
@@ -122,7 +134,9 @@ public class Robot extends Individuo {
 
     @Override
     public void mover(Habitacion hab) {
+        this.getUbicacion().setRobot(null);
         this.setUbicacion(hab);
+        this.getUbicacion().setRobot(this);
         this.addHistorial();   
     }
 
@@ -132,14 +146,11 @@ public class Robot extends Individuo {
 	disponibles.add(this.getUbicacion().getSur());
 	disponibles.add(this.getUbicacion().getEste());
 	disponibles.add(this.getUbicacion().getOeste());
-        int[] i = null;
-        int j = 0;
+        ArrayList<Integer> i = new ArrayList<>();
         for(Habitacion Hab: disponibles) {
             if (!Objects.isNull(Hab)) {
-                i[j] = Hab.getNumero();
-                j++;
-	    }
+                i.add(Hab.getNumero());	    }
 	}
-        return i[Main.lanzarDados(i.length)-1];
+        return i.get(Main.lanzarDados(i.size())-1);
    }
 }

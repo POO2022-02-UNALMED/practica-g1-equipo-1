@@ -20,7 +20,6 @@ public class Main {
 		int opcion; // aqui se guardan las opciones que va seleccionando el jugador
 		boolean x = true; // variable temporal, mientras colocamos bien las condiciones
 		Individuo iniciativa[] = new Individuo[2]; // organiza los turnos de combate
-		boolean cargaRobot = false; // se utiliza para el ataque cargado del robot
 		int desicionRobot; // se utiliza para el turno de robot en la pelea
 		int j, bloquear; // variables de apoyo para ciclos
 		boolean huir = true;
@@ -119,12 +118,11 @@ public class Main {
 
 		// Ir pasando recogiendo cosas
 
-		// Hacer un input de ir a la siguiente habitacion
 		// Hacer un input de recoger cosas
 		// Hacer un input de usar cosas
 
 		// ciclo de turnos del jugador
-		while (x) {// COLOCAR CONDICION (hasta que gane o quede sin vida)
+		while (!intruso.getObjectInventory().contains(mascaraIronMan) && intruso.getHealth() > 0) {//hasta que gane o quede sin vida)
 
 			System.out.println("Descripcion de la escena que ve");
 
@@ -165,14 +163,13 @@ public class Main {
 									j++;
 								}
 								opcion = in.nextInt();
-								if (opcion == 1 && Main.lanzarDados(5) >= robot.getArmor()) {
+                                                                int dados = Main.lanzarDados(5);
+								if (opcion == 1 && dados >= robot.getArmor()) {
 									intruso.atacar(robot);// ataca a punetazos
-									System.out.println(
-											"Le diste un puño al robot, probablemente te dolió mas a ti que a él.");
+									System.out.println("Le diste un puño al robot, probablemente te dolió mas a ti que a él.");
 									System.out.println("Te sobas la mano.");
-								} else if (opcion != 1 && Main.lanzarDados(5) >= robot.getArmor()) {// se a�ade el diferente de 1
-									intruso.atacar(robot,
-											intruso.getWeaponInventory().get(opcion - 2).getBonusDamage());// ataca + el
+								} else if (dados >= robot.getArmor()) {
+									intruso.atacar(robot,intruso.getWeaponInventory().get(opcion - 2).getBonusDamage());// ataca + el
 																											// bonus del
 																											// arma
 									System.out.println("Atacaste al robot exitosamente");
@@ -208,7 +205,6 @@ public class Main {
 									System.out.println(
 											"Intentas huir, pero el robot te cierra el paso, mas suerte la proxima vez");
 								}
-
 								break;
 							default:
 								break;
@@ -222,7 +218,7 @@ public class Main {
 								desicionRobot = Main.lanzarDados(10);
 							}
 							// otras acciones
-							robot.turno(desicionRobot, intruso, bloquear);
+							System.out.println(robot.turno(desicionRobot, intruso, bloquear));
 							bloquear = 0;
 						}
 					}
@@ -243,7 +239,7 @@ public class Main {
                                  robot.escuchar(casa);
                                  robot.escanear();
                                  if(robot.isNextTo()){
-                                     //no se mueve
+                                     robot.mover(robot.getGoingTo());
                                  }else if (robot.isAware()){
                                      //algoritmo de busqueda aqui
                                  } else {

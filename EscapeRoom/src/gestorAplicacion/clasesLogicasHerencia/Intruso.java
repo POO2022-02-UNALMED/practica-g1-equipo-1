@@ -65,8 +65,10 @@ public class Intruso extends Individuo{
     @Override
     public void mover(Habitacion hab) {
         this.getUbicacion().setLuces(Ahorro.APAGADO);//apaga las luces
+        this.getUbicacion().setIntruso(null);
         this.setUbicacion(hab);
         this.getUbicacion().setLuces(Ahorro.ENCENDIDO);//enciende las luces de la habitacion siguiente
+        this.getUbicacion().setIntruso(this);
         this.addHistorial();    
     }
     
