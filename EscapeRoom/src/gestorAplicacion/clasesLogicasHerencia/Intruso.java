@@ -1,5 +1,6 @@
 package gestorAplicacion.clasesLogicasHerencia;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import gestorAplicacion.clasesLogicas.*;
 
@@ -19,23 +20,39 @@ public class Intruso extends Individuo{
     }
 	
 	public String mostrarArmas() {
-		int j = 2;
-		for (Armas arma : this.getWeaponInventory()) {// muestra en pantalla las armas que
-															// tiene en inventario
-			System.out.println(j + ". " + arma.getName());
-			j++;
-		}
+		String mensaje = "Tienes estas armas:  ";
+        for(Armas arma: weaponInventory) {
+            mensaje += arma.getName();
+	    }
+        return mensaje;
 	}
 	
-	public void mostrarObjetos() {
-		int j = 1;
-		System.out.println("¿Qué deseas utilizar?:");
-		for (Objetos objeto : this.getObjectInventory()) {// muestra en pantalla los objetos
-																// que tiene en inventario
-			System.out.println(j + ". " + objeto.getName());
-			j++;
-		}
+	
+	public String mostrarObjetos() {
+		String mensaje = "Tienes estos objetos: ";
+        for(Objetos objeto: objectInventory) {
+            mensaje += objeto.getName();
+	    }
+        return mensaje;
 	}
+	
+	public String interactuar(Objetos objeto) { //Hacer que escoja el objeto
+    	if( objeto.getBonusHealth() == 0) {
+    		//Es una llave
+    		if(objeto.getNumero() == this.getUbicacion().getNumero()) {
+    			this.getUbicacion().setBloqueada(false);
+    			return "Puerta desbloqueada";
+    		}
+    		
+    	}
+    	else {
+    		//es recuperar vida
+    		this.setHealth(this.getHealth() + objeto.getBonusHealth());
+    		return "Su salud a aumentado";
+    	}
+		return null; //Agregue esto para corregir el error
+    	
+    }
 	
     //Interacciones
     public void agarrar(){//Agrega al inventario los objetos de la habitacion y los elimina de los objetos de la habitacion

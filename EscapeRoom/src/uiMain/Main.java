@@ -249,7 +249,6 @@ public class Main {
                                  }
 				break;
 			case 2:
-				System.out.println("Puedes interactuar con tus objetos actuales" + "\n1. Intentar abrir una puerta." + "\n2. Recuperar salud.");
 				int opcionIntec=in.nextInt();
 				switch(opcionIntec) {
 				case 1:
@@ -259,7 +258,11 @@ public class Main {
 					break;
 				case 2:
 					//Mostrarle los objetos, preguntarle cual va a usar y aumentarle la salud
-					System.out.println("¿Que objeto quieres usar?: ");
+					intruso.mostrarObjetos();
+					opcion = in.nextInt();//elige el objeto
+					
+					
+					
 					
 					break;
 				}
