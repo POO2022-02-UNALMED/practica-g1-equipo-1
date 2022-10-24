@@ -248,14 +248,12 @@ public class Main {
                                  robot.escanear();
                                  if(robot.isNextTo()){
                                      robot.mover(robot.getGoingTo());
+                                     
                                  }else if (robot.isAware()){
-                                	 robot.mover(casa[opcionHab-1]);
-                                	 System.out.println("ELSE IF"); 
-                                	        
-                                	 
+                                	 robot.mover(casa[robot.decidirDireccion()-1]);
+                                	       
                                 	 
                                  } else {
-                                	 System.out.println("else"); 
                                      robot.mover(casa[robot.decidirDireccion()-1]);//movimiento aleatorio
                                  }
 				break;
