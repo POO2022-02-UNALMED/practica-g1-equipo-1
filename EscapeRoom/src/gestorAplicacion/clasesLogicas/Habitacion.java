@@ -20,27 +20,6 @@ public class Habitacion implements Jarvis{
                 this.luces = Ahorro.APAGADO;
                 this.alarma = Ahorro.APAGADO;
                 this.computador = Ahorro.APAGADO;
-
-		/*switch(numero) {
-		case 1:
-			this.setHabitacionesContiguas(Numero4, null, Numero2, null);
-		case 2:
-			this.setHabitacionesContiguas(norte, sur, este, oeste);
-		case 3:
-			this.setHabitacionesContiguas(norte, sur, este, oeste);
-		case 4:
-			this.setHabitacionesContiguas(norte, sur, este, oeste);
-		case 5:
-			this.setHabitacionesContiguas(norte, sur, este, oeste);
-		case 6:
-			this.setHabitacionesContiguas(norte, sur, este, oeste);
-		case 7:
-			this.setHabitacionesContiguas(norte, sur, este, oeste);
-		case 8:
-			this.setHabitacionesContiguas(norte, sur, este, oeste);
-		case 9:
-			this.setHabitacionesContiguas(norte, sur, este, oeste);
-		}*/
 	}
 
 	//Desbloquar puerta con una herramienta
@@ -111,6 +90,7 @@ public class Habitacion implements Jarvis{
             this.este = este;
             this.oeste = oeste;
         }
+        
         public Habitacion getNorte(){
             return norte;
         } 
