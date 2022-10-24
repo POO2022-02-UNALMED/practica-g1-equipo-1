@@ -20,7 +20,6 @@ public class Main {
 		int opcion; // aqui se guardan las opciones que va seleccionando el jugador
 		boolean x = true; // variable temporal, mientras colocamos bien las condiciones
 		Individuo iniciativa[] = new Individuo[2]; // organiza los turnos de combate
-		boolean cargaRobot = false; // se utiliza para el ataque cargado del robot
 		int desicionRobot; // se utiliza para el turno de robot en la pelea
 		int j, bloquear; // variables de apoyo para ciclos
 		boolean huir = true;
@@ -119,12 +118,11 @@ public class Main {
 
 		// Ir pasando recogiendo cosas
 
-		// Hacer un input de ir a la siguiente habitacion
 		// Hacer un input de recoger cosas
 		// Hacer un input de usar cosas
 
 		// ciclo de turnos del jugador
-		while (x) {// COLOCAR CONDICION (hasta que gane o quede sin vida)
+		while (!intruso.getObjectInventory().contains(mascaraIronMan) && intruso.getHealth() > 0) {//hasta que gane o quede sin vida)
 
 			System.out.println("Descripcion de la escena que ve");
 
