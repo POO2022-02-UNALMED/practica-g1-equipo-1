@@ -141,10 +141,13 @@ public class Main {
 
 			if (robot.getUbicacion() == intruso.getUbicacion()) {// si la ubicacion del jugador == ubicacion robot
 				System.out.println("El robot te ha encontrado! preparate para luchar!!");
-				while (intruso.getHealth() > 0 && robot.getHealth() > 0 && huir) {// COLOCAR COONDICION (hasta que la
+				while (intruso.getHealth() > 0 && robot.getHealth() > 0 && huir) {//hasta que la
 																					// vida de alguno < 0, o el jugador
 																					// logre escapar)
 					bloquear = 0;
+                                        System.out.println("Tienes " + intruso.getHealth() + " puntos de vida.");
+                                        System.out.println("El robot tiene " + robot.getHealth() + " puntos de vida.");
+                                        
 					if (robot.getSpeed() + Main.lanzarDados(5) > intruso.getSpeed() + Main.lanzarDados(5)) {// define el
 																											// orden de
 																											// turnos
@@ -237,15 +240,14 @@ public class Main {
 				 
                                  
                                  //Movimiento del robot
+                                 robot.apagarAlarma();
                                  robot.escuchar(casa);
                                  robot.escanear();
                                  if(robot.isNextTo()){
                                      robot.mover(robot.getGoingTo());
                                      
                                  }else if (robot.isAware()){
-                                	 robot.mover(casa[robot.decidirDireccion()-1]);//movimiento aleatorio tambi�n
-                                	       
-                                	 
+                                	 robot.mover(robot.buscar(casa));//camino mas corto a la habitacion con alarma
                                  } else {
                                      robot.mover(casa[robot.decidirDireccion()-1]);//movimiento aleatorio
                                  }

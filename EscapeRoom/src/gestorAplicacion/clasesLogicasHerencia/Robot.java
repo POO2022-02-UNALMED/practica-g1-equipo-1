@@ -11,8 +11,9 @@ public class Robot extends Individuo {
         private boolean cargaRobot; //para ataque cargado
         private Habitacion goingTo;//hacia donde se va a mover
 
-	public Robot() {
-        super(300, 3, 7);
+    
+    public Robot() {
+        super(150, 3, 7);
         aware = false;
         nextTo = false;
         cargaRobot = false;
@@ -20,14 +21,15 @@ public class Robot extends Individuo {
     
     //Metodos de busqueda
     public void escuchar(Habitacion[] casa){
-        for(int i = 0; i < casa.length; i++){
-            if(casa[i].getAlarma().equals(Ahorro.ACTIVADO)){
-                this.aware = true;
-                break;
-            } else {
-                this.aware = false;
+            for (Habitacion hab : casa) {
+                if (hab.getAlarma().equals(Ahorro.ACTIVADO)) {
+                    this.aware = true;
+                    goingTo = hab;
+                    break;
+                } else {
+                    this.aware = false;
+                }
             }
-        }
     }
     public void escanear(){
         ArrayList<Habitacion> disponibles = new ArrayList<>();
@@ -45,9 +47,30 @@ public class Robot extends Individuo {
             }
 	}
     }
-    
-    public void buscar(){
-        
+    public void apagarAlarma(){
+        if (this.getUbicacion().getAlarma().equals(Ahorro.ACTIVADO)){
+            this.getUbicacion().setAlarma(Ahorro.APAGADO);
+        }
+    }
+    public Habitacion buscar(Habitacion[] casa){//busqueda en casa 3x3 habitaciones
+        ArrayList<Habitacion> disponibles = new ArrayList<>();
+	disponibles.add(this.getUbicacion().getNorte());
+	disponibles.add(this.getUbicacion().getSur());
+	disponibles.add(this.getUbicacion().getEste());
+	disponibles.add(this.getUbicacion().getOeste());
+        if (disponibles.contains(goingTo.getNorte())){
+            return goingTo.getNorte();
+        } else if (disponibles.contains(goingTo.getSur())){
+            return goingTo.getSur();
+        } else if (disponibles.contains(goingTo.getEste())){
+            return goingTo.getEste();
+        } else if (disponibles.contains(goingTo.getOeste())){
+            return goingTo.getOeste();
+        } else if(disponibles.size() == 2){
+            return disponibles.get(0);
+        } else {
+            return casa[4];
+        }
     }
 
 
@@ -87,7 +110,11 @@ public class Robot extends Individuo {
 		return "Bloqueaste el golpe del robot";
 	    }
 	} else if (desicion == 10) {// 10 roba un objeto
-	    return "robar objeto";
+            int dados = Main.lanzarDados(((Intruso)i).getObjectInventory().size())-1;
+            Herramientas quitada = ((Intruso)i).getObjectInventory().get(dados);
+            this.getUbicacion().getListaObjetos().add(quitada);
+            ((Intruso)i).getObjectInventory().remove(dados);
+	    return "El robot logra quitarte " + ((Objetos)quitada).getName() + " y lo arroja al suelo.";
 	} else {
             return "";
         }
