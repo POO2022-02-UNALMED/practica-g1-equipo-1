@@ -250,7 +250,7 @@ public class Main {
                                      robot.mover(robot.getGoingTo());
                                      
                                  }else if (robot.isAware()){
-                                	 robot.mover(casa[robot.decidirDireccion()-1]);
+                                	 robot.mover(casa[robot.decidirDireccion()-1]);//movimiento aleatorio también
                                 	       
                                 	 
                                  } else {
