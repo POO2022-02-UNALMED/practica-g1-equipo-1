@@ -6,14 +6,15 @@ public class Objetos implements Herramientas{
     private String description = "objeto generico";
     private final String name;
     private final boolean shocker;
-    private final int bonusArmor, bonusHealth;
+    private final int bonusArmor, bonusHealth, numero;
     
-    public Objetos(boolean alarma, String name, boolean shocker, int barmor, int bhealth){
+    public Objetos(boolean alarma, String name, boolean shocker, int barmor, int bhealth, int numero){
         this.alarma = alarma;
     	this.name = name;
         this.shocker = shocker;
         this.bonusArmor = barmor;
         this.bonusHealth = bhealth;
+		this.numero = numero;
     }
     
     public Objetos(String name){//para crear objetos como computadores,ventanas o cosas que no se puedan recoger.
@@ -22,6 +23,7 @@ public class Objetos implements Herramientas{
         this.shocker = false;
         this.bonusArmor = 0;
         this.bonusHealth = 0;
+		this.numero = 0;
     }
     
     //METODOS GET
@@ -46,7 +48,11 @@ public class Objetos implements Herramientas{
         return bonusHealth;
     }
    
-    //METODO SET
+    public int getNumero() {
+		return numero;
+	}
+
+	//METODO SET
     public void setDescripion(String i){
         description = i;
     }
