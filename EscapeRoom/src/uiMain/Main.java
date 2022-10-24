@@ -240,6 +240,7 @@ public class Main {
 				 System.out.println("Donde quieres moverte?");
 				 int opcionHab=in.nextInt();
 				 intruso.mover(casa[opcionHab-1]);
+				 
                                  
                                  //Movimiento del robot
                                  robot.escuchar(casa);
@@ -247,8 +248,13 @@ public class Main {
                                  if(robot.isNextTo()){
                                      robot.mover(robot.getGoingTo());
                                  }else if (robot.isAware()){
-                                     //algoritmo de busqueda aqui
+                                	 robot.mover(casa[opcionHab-1]);
+                                	 System.out.println("ELSE IF"); 
+                                	        
+                                	 
+                                	 
                                  } else {
+                                	 System.out.println("else"); 
                                      robot.mover(casa[robot.decidirDireccion()-1]);//movimiento aleatorio
                                  }
 				break;

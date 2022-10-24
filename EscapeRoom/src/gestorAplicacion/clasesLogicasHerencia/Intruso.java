@@ -74,7 +74,7 @@ public class Intruso extends Individuo{
 
     @Override
     public void addHistorial() {
-        Intruso.getHistorial().add("Intruso se movio a la habitacion " + this.getUbicacion().getNumero());
+        Intruso.getHistorial().add("Intruso se movio a la habitacion: " + this.getUbicacion().getNumero());
     }
 
     @Override
