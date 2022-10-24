@@ -250,7 +250,7 @@ public class Main {
                                      robot.mover(robot.getGoingTo());
                                      
                                  }else if (robot.isAware()){
-                                	 robot.mover(casa[robot.decidirDireccion()-1]);//movimiento aleatorio también
+                                	 robot.mover(casa[robot.decidirDireccion()-1]);//movimiento aleatorio tambiï¿½n
                                 	       
                                 	 
                                  } else {
@@ -258,7 +258,16 @@ public class Main {
                                  }
 				break;
 			case 2:
-				System.out.println("Puedes interactuar con tus objetos actuales");
+				System.out.println("Puedes interactuar con tus objetos actuales" + "\n1. Intentar abrir una puerta." + "\n2. Recuperar salud.");
+				int opcionIntec=in.nextInt();
+				switch(opcionIntec) {
+				case 1:
+					System.out.println("");
+					
+					break;
+				case 2:
+					break;
+				}
 				break;
 			case 3:
 				System.out.println("Tus habilidades en Hacking te permiten tomar control de la IA Jarvis..."
@@ -295,5 +304,6 @@ public class Main {
 		}
 
 	}
+
 
 }
