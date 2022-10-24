@@ -88,7 +88,11 @@ public class Robot extends Individuo {
 		return "Bloqueaste el golpe del robot";
 	    }
 	} else if (desicion == 10) {// 10 roba un objeto
-	    return "robar objeto";
+            int dados = Main.lanzarDados(((Intruso)i).getObjectInventory().size())-1;
+            Herramientas quitada = ((Intruso)i).getObjectInventory().get(dados);
+            this.getUbicacion().getListaObjetos().add(quitada);
+            ((Intruso)i).getObjectInventory().remove(dados);
+	    return "El robot logra quitarte " + ((Objetos)quitada).getName() + " y lo arroja al suelo.";
 	} else {
             return "";
         }
