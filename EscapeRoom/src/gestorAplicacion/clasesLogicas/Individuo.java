@@ -25,7 +25,11 @@ public abstract class Individuo implements Jarvis{
 	disponibles.add(this.getUbicacion().getEste());
 	disponibles.add(this.getUbicacion().getOeste());
         String mensaje = "Puedes moverte a la habitacion numero: ";
+        String mensaje2 = "Aun no puedes moverte a la habitacion numero: ";
         for(Habitacion Hab: disponibles) {
+            if (!Objects.isNull(Hab) && Hab.isBloqueada()) {
+                mensaje2 += Hab.getNumero() + " Porque está Bloqueada ";
+	    }
             if (!Objects.isNull(Hab)) {
                 mensaje += Hab.getNumero() + " ";
 	    }
