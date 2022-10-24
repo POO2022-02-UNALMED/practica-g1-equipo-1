@@ -32,7 +32,9 @@ public abstract class Individuo implements Jarvis{
 	    }
             if (!Objects.isNull(Hab)) {
                 mensaje += Hab.getNumero() + " ";
-	    }
+            }
+        }
+        return mensaje+"/n"+mensaje2;
 	}
     
     public String habitacionesaDesbloquear() {
@@ -54,7 +56,7 @@ public abstract class Individuo implements Jarvis{
     }
         
     
-        return mensaje;
+        return mensaje+"/n"+mensaje2;
     }
     public abstract void addHistorial();
     //Metodo para agarrar
