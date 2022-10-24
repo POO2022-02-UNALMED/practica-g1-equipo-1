@@ -28,7 +28,7 @@ public abstract class Individuo implements Jarvis{
         String mensaje2 = "Aun no puedes moverte a la habitacion numero: ";
         for(Habitacion Hab: disponibles) {
             if (!Objects.isNull(Hab) && Hab.isBloqueada()) {
-                mensaje2 += Hab.getNumero() + " Porque está Bloqueada ";
+                mensaje2 += Hab.getNumero() + " Porque estï¿½ Bloqueada ";
 	    }
             if (!Objects.isNull(Hab)) {
                 mensaje += Hab.getNumero() + " ";
@@ -41,8 +41,8 @@ public abstract class Individuo implements Jarvis{
     	disponibles.add(this.getUbicacion().getSur());
     	disponibles.add(this.getUbicacion().getEste());
     	disponibles.add(this.getUbicacion().getOeste());
-    	String mensaje = "Esta habitacion está bloqueada: ";
-        String mensaje2 = "Esta habitación no está bloqueada: ";
+    	String mensaje = "Esta habitacion estï¿½ bloqueada: ";
+        String mensaje2 = "Esta habitaciï¿½n no estï¿½ bloqueada: ";
         for(Habitacion Hab: disponibles) {
             if (!Objects.isNull(Hab) && Hab.isBloqueada()) {
                 mensaje += Hab.getNumero() + " ";

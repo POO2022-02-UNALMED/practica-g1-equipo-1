@@ -18,6 +18,25 @@ public class Intruso extends Individuo{
         
     }
 	
+	public String mostrarArmas() {
+		int j = 2;
+		for (Armas arma : this.getWeaponInventory()) {// muestra en pantalla las armas que
+															// tiene en inventario
+			System.out.println(j + ". " + arma.getName());
+			j++;
+		}
+	}
+	
+	public void mostrarObjetos() {
+		int j = 1;
+		System.out.println("¿Qué deseas utilizar?:");
+		for (Objetos objeto : this.getObjectInventory()) {// muestra en pantalla los objetos
+																// que tiene en inventario
+			System.out.println(j + ". " + objeto.getName());
+			j++;
+		}
+	}
+	
     //Interacciones
     public void agarrar(){//Agrega al inventario los objetos de la habitacion y los elimina de los objetos de la habitacion
     	if (this.getUbicacion().getNumero() == 3 || this.getUbicacion().getNumero() == 6  || this.getUbicacion().getNumero() == 8 ) {
@@ -38,30 +57,8 @@ public class Intruso extends Individuo{
     	}
     	//Hacer for por habitacion buscando los objetos y agregandolos a esta lista y borrandolos de la habitacion'
     }
-    
-    
-    public void interactuar(Armas arma) {
-    	
-    }
-    
-    public String interactuar(Objetos objeto) { //Hacer que escoja el objeto
-    	if( objeto.getBonusHealth() == 0) {
-    		//Es una llave
-    		if(objeto.getNumero() == this.getUbicacion().getNumero()) {
-    			this.getUbicacion().setBloqueada(false);
-    			return "Puerta desbloqueada";
-    		}
-    		
-    	}
-    	else {
-    		//es recuperar vida
-    		this.setHealth(this.getHealth() + objeto.getBonusHealth());
-    		return "Su salud a aumentado";
-    	}
-		return null; //Agregue esto para corregir el error
-    	
-    }
-    
+   
+     
     //METODOS PELEAR
     @Override
     public void atacar(Individuo r){

@@ -165,16 +165,9 @@ public class Main {
 							}
 							switch (opcion) {
 							case 1:
-								System.out.println("¿Con que desea atacar?");
-								System.out.println("1. A puñetazos");
-								j = 2;
-								for (Armas arma : intruso.getWeaponInventory()) {// muestra en pantalla las armas que
-																					// tiene en inventario
-									System.out.println(j + ". " + arma.getName());
-									j++;
-								}
+								intruso.mostrarArmas();
 								opcion = in.nextInt();
-                                                                int dados = Main.lanzarDados(5);
+                                int dados = Main.lanzarDados(5);
 								if (opcion == 1 && dados >= robot.getArmor()) {
 									intruso.atacar(robot);// ataca a punetazos
 									System.out.println("Le diste un puño al robot, probablemente te dolió mas a ti que a él.");
@@ -194,13 +187,7 @@ public class Main {
 								bloquear = 2;
 								break;
 							case 3:
-								j = 1;
-								System.out.println("¿Qué deseas utilizar?:");
-								for (Objetos objeto : intruso.getObjectInventory()) {// muestra en pantalla los objetos
-																						// que tiene en inventario
-									System.out.println(j + ". " + objeto.getName());
-									j++;
-								}
+								intruso.mostrarObjetos();
 								opcion = in.nextInt();
 								if (intruso.getObjectInventory().get(opcion).isShocker()) {
 									intruso.getObjectInventory().get(opcion).usar(robot);
@@ -271,6 +258,9 @@ public class Main {
 					int opcionabrir=in.nextInt();
 					break;
 				case 2:
+					//Mostrarle los objetos, preguntarle cual va a usar y aumentarle la salud
+					System.out.println("¿Que objeto quieres usar?: ");
+					
 					break;
 				}
 				break;
