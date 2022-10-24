@@ -262,8 +262,9 @@ public class Main {
 				int opcionIntec=in.nextInt();
 				switch(opcionIntec) {
 				case 1:
-					System.out.println("");
-					
+					System.out.println(intruso.habitacionesaDesbloquear());
+					System.out.println("Que habitación quieres desbloquear");
+					int opcionabrir=in.nextInt();
 					break;
 				case 2:
 					break;

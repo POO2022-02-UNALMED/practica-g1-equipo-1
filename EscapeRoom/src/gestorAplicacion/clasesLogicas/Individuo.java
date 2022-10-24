@@ -19,7 +19,7 @@ public abstract class Individuo implements Jarvis{
     public abstract void mover(Habitacion hab);
     
     public String habitacionesDisponibles(){
-        ArrayList<Habitacion> disponibles = new ArrayList<>();
+    ArrayList<Habitacion> disponibles = new ArrayList<>();
 	disponibles.add(this.getUbicacion().getNorte());
 	disponibles.add(this.getUbicacion().getSur());
 	disponibles.add(this.getUbicacion().getEste());
@@ -34,6 +34,26 @@ public abstract class Individuo implements Jarvis{
                 mensaje += Hab.getNumero() + " ";
 	    }
 	}
+    
+    public String habitacionesaDesbloquear() {
+    	ArrayList<Habitacion> disponibles = new ArrayList<>();
+    	disponibles.add(this.getUbicacion().getNorte());
+    	disponibles.add(this.getUbicacion().getSur());
+    	disponibles.add(this.getUbicacion().getEste());
+    	disponibles.add(this.getUbicacion().getOeste());
+    	String mensaje = "Esta habitacion está bloqueada: ";
+        String mensaje2 = "Esta habitación no está bloqueada: ";
+        for(Habitacion Hab: disponibles) {
+            if (!Objects.isNull(Hab) && Hab.isBloqueada()) {
+                mensaje += Hab.getNumero() + " ";
+	    }
+            if (!Objects.isNull(Hab)) {
+                mensaje2 += Hab.getNumero() + " ";
+	    }
+    	
+    }
+        
+    
         return mensaje;
     }
     public abstract void addHistorial();
