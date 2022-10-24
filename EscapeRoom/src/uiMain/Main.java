@@ -87,9 +87,10 @@ public class Main {
 
 		System.out.println("Ahora iniciaras en la habitaciï¿½n 1 ");
 
-		// Instancias de habitacion
-		// Instancias de habitacion
-
+		
+		//Jarvis
+			
+	
 		Habitacion Numero1 = new Habitacion(1, false, objetosh1, intruso, null);
 		Habitacion Numero2 = new Habitacion(2, false, objetosh2, null, null);
 		Habitacion Numero3 = new Habitacion(3, false, objetosh3, null, null);
@@ -122,6 +123,9 @@ public class Main {
 		robot.setUbicacion(Numero9);
                 robot.addHistorial();
 
+                
+                
+                
 		// Ir pasando recogiendo cosas
 
 		// Hacer un input de recoger cosas
@@ -263,7 +267,7 @@ public class Main {
 				switch(opcionIntec) {
 				case 1:
 					System.out.println(intruso.habitacionesaDesbloquear());
-					System.out.println("Que habitación quieres desbloquear");
+					System.out.println("Que habitaciï¿½n quieres desbloquear");
 					int opcionabrir=in.nextInt();
 					break;
 				case 2:
