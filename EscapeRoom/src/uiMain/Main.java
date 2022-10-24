@@ -29,15 +29,15 @@ public class Main {
 		in.nextLine();
 
 		// Arrays necesarios
-		ArrayList<Herramientas> objetosh1 = new ArrayList();
-		ArrayList<Herramientas> objetosh2 = new ArrayList();
-		ArrayList<Herramientas> objetosh3 = new ArrayList();
-		ArrayList<Herramientas> objetosh4 = new ArrayList();
-		ArrayList<Herramientas> objetosh5 = new ArrayList();
-		ArrayList<Herramientas> objetosh6 = new ArrayList();
-		ArrayList<Herramientas> objetosh7 = new ArrayList();
-		ArrayList<Herramientas> objetosh8 = new ArrayList();
-		ArrayList<Herramientas> objetosh9 = new ArrayList();
+		ArrayList<Herramientas> objetosh1 = new ArrayList<>();
+		ArrayList<Herramientas> objetosh2 = new ArrayList<>();
+		ArrayList<Herramientas> objetosh3 = new ArrayList<>();
+		ArrayList<Herramientas> objetosh4 = new ArrayList<>();
+		ArrayList<Herramientas> objetosh5 = new ArrayList<>();
+		ArrayList<Herramientas> objetosh6 = new ArrayList<>();
+		ArrayList<Herramientas> objetosh7 = new ArrayList<>();
+		ArrayList<Herramientas> objetosh8 = new ArrayList<>();
+		ArrayList<Herramientas> objetosh9 = new ArrayList<>();
 
 		// instancias de intruso y robot
 		Intruso intruso = new Intruso();
