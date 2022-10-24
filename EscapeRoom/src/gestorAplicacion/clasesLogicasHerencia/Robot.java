@@ -9,6 +9,7 @@ public class Robot extends Individuo {
         private static final int ATTACK = 12;
         private boolean aware,nextTo;//atributo que guarda si el robot sabe donde esta el intruso
         private boolean cargaRobot; //para ataque cargado
+        private Habitacion goingTo;//hacia donde se va a mover
 
     
     public Robot() {
@@ -38,6 +39,7 @@ public class Robot extends Individuo {
         for(Habitacion Hab: disponibles) {
             if (!Objects.isNull(Hab) && Hab.getLuces().equals(Ahorro.ENCENDIDO)) {
                 nextTo = true;
+                goingTo = Hab;
                 break;
 	    } else {
                 nextTo = false;
@@ -104,6 +106,9 @@ public class Robot extends Individuo {
     }
     public boolean isCargaRobot(){
         return cargaRobot;
+    }
+    public Habitacion getGoingTo(){
+        return goingTo;
     }
     
     //METODOS SET

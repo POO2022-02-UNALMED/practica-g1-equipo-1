@@ -163,14 +163,13 @@ public class Main {
 									j++;
 								}
 								opcion = in.nextInt();
-								if (opcion == 1 && Main.lanzarDados(5) >= robot.getArmor()) {
+                                                                int dados = Main.lanzarDados(5);
+								if (opcion == 1 && dados >= robot.getArmor()) {
 									intruso.atacar(robot);// ataca a punetazos
-									System.out.println(
-											"Le diste un puño al robot, probablemente te dolió mas a ti que a él.");
+									System.out.println("Le diste un puño al robot, probablemente te dolió mas a ti que a él.");
 									System.out.println("Te sobas la mano.");
-								} else if (Main.lanzarDados(5) >= robot.getArmor()) {
-									intruso.atacar(robot,
-											intruso.getWeaponInventory().get(opcion - 2).getBonusDamage());// ataca + el
+								} else if (dados >= robot.getArmor()) {
+									intruso.atacar(robot,intruso.getWeaponInventory().get(opcion - 2).getBonusDamage());// ataca + el
 																											// bonus del
 																											// arma
 									System.out.println("Atacaste al robot exitosamente");
@@ -206,7 +205,6 @@ public class Main {
 									System.out.println(
 											"Intentas huir, pero el robot te cierra el paso, mas suerte la proxima vez");
 								}
-
 								break;
 							default:
 								break;
@@ -220,7 +218,7 @@ public class Main {
 								desicionRobot = Main.lanzarDados(10);
 							}
 							// otras acciones
-							robot.turno(desicionRobot, intruso, bloquear);
+							System.out.println(robot.turno(desicionRobot, intruso, bloquear));
 							bloquear = 0;
 						}
 					}
@@ -241,7 +239,7 @@ public class Main {
                                  robot.escuchar(casa);
                                  robot.escanear();
                                  if(robot.isNextTo()){
-                                     //no se mueve
+                                     robot.mover(robot.getGoingTo());
                                  }else if (robot.isAware()){
                                      //algoritmo de busqueda aqui
                                  } else {
