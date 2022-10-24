@@ -170,7 +170,7 @@ public class Main {
 									System.out.println(
 											"Le diste un puño al robot, probablemente te dolió mas a ti que a él.");
 									System.out.println("Te sobas la mano.");
-								} else if (Main.lanzarDados(5) >= robot.getArmor()) {
+								} else if (opcion != 1 && Main.lanzarDados(5) >= robot.getArmor()) {// se a�ade el diferente de 1
 									intruso.atacar(robot,
 											intruso.getWeaponInventory().get(opcion - 2).getBonusDamage());// ataca + el
 																											// bonus del
@@ -251,6 +251,7 @@ public class Main {
                                  }
 				break;
 			case 2:
+				System.out.println("Puedes interactuar con tus objetos actuales");
 				break;
 			case 3:
 				System.out.println("Tus habilidades en Hacking te permiten tomar control de la IA Jarvis..."
