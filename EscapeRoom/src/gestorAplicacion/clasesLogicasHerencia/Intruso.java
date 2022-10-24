@@ -20,7 +20,15 @@ public class Intruso extends Individuo{
     
     //Interacciones
     public void agarrar(){ //Agrega al inventario los objetos de la habitacion y los elimina de los objetos de la habitacion 
-    	for (int i=0;i<this.getUbicacion().getListaObjetos().size();i++) {
+    	for (Herramientas herramientas : getUbicacion().getListaObjetos() ) {
+    		if( herramientas instanceof Armas ) {
+    			weaponInventory.add((Armas) herramientas);
+    		}
+    		else {
+    			
+    			objectInventory.add((Objetos) herramientas);
+    		}
+    	this.getUbicacion().setListaObjetos(null);
     		//inventory.add(this.getUbicacion().getListaObjetos().get(i));
     		//this.getUbicacion().setListaObjetos(null);
     	}
@@ -28,6 +36,13 @@ public class Intruso extends Individuo{
     }
     
     
+    public void interactuarObjetos() {
+    	
+    }
+    
+    public void ineractiarArmas() {
+    	
+    }
     
     //METODOS PELEAR
     @Override

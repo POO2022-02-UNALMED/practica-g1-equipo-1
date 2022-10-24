@@ -44,17 +44,23 @@ public class Main {
 		Robot robot = new Robot();
 
 		// instancias de Herramientas
-		Objetos clave = new Objetos(false, "Clave para desbloquear alguna habitacion", false, 0, 0);
-		objetosh2.add(clave); // Revisar
+		Objetos Llaveh5 = new Objetos(true, "Clave para desbloquear habitacion 5", false, 0, 0);
+		objetosh6.add(Llaveh5); // Revisar
+		
+		Objetos Llaveh7 = new Objetos(false, "Clave para desbloquear habitacion 7", false, 0, 0);
+		objetosh3.add(Llaveh7);
+		
+		Objetos Llaveh9 = new Objetos(false, "Clave para desbloquear habitacion 9", false, 0, 0);
+		objetosh8.add(Llaveh9);
 
 		Objetos mascaraIronMan = new Objetos(true, "El objetivo final", false, 0, 0); // Si algo cuadrar esto
-		objetosh4.add(mascaraIronMan);
+		objetosh9.add(mascaraIronMan);
 
-		Objetos diamante = new Objetos(true, "Un diamante", false, 0, 0);
-		objetosh3.add(diamante);
+		Objetos emulsionDeScott = new Objetos(true, "Sano y fuerte creceras", false, 0, 30);
+		objetosh5.add(emulsionDeScott);
 
-		Objetos llaveInglesa = new Objetos(false, "Llave inglesa", false, 0, 0); // Si algo cuadrar esto
-		objetosh1.add(llaveInglesa);
+		Objetos vitaminaC = new Objetos(false, "Proteinas", false, 0, 10); // Si algo cuadrar esto
+		objetosh2.add(vitaminaC);
 
 		Objetos escudoCapitanAmerica = new Objetos(true, "Escudo del Capitán America", false, 2, 1); // Le puse que si
 																										// tiene alarma
@@ -168,7 +174,7 @@ public class Main {
 									intruso.atacar(robot);// ataca a punetazos
 									System.out.println("Le diste un puño al robot, probablemente te dolió mas a ti que a él.");
 									System.out.println("Te sobas la mano.");
-								} else if (opcion != 1 && dados >= robot.getArmor()) {// se a�ade opcion diferente de 1
+								} else if (opcion != 1 && dados >= robot.getArmor()) {// se a�ade opcion diferente de 1
 									intruso.atacar(robot,intruso.getWeaponInventory().get(opcion - 2).getBonusDamage());// ataca + el
 																											// bonus del
 																											// arma
