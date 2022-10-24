@@ -23,9 +23,14 @@ public class Intruso extends Individuo{
     	for (Herramientas herramientas : getUbicacion().getListaObjetos() ) {
     		if( herramientas instanceof Armas ) {
     			weaponInventory.add((Armas) herramientas);
+    			if (((Armas) herramientas).isAlarma()) {
+    				this.getUbicacion().setAlarma(Ahorro.ACTIVADO);
+    			}
     		}
     		else {
-    			
+    			if (((Objetos) herramientas).isAlarma()) {
+    				this.getUbicacion().setAlarma(Ahorro.ACTIVADO);
+    			}
     			objectInventory.add((Objetos) herramientas);
     		}
     	this.getUbicacion().setListaObjetos(null);
