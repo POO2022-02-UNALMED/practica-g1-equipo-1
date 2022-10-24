@@ -2,14 +2,12 @@
 package gestorAplicacion.clasesLogicas;
 
 public class Objetos implements Herramientas{
-    private boolean alarma;
     private String description = "objeto generico";
     private final String name;
     private final boolean shocker;
     private final int bonusArmor, bonusHealth, numero;
     
-    public Objetos(boolean alarma, String name, boolean shocker, int barmor, int bhealth, int numero){
-        this.alarma = alarma;
+    public Objetos(String name, boolean shocker, int barmor, int bhealth, int numero){
     	this.name = name;
         this.shocker = shocker;
         this.bonusArmor = barmor;
@@ -18,7 +16,6 @@ public class Objetos implements Herramientas{
     }
     
     public Objetos(String name){//para crear objetos como computadores,ventanas o cosas que no se puedan recoger.
-        this.alarma = false;
     	this.name = name;
         this.shocker = false;
         this.bonusArmor = 0;
@@ -32,9 +29,7 @@ public class Objetos implements Herramientas{
         return name;
     }
     
-    public void setAlarma(boolean alarma) {
-        this.alarma = alarma;
-    }
+    
     public String getDescription(){
         return description;
     }
@@ -55,9 +50,6 @@ public class Objetos implements Herramientas{
 	//METODO SET
     public void setDescripion(String i){
         description = i;
-    }
-    public boolean isAlarma() {
-        return alarma;
     }
 
     @Override

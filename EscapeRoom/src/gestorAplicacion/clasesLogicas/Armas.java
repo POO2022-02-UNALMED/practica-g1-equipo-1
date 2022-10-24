@@ -3,20 +3,17 @@ package gestorAplicacion.clasesLogicas;
 
 
 public class Armas implements Herramientas {
-    private boolean alarma;
     private String description = "objeto generico";
     private final String name;
     private final int bonusDamage, bonusSpeed;
     
-    public Armas(boolean alarma, String name, int bdamage, int bspeed){
-        this.alarma = alarma;
+    public Armas(String name, int bdamage, int bspeed){
     	this.name = name;
         this.bonusDamage = bdamage;
         this.bonusSpeed = bspeed;;
     }
     
     public Armas(String name){//para crear objetos como computadores,ventanas o cosas que no se puedan recoger.
-        this.alarma = false;
     	this.name = name;
         this.bonusDamage = 0;
         this.bonusSpeed = 0;
@@ -28,9 +25,6 @@ public class Armas implements Herramientas {
         return name;
     }
     
-    public void setAlarma(boolean alarma) {
-        this.alarma = alarma;
-    }
     public String getDescription(){
         return description;
     }
@@ -44,9 +38,6 @@ public class Armas implements Herramientas {
     //METODO SET
     public void setDescripion(String i){
         description = i;
-    }
-    public boolean isAlarma() {
-        return alarma;
     }
 
     @Override

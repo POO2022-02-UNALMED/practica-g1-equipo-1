@@ -21,7 +21,6 @@ public class Intruso extends Individuo{
     //Interacciones
     public void agarrar(){ //Agrega al inventario los objetos de la habitacion y los elimina de los objetos de la habitacion
     	for (Herramientas herramientas : getUbicacion().getListaObjetos() ) {
-    		if(herramientas.)
     		if( herramientas instanceof Armas ) {
     			weaponInventory.add((Armas) herramientas);
     		}

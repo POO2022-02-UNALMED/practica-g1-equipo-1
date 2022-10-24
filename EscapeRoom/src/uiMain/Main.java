@@ -22,7 +22,7 @@ public class Main {
 		Individuo iniciativa[] = new Individuo[2]; // organiza los turnos de combate
 		int desicionRobot; // se utiliza para el turno de robot en la pelea
 		int j, bloquear; // variables de apoyo para ciclos
-		boolean huir = true;
+		//boolean huir = true;
 
 		System.out.println("Bienvenidos, Breve introduccion y tutorial aqui!!");
 		System.out.println("\nPresiona cualquier tecla para comenzar");
@@ -44,43 +44,43 @@ public class Main {
 		Robot robot = new Robot();
 
 		// instancias de Herramientas
-		Objetos Llaveh5 = new Objetos(true, "Clave para desbloquear habitacion 5", false, 0, 0, 5);
+		Objetos Llaveh5 = new Objetos("Clave para desbloquear habitacion 5", false, 0, 0, 5);
 		objetosh6.add(Llaveh5); // Revisar
 		
-		Objetos Llaveh7 = new Objetos(false, "Clave para desbloquear habitacion 7", false, 0, 0, 7);
+		Objetos Llaveh7 = new Objetos("Clave para desbloquear habitacion 7", false, 0, 0, 7);
 		objetosh3.add(Llaveh7);
 		
-		Objetos Llaveh9 = new Objetos(false, "Clave para desbloquear habitacion 9", false, 0, 0, 9);
+		Objetos Llaveh9 = new Objetos("Clave para desbloquear habitacion 9", false, 0, 0, 9);
 		objetosh8.add(Llaveh9);
 
-		Objetos mascaraIronMan = new Objetos(true, "El objetivo final", false, 0, 0, 0); // Si algo cuadrar esto
+		Objetos mascaraIronMan = new Objetos("El objetivo final", false, 0, 0, 0); // Si algo cuadrar esto
 		objetosh9.add(mascaraIronMan);
 
-		Objetos emulsionDeScott = new Objetos(true, "Sano y fuerte creceras", false, 0, 30, 0);
+		Objetos emulsionDeScott = new Objetos("Sano y fuerte creceras", false, 0, 30, 0);
 		objetosh5.add(emulsionDeScott);
 
-		Objetos vitaminaC = new Objetos(false, "Proteinas", false, 0, 10, 0); // Si algo cuadrar esto
+		Objetos vitaminaC = new Objetos("Proteinas", false, 0, 10, 0); // Si algo cuadrar esto
 		objetosh2.add(vitaminaC);
 
-		Objetos escudoCapitanAmerica = new Objetos(true, "Escudo del Capitán America", false, 2, 1, 0); // Le puse que si
+		Objetos escudoCapitanAmerica = new Objetos("Escudo del Capitán America", false, 2, 1, 0); // Le puse que si
 																										// tiene alarma
 		escudoCapitanAmerica.setDescripion(
 				"Escudo de vibranium con los colores de la bandera, te sientes inspirado solo al llevarlo contigo."
 						+ "\nSi lo usas serás más difícil de golpear por ese turno.");
 		objetosh2.add(escudoCapitanAmerica);
 
-		Armas martilloThor = new Armas(true, "Martillo de Thor", 10, 0);
+		Armas martilloThor = new Armas("Martillo de Thor", 10, 0);
 		martilloThor.setDescripion(
 				"Martillo mágico con el que puedes atacar, sientes como fluye energía eléctrica por tu cuerpo."
 						+ "\nSi lo usas puedes aturdir a tu adversario con un rayo.");
 		objetosh4.add(martilloThor);
 
-		Objetos lanzaTelaranas = new Objetos(true, "Lanza Telarañas", true, 2, 0, 0);
+		Objetos lanzaTelaranas = new Objetos("Lanza Telarañas", true, 2, 0, 0);
 		lanzaTelaranas.setDescripion("Dispositivo lanza telarañas, probablemente pertenece a Spiderman."
 				+ "\nSi lo usas lanzas una telaraña... Obviamente.");
 		objetosh1.add(lanzaTelaranas);
 
-		Objetos inyeccion = new Objetos(false, "Inyección de adrenalina", false, 0, 50, 0);
+		Objetos inyeccion = new Objetos("Inyección de adrenalina", false, 0, 50, 0);
 		inyeccion.setDescripion("Inyectadora con líquido verde, lleva marcada las siglas S.H.I.E.L.D."
 				+ "\nSi lo usas recuperarás tu salud.");
 		objetosh4.add(inyeccion);
@@ -128,7 +128,8 @@ public class Main {
 		// Hacer un input de usar cosas
 
 		// ciclo de turnos del jugador
-		while (!intruso.getObjectInventory().contains(mascaraIronMan) && intruso.getHealth() > 0) {//hasta que gane o quede sin vida)
+		while (!intruso.getObjectInventory().contains(mascaraIronMan) && intruso.getHealth() > 0) {//hasta que gane o quede sin vida
+			boolean huir = true;
 
 			System.out.println("Descripcion de la escena que ve");
 
