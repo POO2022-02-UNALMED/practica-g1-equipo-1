@@ -2,16 +2,21 @@ package gestorAplicacion.clasesLogicasHerencia;
 import gestorAplicacion.clasesLogicas.*;
 import java.io.Serializable;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 import uiMain.Main;
 
 
 public class Robot extends Individuo implements Serializable {
-	private static ArrayList<Robot> robots = new ArrayList<>();
-		public static ArrayList<Robot> getRobots() {
+	private static List<Robot> robots = new ArrayList<Robot>();
+		public static List<Robot> getRobots() {
 		return robots;
 	}
+		public static void setRobots(List<Robot> robots) {
+			Robot.robots = robots;
+		}
+
 
 		private static final int ATTACK = 12;
         private boolean aware,nextTo;//atributo que guarda si el robot sabe donde esta el intruso

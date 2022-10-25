@@ -29,7 +29,7 @@ public class Deserializador {
 					fis = new FileInputStream(file);
 					ois = new ObjectInputStream(fis);
 					
-					Ahorro.setAhorros((ArrayList<Ahorro>)ois.readObject());
+					Ahorro.setAhorros((List<Ahorro>)ois.readObject());
 										
 					
 				}catch(FileNotFoundException e){
@@ -42,12 +42,80 @@ public class Deserializador {
 				
 				
 					
-				}else if (file.getAbsolutePath().contains("alumnos")){
+				}else if (file.getAbsolutePath().contains("Armas")){
 					try {
 						fis = new FileInputStream(file);
 						ois = new ObjectInputStream(fis);
 						
-						Departamento.setAlumnos((List<Alumno>)ois.readObject());
+						Armas.setArmas((List<Armas>)ois.readObject());
+											
+						
+					}catch(FileNotFoundException e){
+						e.printStackTrace();
+					}catch (IOException e) {
+						e.printStackTrace();
+					}catch(ClassNotFoundException e) {
+						e.printStackTrace();
+					}
+					
+					
+				}else if (file.getAbsolutePath().contains("Habitacion")){
+					try {
+						fis = new FileInputStream(file);
+						ois = new ObjectInputStream(fis);
+						
+						Habitacion.setHabitaciones((List<Habitacion>)ois.readObject());
+											
+						
+					}catch(FileNotFoundException e){
+						e.printStackTrace();
+					}catch (IOException e) {
+						e.printStackTrace();
+					}catch(ClassNotFoundException e) {
+						e.printStackTrace();
+					}
+					
+					
+				}else if (file.getAbsolutePath().contains("Individuo")){
+					try {
+						fis = new FileInputStream(file);
+						ois = new ObjectInputStream(fis);
+						
+						Individuo.setIndividuos((List<Individuo>)ois.readObject());
+											
+						
+					}catch(FileNotFoundException e){
+						e.printStackTrace();
+					}catch (IOException e) {
+						e.printStackTrace();
+					}catch(ClassNotFoundException e) {
+						e.printStackTrace();
+					}
+					
+					
+				}else if (file.getAbsolutePath().contains("Intruso")){
+					try {
+						fis = new FileInputStream(file);
+						ois = new ObjectInputStream(fis);
+						
+						Intruso.setIntrusos((List<Intruso>)ois.readObject());
+											
+						
+					}catch(FileNotFoundException e){
+						e.printStackTrace();
+					}catch (IOException e) {
+						e.printStackTrace();
+					}catch(ClassNotFoundException e) {
+						e.printStackTrace();
+					}
+					
+					
+				}else if (file.getAbsolutePath().contains("Robot")){
+					try {
+						fis = new FileInputStream(file);
+						ois = new ObjectInputStream(fis);
+						
+						Robot.setRobots((List<Robot>)ois.readObject());
 											
 						
 					}catch(FileNotFoundException e){
