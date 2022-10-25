@@ -11,6 +11,13 @@ public abstract class Individuo implements Jarvis, Serializable{
     public static ArrayList<Individuo> getIndividuos() {
 		return individuos;
 	}
+    
+    
+	public static void setIndividuos(ArrayList<Individuo> individuos) {
+		Individuo.individuos = individuos;
+	}
+
+
 	public static ArrayList<Habitacion> habitacionesJarvis = new ArrayList<>();
     private int health, armor, speed;
     private boolean stunned = false;

@@ -14,6 +14,12 @@ public class Armas implements Herramientas, Serializable {
 		return armas;
 	}
 
+	public static void setArmas(ArrayList<Armas> armas) {
+		Armas.armas = armas;
+	}
+
+
+
 	public Armas(String name, int bdamage, int bspeed){
     	this.name = name;
         this.bonusDamage = bdamage;

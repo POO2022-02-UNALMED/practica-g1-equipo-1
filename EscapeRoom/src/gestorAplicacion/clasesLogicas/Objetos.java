@@ -10,6 +10,12 @@ public class Objetos implements Herramientas, Serializable{
     public static ArrayList<Objetos> getObjetos() {
 		return objetos;
 	}
+    
+
+	public static void setObjetos(ArrayList<Objetos> objetos) {
+		Objetos.objetos = objetos;
+	}
+
 
 	private String description = "objeto generico";
     private final String name;

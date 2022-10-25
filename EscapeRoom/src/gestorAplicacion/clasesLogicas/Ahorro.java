@@ -12,6 +12,12 @@ public enum Ahorro implements Serializable{
 		return ahorros;
 	}
 
+	public static void setAhorros(ArrayList<Ahorro> ahorros) {
+		Ahorro.ahorros = ahorros;
+	}
+	
+	
+
 	
 	
 

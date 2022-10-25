@@ -9,6 +9,12 @@ public class Habitacion implements Jarvis, Serializable{
 	public static ArrayList<Habitacion> getHabitaciones() {//xddd
 		return habitaciones;
 	}
+	
+
+	public static void setHabitaciones(ArrayList<Habitacion> habitaciones) {
+		Habitacion.habitaciones = habitaciones;
+	}
+
 
 	private int numero; //Que numero es la habitacion
 	private boolean bloqueada; //Si tiene bloqueo o no
