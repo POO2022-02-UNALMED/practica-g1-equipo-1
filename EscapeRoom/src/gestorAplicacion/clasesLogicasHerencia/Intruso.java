@@ -127,18 +127,18 @@ public class Intruso extends Individuo{
     
   //Metodos de jarvis
     
-    public String infohabitacion() {
-    	String mensaje = "Las habitaciones son: ";
-    	for (Habitacion habita: habitacionesJarvis) {
-    	    mensaje += habita.getNumero() + " ";
-    	}
-    	return mensaje ;
+    /*public String infohabitacion() {
+    String mensaje = "Las habitaciones son: ";
+    for (Habitacion habita: habitacionesJarvis) {
+    mensaje += habita.getNumero() + " ";
     }
+    return mensaje ;
+    }*/
 
-    public String infoRobot() {
-        String ultimo =Robot.getHistorial().get(Robot.getHistorial().size()-1);
-    	return  ultimo;
-    }
+    /*  public String infoRobot() {
+    String ultimo =Robot.getHistorial().get(Robot.getHistorial().size()-1);
+    return  ultimo;
+    }*/
     
     @Override
     public String ayudaJarvis() { //tipo dato aleatorio

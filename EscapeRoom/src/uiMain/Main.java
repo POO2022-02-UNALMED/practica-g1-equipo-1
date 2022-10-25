@@ -325,7 +325,8 @@ public class Main {
 						+ "\n1. Dame informacion acerca de las habitaciones."
 						+ "\n2. Dame informacion acerca del robot."
 						+ "\n3. Apaga las luces para que el robot no me encuentre."
-						+ "\n4. No sé que hacer, dame una pista.");
+						+ "\n4. No sé que hacer, dame una pista."
+                                                + "\n5. Ver historial de movimientos.");
 				opcion = in.nextInt();
 				switch (opcion) {
 				case 1:
@@ -335,12 +336,22 @@ public class Main {
 					break;
 				case 2:
 					System.out.println(robot.ayudaJarvis());
+                                        break;
 				case 3:
-					// apaga las luces de la habitacion actual
+					if (!intruso.getUbicacion().getLuces().equals(Ahorro.ROTO)){
+                                            intruso.getUbicacion().setLuces(Ahorro.APAGADO);
+                                        }
+                                        System.out.println("J.A.R.V.I.S.: Luces apagadas.");
+                                        break;
 				case 4:
 					// pista dependiendo del avance o al azar
+                                    break;
 				}	
-				break;
+                                case 5:
+                                    for (String linea: Individuo.getHistorial()){
+                                        System.out.println(linea);
+                                    }
+                                    break;
 			default:
 				break;
 			}
