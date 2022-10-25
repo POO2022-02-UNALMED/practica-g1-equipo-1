@@ -39,7 +39,7 @@ public class Deserializador {
 				
 				
 					
-				}else if (file.getAbsolutePath().contains("armas")){
+				}else if (file.getAbsolutePath().contains("Armas")){
 					try {
 						fis = new FileInputStream(file);
 						ois = new ObjectInputStream(fis);

@@ -25,7 +25,6 @@ public class Main {
 
 	
 	public static void main(String[] args) {
-		
 		Scanner in = new Scanner(System.in);
 		int opcion; // aqui se guardan las opciones que va seleccionando el jugador
 		boolean x = true; // mientras el robot este vivo
