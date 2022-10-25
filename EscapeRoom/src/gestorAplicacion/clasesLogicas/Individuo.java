@@ -1,19 +1,17 @@
 package gestorAplicacion.clasesLogicas;
 import java.io.Serializable;
-
-
-
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Individuo implements Jarvis, Serializable{
-	private static ArrayList<Individuo> individuos = new ArrayList<>();
-    public static ArrayList<Individuo> getIndividuos() {
+	private static List<Individuo> individuos = new ArrayList<Individuo>();
+    public static List<Individuo> getIndividuos() {
 		return individuos;
 	}
     
     
-	public static void setIndividuos(ArrayList<Individuo> individuos) {
+	public static void setIndividuos(List<Individuo> individuos) {
 		Individuo.individuos = individuos;
 	}
 

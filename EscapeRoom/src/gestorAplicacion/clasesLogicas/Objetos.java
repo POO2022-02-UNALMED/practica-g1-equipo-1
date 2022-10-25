@@ -1,18 +1,18 @@
 
 package gestorAplicacion.clasesLogicas;
 import java.io.Serializable;
+import java.util.List;
 import java.util.ArrayList;
 
-import gestorAplicacion.clasesLogicasHerencia.Robot;
 
 public class Objetos implements Herramientas, Serializable{
-	private static ArrayList<Objetos> objetos = new ArrayList<>();
-    public static ArrayList<Objetos> getObjetos() {
+	private static List<Objetos> objetos = new ArrayList<Objetos>();
+    public static List<Objetos> getObjetos() {
 		return objetos;
 	}
     
 
-	public static void setObjetos(ArrayList<Objetos> objetos) {
+	public static void setObjetos(List<Objetos> objetos) {
 		Objetos.objetos = objetos;
 	}
 

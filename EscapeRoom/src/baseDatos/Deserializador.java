@@ -13,7 +13,7 @@ import gestorAplicacion.clasesLogicas.*;
 import gestorAplicacion.clasesLogicasHerencia.*;
 
 public class Deserializador {
-	private static File rutaTemp = new File ("src\\basedatos\\temp");
+	private static File rutaTemp = new File ("src\\baseDatos\\temp");
 	public static void deserializar () {
 		File[] docs = rutaTemp.listFiles();
 		
@@ -29,7 +29,7 @@ public class Deserializador {
 					fis = new FileInputStream(file);
 					ois = new ObjectInputStream(fis);
 					
-					Departamento.setAsignaturas((List<Ahorro>)ois.readObject());
+					Ahorro.setAhorros((ArrayList<Ahorro>)ois.readObject());
 										
 					
 				}catch(FileNotFoundException e){
