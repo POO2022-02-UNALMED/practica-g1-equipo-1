@@ -10,7 +10,7 @@ public class Armas implements Herramientas {
     public Armas(String name, int bdamage, int bspeed){
     	this.name = name;
         this.bonusDamage = bdamage;
-        this.bonusSpeed = bspeed;;
+        this.bonusSpeed = bspeed;
     }
     
     public Armas(String name){//para crear objetos como computadores,ventanas o cosas que no se puedan recoger.

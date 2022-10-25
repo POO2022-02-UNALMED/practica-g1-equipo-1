@@ -100,6 +100,10 @@ public class Main {
 		Habitacion Numero7 = new Habitacion(7, true, objetosh7, null, null);
 		Habitacion Numero8 = new Habitacion(8, false, objetosh8, null, null);
 		Habitacion Numero9 = new Habitacion(9, true, objetosh9, null, robot);
+                
+                Numero3.setAlarma(Ahorro.ACTIVADO);
+                Numero6.setAlarma(Ahorro.ACTIVADO);
+                Numero8.setAlarma(Ahorro.ACTIVADO);
 
 		Habitacion[] casa = new Habitacion[] { Numero1, Numero2, Numero3, Numero4, Numero5, Numero6, Numero7, Numero8,
 				Numero9 };
@@ -253,22 +257,64 @@ public class Main {
                                  }
 				break;
 			case 2:
+                            System.out.println("¿Que deseas hacer?"
+                                    + "\n1. Desbloquear una puerta."
+                                    + "\n2. Recojer los objetos."
+                                    + "\n3. Curar tu salud."
+                                    + "\n4. Romper las luces.");
 				int opcionIntec=in.nextInt();
 				switch(opcionIntec) {
 				case 1:
-					System.out.println(intruso.habitacionesaDesbloquear());
-					System.out.println("Que habitaci�n quieres desbloquear");
-					int opcionabrir=in.nextInt();
+                                        String m = intruso.habitacionesaDesbloquear();
+					System.out.println(m);
+                                        if (!"no hay habitaciones bloqueadas alrededor".equals(m)){
+                                            System.out.println("Que habitacion quieres desbloquear");
+					    opcion = in.nextInt();
+                                            switch(opcion){
+                                                case 5 :
+                                                    if(intruso.getObjectInventory().contains(Llaveh5)){
+                                                        Numero5.setBloqueada(false);
+                                                    } else {
+                                                        System.out.println("no tienes la llave de esta habitacion");
+                                                    }
+                                                    break;
+                                                case 7:
+                                                    if(intruso.getObjectInventory().contains(Llaveh7)){
+                                                        Numero7.setBloqueada(false);
+                                                    } else {
+                                                        System.out.println("no tienes la llave de esta habitacion");
+                                                    }
+                                                    break;
+                                                case 9:
+                                                    if(intruso.getObjectInventory().contains(Llaveh9)){
+                                                        Numero9.setBloqueada(false);
+                                                    } else {
+                                                        System.out.println("no tienes la llave de esta habitacion");
+                                                    }
+                                                    break;
+                                            }
+                                        }
 					break;
 				case 2:
-					//Mostrarle los objetos, preguntarle cual va a usar y aumentarle la salud
-					intruso.mostrarObjetos();
-					opcion = in.nextInt();//elige el objeto
-					
-					
-					
-					
+                                        System.out.println(intruso.agarrar());
 					break;
+                                case 3:
+                                    System.out.println(intruso.mostrarObjetos() + "\n¿Cual deseas usar?");
+                                    opcion = in.nextInt();
+                                    if (intruso.getObjectInventory().get(opcion).getBonusHealth() == 0){
+                                        System.out.println("No puedes usar este objeto para curarte");
+                                    } else {
+                                       intruso.getObjectInventory().get(opcion).usar(intruso);
+                                       System.out.println("Te has curado, ahora tienes " + intruso.getHealth() + "puntos de vida.");
+                                    }
+                                    break;
+                                case 4:
+                                    if(intruso.getWeaponInventory().isEmpty()){
+                                        System.out.println("Intentas romper las luces con tus manos, lamentablemente no tienes la fuerza suficiente para hacerlo");
+                                    } else {
+                                        intruso.getUbicacion().setLuces(Ahorro.ROTO);
+                                        System.out.println("Las luces de esta habitacion no se volveran a encender.");
+                                    }
 				}
 				break;
 			case 3:

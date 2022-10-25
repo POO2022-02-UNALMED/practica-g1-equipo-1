@@ -23,15 +23,6 @@ public class Habitacion implements Jarvis{
                 
                 Individuo.habitacionesJarvis.add(this);
 	}
-
-	//Desbloquar puerta con una herramienta
-	public String desbloquar() {
-		if (bloqueada == true) {
-			//buscar una clave de acceso y desbloquar la puerta
-			
-		}
-		return "Puerta desbloquada, puede avanzar";
-	}
 	
 	//Getter y setters
 	public int getNumero() {

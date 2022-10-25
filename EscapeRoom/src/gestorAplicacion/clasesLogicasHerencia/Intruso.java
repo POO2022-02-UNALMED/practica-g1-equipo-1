@@ -27,12 +27,10 @@ public class Intruso extends Individuo{
 	    }
         return mensaje;
 	}
-	
-	
 	public String mostrarObjetos() {
 		String mensaje = "Tienes estos objetos: ";
         for(Objetos objeto: objectInventory) {
-            mensaje += objeto.getName();
+            mensaje += objeto.getName() + " ";
 	    }
         return mensaje;
 	}
@@ -56,24 +54,22 @@ public class Intruso extends Individuo{
     }
 	
     //Interacciones
-    public void agarrar(){//Agrega al inventario los objetos de la habitacion y los elimina de los objetos de la habitacion
-    	if (this.getUbicacion().getNumero() == 3 || this.getUbicacion().getNumero() == 6  || this.getUbicacion().getNumero() == 8 ) {
-    		this.getUbicacion().setAlarma(Ahorro.ACTIVADO);
-    		
+    public String agarrar(){//Agrega al inventario los objetos de la habitacion y los elimina de los objetos de la habitacion
+        String m = "sin problemas.";
+    	if (this.getUbicacion().getAlarma().equals(Ahorro.ACTIVADO)) {
+    		this.getUbicacion().setAlarma(Ahorro.ENCENDIDO);
+                m = "una alarma empezo a sonar.";
     	}
     	for (Herramientas herramientas : getUbicacion().getListaObjetos() ) {
     		if( herramientas instanceof Armas ) {
     			weaponInventory.add((Armas) herramientas);
     		}
     		else {
- 
     			objectInventory.add((Objetos) herramientas);
     		}
     	this.getUbicacion().setListaObjetos(null);
-    		//inventory.add(this.getUbicacion().getListaObjetos().get(i));
-    		//this.getUbicacion().setListaObjetos(null);
     	}
-    	//Hacer for por habitacion buscando los objetos y agregandolos a esta lista y borrandolos de la habitacion'
+        return "Recogiste todos los objetos, " + m;
     }
    
      
@@ -90,7 +86,6 @@ public class Intruso extends Individuo{
     public static int getATTACK(){
         return ATTACK;
     }
-    
     public ArrayList<Armas> getWeaponInventory(){
         return weaponInventory;
     }
@@ -111,12 +106,15 @@ public class Intruso extends Individuo{
     	if (hab.isBloqueada()) {
     		habitacionesDisponibles();
     	}
-    	
     	else {
-            this.getUbicacion().setLuces(Ahorro.APAGADO);//apaga las luces
+            if(!this.getUbicacion().getLuces().equals(Ahorro.ROTO)){
+                this.getUbicacion().setLuces(Ahorro.APAGADO);//apaga las luces
+            }
             this.getUbicacion().setIntruso(null);
             this.setUbicacion(hab);
-            this.getUbicacion().setLuces(Ahorro.ENCENDIDO);//enciende las luces de la habitacion siguiente
+            if(!this.getUbicacion().getLuces().equals(Ahorro.ROTO)){
+                this.getUbicacion().setLuces(Ahorro.ENCENDIDO);//enciende las luces
+            }
             this.getUbicacion().setIntruso(this);
             this.addHistorial(); 
     	}
@@ -145,9 +143,9 @@ public class Intruso extends Individuo{
         	return "En la habitacion "+habitacionAzar.getNumero()+" no hay objetos." ;
         }
         else {
-        	for (String nombres: habitacionesJarvis) { //que esto de los nombres de los objetos de las habitaciones y los returne abajo
+        	//for (String nombres: habitacionesJarvis) { //que esto de los nombres de los objetos de las habitaciones y los returne abajo
         		
-        	}
+        	
         	return "En la habitacion "+habitacionAzar.getNumero()+" hay estos objetos: " ; //Recorrer la lista de objetos y devolverla
         }
     }

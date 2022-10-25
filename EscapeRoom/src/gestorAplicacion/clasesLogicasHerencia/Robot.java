@@ -22,7 +22,7 @@ public class Robot extends Individuo {
     //Metodos de busqueda
     public void escuchar(Habitacion[] casa){
             for (Habitacion hab : casa) {
-                if (hab.getAlarma().equals(Ahorro.ACTIVADO)) {
+                if (hab.getAlarma().equals(Ahorro.ENCENDIDO)) {
                     this.aware = true;
                     goingTo = hab;
                     break;
@@ -48,8 +48,8 @@ public class Robot extends Individuo {
 	}
     }
     public void apagarAlarma(){
-        if (this.getUbicacion().getAlarma().equals(Ahorro.ACTIVADO)){
-            this.getUbicacion().setAlarma(Ahorro.APAGADO);
+        if (this.getUbicacion().getAlarma().equals(Ahorro.ENCENDIDO)){
+            this.getUbicacion().setAlarma(Ahorro.ACTIVADO);
         }
     }
     public Habitacion buscar(Habitacion[] casa){//busqueda en casa 3x3 habitaciones
