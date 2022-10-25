@@ -1,7 +1,6 @@
 package gestorAplicacion.clasesLogicasHerencia;
 import gestorAplicacion.clasesLogicas.*;
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.ArrayList;
 import java.util.Objects;
 import uiMain.Main;
@@ -14,12 +13,6 @@ public class Robot extends Individuo implements Serializable {
 		public static ArrayList<Robot> getRobots() {
 		return robots;
 	}
-		
-		
-                /*		public static void setRobots(List<Robot> robots) {
-                Robot.robots = robots;
-                }*/
-
 
 		private static final int ATTACK = 12;
         private boolean aware,nextTo;//atributo que guarda si el robot sabe donde esta el intruso
@@ -229,4 +222,12 @@ public class Robot extends Individuo implements Serializable {
 	}
         return i.get(Main.lanzarDados(i.size())-1);
    }
+   
+        @Override
+    public String toString(){
+        
+        String m = "El Robot tiene... vida: " + this.getHealth() + " armadura: " + this.getArmor() + " velocidad: " + this.getSpeed() + " ataque: " + ATTACK;
+        m +=  ", esta en la habitacion " + this.getUbicacion().getNumero();
+        return m;
+    }
 }

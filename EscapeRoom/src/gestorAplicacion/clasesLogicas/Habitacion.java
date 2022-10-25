@@ -1,8 +1,6 @@
 package gestorAplicacion.clasesLogicas;
 import java.io.Serializable;
-import java.util.List;
 import java.util.ArrayList;
-import baseDatos.Deserializador;
 
 public class Habitacion implements Jarvis, Serializable{
 	private static ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
@@ -11,10 +9,6 @@ public class Habitacion implements Jarvis, Serializable{
 	}
 	private static final long serialVersionUID= 1L;
 
-        /*public static void setHabitaciones(ArrayList<Habitacion> habitaciones) {
-        Habitacion.habitaciones = habitaciones;
-        }*/
-
 
 	private int numero; //Que numero es la habitacion
 	private boolean bloqueada; //Si tiene bloqueo o no
@@ -22,8 +16,7 @@ public class Habitacion implements Jarvis, Serializable{
 	private Individuo intruso, robot; //Si hay alguien en la habitacion
         private Habitacion norte, sur, este, oeste;	
         private Ahorro luces, alarma;
-	public Habitacion(int numero, boolean bloqueada, ArrayList<Herramientas> listaObjetos, Individuo intruso,
-			Individuo robot) { //Se podria modificar este constructor para que se inicialice con lo que queremos o crear el vacio
+	public Habitacion(int numero, boolean bloqueada, ArrayList<Herramientas> listaObjetos, Individuo intruso, Individuo robot) { 
 		this.numero = numero;
 		this.bloqueada = bloqueada;
 		this.listaObjetos = listaObjetos;
@@ -32,7 +25,6 @@ public class Habitacion implements Jarvis, Serializable{
                 this.luces = Ahorro.APAGADO;
                 this.alarma = Ahorro.APAGADO;
                 habitaciones.add(this);
-               // Individuo.habitacionesJarvis.add(this);
 	}
 	
 	//Getter y setters
@@ -116,5 +108,17 @@ public class Habitacion implements Jarvis, Serializable{
             a = "no hay nadie ahi";
         }
         return "En esta habitacion hay " + listaObjetos.size() + " objetos, " + a;//y ya pasaste o no has pasado por ahi
+    }
+    
+        @Override
+    public String toString(){
+        String o = "";
+        for (Herramientas e: listaObjetos){
+            o += "\n" + e;
+        }
+        String m = "numero: " + this.numero + "\nbloqueada: " + this.bloqueada + "\nintruso: " + intruso + "\nrobot: " + robot + "\nhabitacionesContiguas: " + norte.getNumero() + " " + sur.getNumero() + " " + este.getNumero() + " " +oeste.getNumero();
+        m += "\nalarma: " + alarma + "\nluces: " + luces;
+        m +=  "\nlista objetos: " + o;
+        return m;
     }
 }

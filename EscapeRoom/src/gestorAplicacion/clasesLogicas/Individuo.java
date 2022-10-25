@@ -1,23 +1,12 @@
 package gestorAplicacion.clasesLogicas;
 import java.io.Serializable;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Individuo implements Jarvis, Serializable{
-	//private static List<Individuo> individuos = new ArrayList<Individuo>();
-    /*public static List<Individuo> getIndividuos() {
-    return individuos;
-    }*/
-    
-    private static final long serialVersionUID= 1L;
-    
-    
-    /*	public static void setIndividuos(List<Individuo> individuos) {
-    Individuo.individuos = individuos;
-    }*/
 
-    //public static ArrayList<Habitacion> habitacionesJarvis = new ArrayList<>();
+    private static final long serialVersionUID= 1L;
+
     private int health, armor, speed;
     private boolean stunned = false;
     private static ArrayList<String> historial = new ArrayList<>();
@@ -76,7 +65,7 @@ public abstract class Individuo implements Jarvis, Serializable{
         }
     }
     public abstract void addHistorial();
-    //Metodo para agarrar
+ 
     
     // METODOS PELEAR
     public abstract void atacar(Individuo i);

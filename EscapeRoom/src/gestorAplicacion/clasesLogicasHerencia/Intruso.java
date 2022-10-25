@@ -1,8 +1,6 @@
 package gestorAplicacion.clasesLogicasHerencia;
-import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
-import baseDatos.Deserializador;
 
 
 import gestorAplicacion.clasesLogicas.*;
@@ -15,11 +13,7 @@ public class Intruso extends Individuo implements Serializable{
 	public static ArrayList<Intruso> getIntrusos() {
 		return intrusos;
 	}
-	
 
-        /*public static void setIntrusos(List<Intruso> intrusos) {
-        Intruso.intrusos = intrusos;
-        }*/
 
 	
     private ArrayList<Armas> weaponInventory = new ArrayList<>(); //inventario armas
@@ -56,23 +50,23 @@ public class Intruso extends Individuo implements Serializable{
         return mensaje;
 	}
 	
-	public String interactuar(Objetos objeto) { //Hacer que escoja el objeto
-    	if( objeto.getBonusHealth() == 0) {
-    		//Es una llave
-    		if(objeto.getNumero() == this.getUbicacion().getNumero()) {
-    			this.getUbicacion().setBloqueada(false);
-    			return "Puerta desbloqueada";
-    		}
-    		
-    	}
-    	else {
-    		//es recuperar vida
-    		this.setHealth(this.getHealth() + objeto.getBonusHealth());
-    		return "Su salud a aumentado";
-    	}
-		return null; //Agregue esto para corregir el error
-    	
-    }
+        /*public String interactuar(Objetos objeto) { //Hacer que escoja el objeto
+        if( objeto.getBonusHealth() == 0) {
+        //Es una llave
+        if(objeto.getNumero() == this.getUbicacion().getNumero()) {
+        this.getUbicacion().setBloqueada(false);
+        return "Puerta desbloqueada";
+        }
+        
+        }
+        else {
+        //es recuperar vida
+        this.setHealth(this.getHealth() + objeto.getBonusHealth());
+        return "Su salud a aumentado";
+        }
+        return null; //Agregue esto para corregir el error
+        
+        }*/
 	
     //Interacciones
     public String agarrar(){//Agrega al inventario los objetos de la habitacion y los elimina de los objetos de la habitacion
@@ -146,21 +140,7 @@ public class Intruso extends Individuo implements Serializable{
     	}
    
     }
-    
-  //Metodos de jarvis
-    
-    /*public String infohabitacion() {
-    String mensaje = "Las habitaciones son: ";
-    for (Habitacion habita: habitacionesJarvis) {
-    mensaje += habita.getNumero() + " ";
-    }
-    return mensaje ;
-    }*/
 
-    /*  public String infoRobot() {
-    String ultimo =Robot.getHistorial().get(Robot.getHistorial().size()-1);
-    return  ultimo;
-    }*/
     
     @Override
     public String ayudaJarvis() { //tipo dato aleatorio
@@ -190,4 +170,22 @@ public class Intruso extends Individuo implements Serializable{
         }
         return mensaje;
     }
+    
+        @Override
+     public String toString(){
+        String o = "";
+        String a = "";
+        for (Armas e: weaponInventory){
+            a += "\n" + e;
+        }
+        for (Objetos e: objectInventory){
+            o += "\n" + e;
+        }
+        String m = "El intruso tiene... vida: " + this.getHealth() + ", armadura: " + this.getArmor() + ", velocidad: " + this.getSpeed() + ", ataque: " + ATTACK;
+        m +=  ", esta en la habitacion " + this.getUbicacion().getNumero();
+        m +=", inventario Armas: " + a;
+        m +=", inventario objetos: " + o;
+        return m;
+    }
 }
+

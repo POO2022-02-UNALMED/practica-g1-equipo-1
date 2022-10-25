@@ -55,31 +55,31 @@ public class Main {
 
 		// instancias de Herramientas
 
-		Objetos Llaveh5 = new Objetos("Llave azul.", false, 0, 0, 5);
+		Objetos Llaveh5 = new Objetos("Llave azul.");
 		Llaveh5.setDescripion("Clave para desbloquear habitacion 5.");
 		objetosh6.add(Llaveh5);
 
-		Objetos Llaveh7 = new Objetos("Llave plateada", false, 0, 0, 7);
+		Objetos Llaveh7 = new Objetos("Llave plateada.");
 		Llaveh7.setDescripion("Clave para desbloquear habitacion 7.");
 		objetosh3.add(Llaveh7);
 
-		Objetos Llaveh9 = new Objetos("Llave dorada", false, 0, 0, 9);
+		Objetos Llaveh9 = new Objetos("Llave dorada.");
 		Llaveh9.setDescripion("Clave para desbloquear habitacion 9.");
 
 		objetosh8.add(Llaveh9);
 
-		Objetos mascaraIronMan = new Objetos("La mascara de Ironman", false, 0, 0, 0);
+		Objetos mascaraIronMan = new Objetos("La mascara de Ironman");
 		mascaraIronMan.setDescripion("El objetivo final.");
 		objetosh9.add(mascaraIronMan);
 
-		Objetos emulsionDeScott = new Objetos("Emulsion de Scott", false, 0, 30, 0);
+		Objetos emulsionDeScott = new Objetos("Emulsion de Scott", false, 0, 30);
 		emulsionDeScott.setDescripion("Sano y fuerte crecerás." + "\nTe puedes curar con este objeto");
 		objetosh5.add(emulsionDeScott);
 
-		Objetos vitaminaC = new Objetos("Proteinas", false, 0, 5, 0);
+		Objetos vitaminaC = new Objetos("Proteinas", false, 0, 5);
 		objetosh2.add(vitaminaC);
 
-		Objetos escudoCapitanAmerica = new Objetos("Escudo del Capitán America", false, 5, 1, 0); // tiene alarma
+		Objetos escudoCapitanAmerica = new Objetos("Escudo del Capitán America", false, 5, 1); // tiene alarma
 
 		escudoCapitanAmerica.setDescripion(
 				"Escudo de vibranium con los colores de la bandera, te sientes inspirado solo al llevarlo contigo."
@@ -92,17 +92,16 @@ public class Main {
 						+ "\nSi lo usas puedes aturdir a tu adversario con un rayo.");
 		objetosh4.add(martilloThor);
 
-		Objetos lanzaTelaranas = new Objetos("Lanza Telarañas", true, 0, 0, 0);
+		Objetos lanzaTelaranas = new Objetos("Lanza Telarañas", true, 0, 0);
 		lanzaTelaranas.setDescripion("Dispositivo lanza telarañas, probablemente pertenece a Spiderman."
 				+ "\nSi lo usas lanzas una telaraña... Obviamente.");
 		objetosh1.add(lanzaTelaranas);
 
-		Objetos inyeccion = new Objetos("Inyección de adrenalina", false, 0, 50, 0);
+		Objetos inyeccion = new Objetos("Inyección de adrenalina", false, 0, 50);
 		inyeccion.setDescripion("Inyectadora con líquido verde, lleva marcada las siglas S.H.I.E.L.D."
 				+ "\nSi lo usas recuperarás tu salud.");
 		objetosh4.add(inyeccion);
 
-		// System.out.println("Ahora iniciaras en la habitaci�n 1 ");
 
 		// Jarvis
 
@@ -143,11 +142,6 @@ public class Main {
 		intruso.addHistorial();
 		robot.setUbicacion(Numero9);
 		robot.addHistorial();
-
-		// Ir pasando recogiendo cosas
-
-		// Hacer un input de recoger cosas
-		// Hacer un input de usar cosas
 
 		// ciclo de turnos del jugador
 		Deserializador.deserializarDatos();

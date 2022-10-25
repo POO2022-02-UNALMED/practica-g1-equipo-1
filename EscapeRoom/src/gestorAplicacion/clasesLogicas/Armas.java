@@ -1,8 +1,5 @@
 package gestorAplicacion.clasesLogicas;
 import java.io.Serializable;
-import java.util.List;
-
-import baseDatos.Deserializador;
 
 import java.util.ArrayList;
 
@@ -18,12 +15,6 @@ public class Armas implements Herramientas, Serializable {
 		return armas;
 	}
 
-    /*	public static void setArmas(ArrayList<Armas> armas) {
-    Armas.armas = armas;
-    }*/
-
-
-
 	public Armas(String name, int bdamage, int bspeed){
     	this.name = name;
         this.bonusDamage = bdamage;
@@ -32,11 +23,6 @@ public class Armas implements Herramientas, Serializable {
         
     }
     
-        /*    public Armas(String name){//para crear objetos como computadores,ventanas o cosas que no se puedan recoger.
-        this.name = name;
-        this.bonusDamage = 0;
-        this.bonusSpeed = 0;
-        }*/
     
     //METODOS GET
     
@@ -63,5 +49,11 @@ public class Armas implements Herramientas, Serializable {
     @Override
     public void usar(Individuo i) {
        
+    }
+    
+    @Override
+     public String toString(){   
+        String m = "nombre: " + this.name + "\ndescripcion: " + this.description + "\nbonus damage: " + bonusDamage + "\nbonus speed: " + bonusSpeed + "\n";
+        return m;
     }
 }
