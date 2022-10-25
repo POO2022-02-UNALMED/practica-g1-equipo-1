@@ -24,7 +24,12 @@ public class Main {
 		int j, bloquear; // variables de apoyo para ciclos
 		//boolean huir = true;
 
-		System.out.println("Bienvenidos, Breve introduccion y tutorial aqui!!");
+		System.out.println("Bienvenidos, aquí inicia nuestro juego el cual consiste en que te encuentras en la casa de tony stark, tu misión es conseguir la mascara de iron man. Pero no creas que será tan sencillo, en tu recorrido tendrás diferentes obstáculos como objetos que te activarán alarmas, puertas con su acceso bloqueado y  un robot que te buscará cuando actives una alarma.\r\n"
+				+ "Pero no todo es malo, encontrarás objetos útiles en algunas habitaciones y quizá tengas la ayuda de alguien o algo.\r\n"
+				+ "");
+		System.out.println("como tutorial breve: debes tomar decisiones sobre tus acciones, pasar entre habitaciones, recoger objetos, utilizar estos objetos.\r\n"
+				+ "Si necesitas saber más cosas ya sabrás a quién preguntarle… Disfruta el juego.\r\n"
+				+ "");
 		System.out.println("\nPresiona cualquier tecla para comenzar");
 		in.nextLine();
 
