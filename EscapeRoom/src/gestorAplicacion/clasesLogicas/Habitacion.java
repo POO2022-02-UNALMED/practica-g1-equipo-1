@@ -2,13 +2,14 @@ package gestorAplicacion.clasesLogicas;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
+import baseDatos.Deserializador;
 
 public class Habitacion implements Jarvis, Serializable{
 	private static List<Habitacion> habitaciones = new ArrayList<Habitacion>();
 	public static List<Habitacion> getHabitaciones() {//xddd
 		return habitaciones;
 	}
-	
+	private static final long serialVersionUID= 1L;
 
 	public static void setHabitaciones(List<Habitacion> habitaciones) {
 		Habitacion.habitaciones = habitaciones;

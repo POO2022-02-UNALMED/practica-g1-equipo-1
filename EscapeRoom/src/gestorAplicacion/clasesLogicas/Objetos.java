@@ -3,6 +3,7 @@ package gestorAplicacion.clasesLogicas;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
+import baseDatos.Deserializador;
 
 
 public class Objetos implements Herramientas, Serializable{
@@ -11,6 +12,7 @@ public class Objetos implements Herramientas, Serializable{
 		return objetos;
 	}
     
+    private static final long serialVersionUID= 1L;
 
 	public static void setObjetos(List<Objetos> objetos) {
 		Objetos.objetos = objetos;

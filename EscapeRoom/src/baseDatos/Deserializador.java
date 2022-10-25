@@ -19,12 +19,9 @@ public class Deserializador {
 		
 		FileInputStream fis;
 	    ObjectInputStream ois;
-	
-		
-		
 		
 		for(File file:docs) {
-			if(file.getAbsolutePath().contains("Ahorro")){
+			if(file.getAbsolutePath().contains("ahorros")){
 				try {
 					fis = new FileInputStream(file);
 					ois = new ObjectInputStream(fis);
@@ -42,7 +39,7 @@ public class Deserializador {
 				
 				
 					
-				}else if (file.getAbsolutePath().contains("Armas")){
+				}else if (file.getAbsolutePath().contains("armas")){
 					try {
 						fis = new FileInputStream(file);
 						ois = new ObjectInputStream(fis);
@@ -59,7 +56,7 @@ public class Deserializador {
 					}
 					
 					
-				}else if (file.getAbsolutePath().contains("Habitacion")){
+				}else if (file.getAbsolutePath().contains("habitaciones")){
 					try {
 						fis = new FileInputStream(file);
 						ois = new ObjectInputStream(fis);
@@ -76,7 +73,7 @@ public class Deserializador {
 					}
 					
 					
-				}else if (file.getAbsolutePath().contains("Individuo")){
+				}else if (file.getAbsolutePath().contains("individuos")){
 					try {
 						fis = new FileInputStream(file);
 						ois = new ObjectInputStream(fis);
@@ -93,7 +90,7 @@ public class Deserializador {
 					}
 					
 					
-				}else if (file.getAbsolutePath().contains("Intruso")){
+				}else if (file.getAbsolutePath().contains("intrusos")){
 					try {
 						fis = new FileInputStream(file);
 						ois = new ObjectInputStream(fis);
@@ -110,7 +107,7 @@ public class Deserializador {
 					}
 					
 					
-				}else if (file.getAbsolutePath().contains("Robot")){
+				}else if (file.getAbsolutePath().contains("robots")){
 					try {
 						fis = new FileInputStream(file);
 						ois = new ObjectInputStream(fis);

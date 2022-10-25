@@ -2,12 +2,15 @@ package gestorAplicacion.clasesLogicasHerencia;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
+import baseDatos.Deserializador;
 
 
 import gestorAplicacion.clasesLogicas.*;
 
 public class Intruso extends Individuo implements Serializable{
 	private static List<Intruso> intrusos = new ArrayList<Intruso>();
+	
+	private static final long serialVersionUID= 1L;
 	
 	public static List<Intruso> getIntrusos() {
 		return intrusos;

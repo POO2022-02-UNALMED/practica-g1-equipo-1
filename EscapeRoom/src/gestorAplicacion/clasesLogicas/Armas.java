@@ -1,6 +1,9 @@
 package gestorAplicacion.clasesLogicas;
 import java.io.Serializable;
 import java.util.List;
+
+import baseDatos.Deserializador;
+
 import java.util.ArrayList;
 
 public class Armas implements Herramientas, Serializable {
@@ -8,6 +11,8 @@ public class Armas implements Herramientas, Serializable {
     private final String name;
     private final int bonusDamage, bonusSpeed;
     private static List<Armas> armas = new ArrayList<Armas>();
+    
+    private static final long serialVersionUID= 1L;
     
     public static List<Armas> getArmas() {
 		return armas;

@@ -1,5 +1,9 @@
 package uiMain;
 
+import baseDatos.*;
+import java.io.*;
+import java.nio.*;
+
 import gestorAplicacion.clasesLogicas.*;
 import gestorAplicacion.clasesLogicasHerencia.*;
 
@@ -12,21 +16,22 @@ public class Main {
 	public static int lanzarDados(int caras) {// retorna un numero aleatorio del 1 a caras
 		return (int) Math.floor(Math.random() * (caras) + 1);
 	}
-        
-        private static void salirDelsistema(Departamento dpto) {
-        System.out.println("Vuelva pronto");
-        Serializador.serializar();
-        System.exit(0);
-    }
+	
+	private static void salirDelsistema() {
+		System.out.println("Vuelva pronto");
+		Serializador.serializar();
+		System.exit(0);
+	}
 
+	
 	public static void main(String[] args) {
+		
 		Scanner in = new Scanner(System.in);
 		int opcion; // aqui se guardan las opciones que va seleccionando el jugador
 		boolean x = true; // mientras el robot este vivo
 		Individuo iniciativa[] = new Individuo[2]; // organiza los turnos de combate
 		int desicionRobot; // se utiliza para el turno de robot en la pelea
 		// boolean huir = true;
-
 
 		System.out.println(
 				"Bienvenidos, Te encuentras en la casa de Tony Stark y tu misión es conseguir la mascara de Ironman. Pero no creas que será tan sencillo, en tu recorrido tendrás diferentes obstáculos como objetos que te activarán alarmas, puertas con su acceso bloqueado y  un robot que te buscará cuando actives una alarma.\r\n"
@@ -57,31 +62,30 @@ public class Main {
 		// instancias de Herramientas
 
 		Objetos Llaveh5 = new Objetos("Llave azul.", false, 0, 0, 5);
-                Llaveh5.setDescripion("Clave para desbloquear habitacion 5.");
+		Llaveh5.setDescripion("Clave para desbloquear habitacion 5.");
 		objetosh6.add(Llaveh5);
-		
+
 		Objetos Llaveh7 = new Objetos("Llave plateada", false, 0, 0, 7);
-                Llaveh7.setDescripion("Clave para desbloquear habitacion 7.");
+		Llaveh7.setDescripion("Clave para desbloquear habitacion 7.");
 		objetosh3.add(Llaveh7);
-		
+
 		Objetos Llaveh9 = new Objetos("Llave dorada", false, 0, 0, 9);
-                Llaveh9.setDescripion("Clave para desbloquear habitacion 9.");
+		Llaveh9.setDescripion("Clave para desbloquear habitacion 9.");
 
 		objetosh8.add(Llaveh9);
 
 		Objetos mascaraIronMan = new Objetos("La mascara de Ironman", false, 0, 0, 0);
-                mascaraIronMan.setDescripion("El objetivo final.");
+		mascaraIronMan.setDescripion("El objetivo final.");
 		objetosh9.add(mascaraIronMan);
 
 		Objetos emulsionDeScott = new Objetos("Emulsion de Scott", false, 0, 30, 0);
-                emulsionDeScott.setDescripion("Sano y fuerte crecerás."
-                        + "\nTe puedes curar con este objeto");
+		emulsionDeScott.setDescripion("Sano y fuerte crecerás." + "\nTe puedes curar con este objeto");
 		objetosh5.add(emulsionDeScott);
 
 		Objetos vitaminaC = new Objetos("Proteinas", false, 0, 5, 0);
 		objetosh2.add(vitaminaC);
 
-		Objetos escudoCapitanAmerica = new Objetos("Escudo del Capitán America", false, 5, 1, 0);										// tiene alarma
+		Objetos escudoCapitanAmerica = new Objetos("Escudo del Capitán America", false, 5, 1, 0); // tiene alarma
 
 		escudoCapitanAmerica.setDescripion(
 				"Escudo de vibranium con los colores de la bandera, te sientes inspirado solo al llevarlo contigo."
@@ -104,7 +108,7 @@ public class Main {
 				+ "\nSi lo usas recuperarás tu salud.");
 		objetosh4.add(inyeccion);
 
-		//System.out.println("Ahora iniciaras en la habitaci�n 1 ");
+		// System.out.println("Ahora iniciaras en la habitaci�n 1 ");
 
 		// Jarvis
 
@@ -152,19 +156,21 @@ public class Main {
 		// Hacer un input de usar cosas
 
 		// ciclo de turnos del jugador
+		Deserializador.deserializar();
 		while (!intruso.getObjectInventory().contains(mascaraIronMan) && intruso.getHealth() > 0) {// hasta que gane o
 																									// quede sin vida
 			boolean huir = true;
 
 			System.out.println(intruso.ayudaJarvis());
 
-			if (robot.getUbicacion() == intruso.getUbicacion() && robot.getHealth() > 0) {// si la ubicacion del jugador == ubicacion robot
+			if (robot.getUbicacion() == intruso.getUbicacion() && robot.getHealth() > 0) {// si la ubicacion del jugador
+																							// == ubicacion robot
 				System.out.println("El robot te ha encontrado! preparate para luchar!!");
-                                
+
 				while (intruso.getHealth() > 0 && robot.getHealth() > 0 && huir) {
 
-                                        System.out.println("Tienes " + intruso.getHealth() + " puntos de vida.");
-                                        System.out.println("El robot tiene " + robot.getHealth() + " puntos de vida.");
+					System.out.println("Tienes " + intruso.getHealth() + " puntos de vida.");
+					System.out.println("El robot tiene " + robot.getHealth() + " puntos de vida.");
 
 					if (robot.getSpeed() + Main.lanzarDados(5) > intruso.getSpeed() + Main.lanzarDados(5)) {// define el
 																											// orden de
@@ -206,7 +212,8 @@ public class Main {
 								}
 								break;
 							case 2:
-								System.out.println("Tomas una posición defensiva y te preparas para recibir el ataque");
+								System.out
+										.println("Tomas una posición defensiva y te preparas para recibir el ataque");
 								intruso.setArmor(3);
 
 								break;
@@ -235,171 +242,175 @@ public class Main {
 							}
 						} else {
 							System.out.println("Es el turno del robot:");
-                                                        if (robot.isStunned()){
-                                                            System.out.println("El robot esta aturdido, no puede hacer nada.");
-                                                        } else {
-                                                            if (robot.isCargaRobot()) {
-								desicionRobot = 100;
-								System.out.println(robot.ataqueCargado(intruso));
-							    } else {
-							        desicionRobot = Main.lanzarDados(10);
-						        }
-                                                            System.out.println(robot.turno(desicionRobot, intruso));    
+							if (robot.isStunned()) {
+								System.out.println("El robot esta aturdido, no puede hacer nada.");
+							} else {
+								if (robot.isCargaRobot()) {
+									desicionRobot = 100;
+									System.out.println(robot.ataqueCargado(intruso));
+								} else {
+									desicionRobot = Main.lanzarDados(10);
+								}
+								System.out.println(robot.turno(desicionRobot, intruso));
 							}
 							intruso.setArmor(0);
-                                                }
-                                                        
 						}
-					}
-				}
-                        if (robot.getHealth() <= 0 && x){
-                            System.out.println("Destruiste al robot, ahora solo falta obtener la mascara.");
-                            x = false;
-                        }
-                        
-                        if (intruso.getHealth() > 0) {
-			System.out.println("¿Que deseas hacer?:" + "\n1. Moverte" + "\n2. Interactuar" + "\n3. Hablar con Jarvis");
-			opcion = in.nextInt();
-			switch (opcion) {// aqui se implementan las diferentes funcionalidades
-			case 1:
-				// Movimiento del intruso
-				System.out.println(intruso.habitacionesDisponibles());
-				System.out.println("Donde quieres moverte?");
-				int opcionHab = in.nextInt();
-				intruso.mover(casa[opcionHab - 1]);
 
-				// Movimiento del robot
-				robot.apagarAlarma();
-				robot.escuchar(casa);
-				robot.escanear();
-				if (robot.isNextTo()) {
-					robot.mover(robot.getGoingTo());
-
-				} else if (robot.isAware()) {
-					robot.mover(robot.buscar(casa));// camino mas corto a la habitacion con alarma
-				} else {
-					robot.mover(casa[robot.decidirDireccion() - 1]);// movimiento aleatorio
-				}
-				break;
-			case 2:
-				System.out.println("¿Que deseas hacer?" + "\n1. Desbloquear una puerta." + "\n2. Recojer los objetos."
-						+ "\n3. Curar tu salud." + "\n4. Romper las luces.");
-				int opcionIntec = in.nextInt();
-				switch (opcionIntec) {
-				case 1:
-					String m = intruso.habitacionesaDesbloquear();
-					System.out.println(m);
-					if (!"no hay habitaciones bloqueadas alrededor".equals(m)) {
-						System.out.println("Que habitacion quieres desbloquear");
-						opcion = in.nextInt();
-						switch (opcion) {
-						case 5:
-							if (intruso.getObjectInventory().contains(Llaveh5)) {
-								Numero5.setBloqueada(false);
-							} else {
-								System.out.println("no tienes la llave de esta habitacion");
-							}
-							break;
-						case 7:
-							if (intruso.getObjectInventory().contains(Llaveh7)) {
-								Numero7.setBloqueada(false);
-							} else {
-								System.out.println("no tienes la llave de esta habitacion");
-							}
-							break;
-						case 9:
-							if (intruso.getObjectInventory().contains(Llaveh9)) {
-								Numero9.setBloqueada(false);
-							} else {
-								System.out.println("no tienes la llave de esta habitacion");
-							}
-							break;
-						}
-					}
-					break;
-				case 2:
-					System.out.println(intruso.agarrar());
-					break;
-				case 3:
-					System.out.println(intruso.mostrarObjetos() + "\n¿Cual deseas usar?");
-					opcion = in.nextInt();
-					if (intruso.getObjectInventory().get(opcion).getBonusHealth() == 0) {
-						System.out.println("No puedes usar este objeto para curarte");
-					} else {
-						intruso.getObjectInventory().get(opcion).usar(intruso);
-						System.out.println("Te has curado, ahora tienes " + intruso.getHealth() + "puntos de vida.");
-					}
-					break;
-				case 4:
-					if (intruso.getWeaponInventory().isEmpty()) {
-						System.out.println(
-								"Intentas romper las luces con tus manos, lamentablemente no tienes la fuerza suficiente para hacerlo");
-					} else {
-						intruso.getUbicacion().setLuces(Ahorro.ROTO);
-						System.out.println("Las luces de esta habitacion no se volveran a encender.");
 					}
 				}
-				break;
-			case 3:
-				System.out.println("Tus habilidades en Hacking te permiten tomar control de la IA Jarvis..."
-						+ "\nJ.A.R.V.I.S.: ¿En qué te puedo asistir?"
-						+ "\n1. Dame informacion acerca de las habitaciones."
-						+ "\n2. Dame informacion acerca del robot."
-						+ "\n3. Apaga las luces para que el robot no me encuentre."
-						+ "\n4. No sé que hacer, dame una pista." + "\n5. Ver historial de movimientos.");
-				opcion = in.nextInt();
-				switch (opcion) {
-				case 1:
-					System.out.println("De qué habitación necesitas saber?");
-					opcion = in.nextInt();
-					System.out.println(casa[opcion - 1].ayudaJarvis());
-					break;
-				case 2:
-					System.out.println(robot.ayudaJarvis());
-					break;
-				case 3:
-					if (!intruso.getUbicacion().getLuces().equals(Ahorro.ROTO)) {
-						intruso.getUbicacion().setLuces(Ahorro.APAGADO);
-					}
-					System.out.println("J.A.R.V.I.S.: Luces apagadas.");
-					break;
-				case 4:
-					opcion = Main.lanzarDados(10);
- 					if (opcion < 4) {
-						System.out.println(Jarvis.PISTA1);
-					} else if (opcion < 6) {
-						System.out.println(Jarvis.PISTA2);
-					} else if (opcion < 8) {
-						System.out.println(Jarvis.PISTA3);
-					} else if (opcion < 10) {
-						System.out.println(Jarvis.PISTA4);
-					} else {
-						System.out.println(Jarvis.PISTA5);
-					}
-					break;
-				case 5:
-					for (String linea : Individuo.getHistorial()) {
-						System.out.println(linea);
-					}
-					break;
-				default:
-					break;
-				}
-				
-			case 4:salirDelsistema();	
-					
 			}
-		    }
-                }
+			if (robot.getHealth() <= 0 && x) {
+				System.out.println("Destruiste al robot, ahora solo falta obtener la mascara.");
+				x = false;
+			}
+
+			if (intruso.getHealth() > 0) {
+				System.out.println("¿Que deseas hacer?:" + "\n1. Moverte" + "\n2. Interactuar"
+						+ "\n3. Hablar con Jarvis" + "\n4. Salir del juego");
+				opcion = in.nextInt();
+				switch (opcion) {// aqui se implementan las diferentes funcionalidades
+				case 1:
+					// Movimiento del intruso
+					System.out.println(intruso.habitacionesDisponibles());
+					System.out.println("Donde quieres moverte?");
+					int opcionHab = in.nextInt();
+					intruso.mover(casa[opcionHab - 1]);
+
+					// Movimiento del robot
+					robot.apagarAlarma();
+					robot.escuchar(casa);
+					robot.escanear();
+					if (robot.isNextTo()) {
+						robot.mover(robot.getGoingTo());
+
+					} else if (robot.isAware()) {
+						robot.mover(robot.buscar(casa));// camino mas corto a la habitacion con alarma
+					} else {
+						robot.mover(casa[robot.decidirDireccion() - 1]);// movimiento aleatorio
+					}
+					break;
+				case 2:
+					System.out.println("¿Que deseas hacer?" + "\n1. Desbloquear una puerta."
+							+ "\n2. Recojer los objetos." + "\n3. Curar tu salud." + "\n4. Romper las luces.");
+					int opcionIntec = in.nextInt();
+					switch (opcionIntec) {
+					case 1:
+						String m = intruso.habitacionesaDesbloquear();
+						System.out.println(m);
+						if (!"no hay habitaciones bloqueadas alrededor".equals(m)) {
+							System.out.println("Que habitacion quieres desbloquear");
+							opcion = in.nextInt();
+							switch (opcion) {
+							case 5:
+								if (intruso.getObjectInventory().contains(Llaveh5)) {
+									Numero5.setBloqueada(false);
+								} else {
+									System.out.println("no tienes la llave de esta habitacion");
+								}
+								break;
+							case 7:
+								if (intruso.getObjectInventory().contains(Llaveh7)) {
+									Numero7.setBloqueada(false);
+								} else {
+									System.out.println("no tienes la llave de esta habitacion");
+								}
+								break;
+							case 9:
+								if (intruso.getObjectInventory().contains(Llaveh9)) {
+									Numero9.setBloqueada(false);
+								} else {
+									System.out.println("no tienes la llave de esta habitacion");
+								}
+								break;
+							}
+						}
+						break;
+					case 2:
+						System.out.println(intruso.agarrar());
+						break;
+					case 3:
+						System.out.println(intruso.mostrarObjetos() + "\n¿Cual deseas usar?");
+						opcion = in.nextInt();
+						if (intruso.getObjectInventory().get(opcion).getBonusHealth() == 0) {
+							System.out.println("No puedes usar este objeto para curarte");
+						} else {
+							intruso.getObjectInventory().get(opcion).usar(intruso);
+							System.out
+									.println("Te has curado, ahora tienes " + intruso.getHealth() + "puntos de vida.");
+						}
+						break;
+					case 4:
+						if (intruso.getWeaponInventory().isEmpty()) {
+							System.out.println(
+									"Intentas romper las luces con tus manos, lamentablemente no tienes la fuerza suficiente para hacerlo");
+						} else {
+							intruso.getUbicacion().setLuces(Ahorro.ROTO);
+							System.out.println("Las luces de esta habitacion no se volveran a encender.");
+						}
+					}
+					break;
+				case 3:
+					System.out.println("Tus habilidades en Hacking te permiten tomar control de la IA Jarvis..."
+							+ "\nJ.A.R.V.I.S.: ¿En qué te puedo asistir?"
+							+ "\n1. Dame informacion acerca de las habitaciones."
+							+ "\n2. Dame informacion acerca del robot."
+							+ "\n3. Apaga las luces para que el robot no me encuentre."
+							+ "\n4. No sé que hacer, dame una pista." + "\n5. Ver historial de movimientos.");
+					opcion = in.nextInt();
+					switch (opcion) {
+					case 1:
+						System.out.println("De qué habitación necesitas saber?");
+						opcion = in.nextInt();
+						System.out.println(casa[opcion - 1].ayudaJarvis());
+						break;
+					case 2:
+						System.out.println(robot.ayudaJarvis());
+						break;
+					case 3:
+						if (!intruso.getUbicacion().getLuces().equals(Ahorro.ROTO)) {
+							intruso.getUbicacion().setLuces(Ahorro.APAGADO);
+						}
+						System.out.println("J.A.R.V.I.S.: Luces apagadas.");
+						break;
+					case 4:
+						opcion = Main.lanzarDados(10);
+						if (opcion < 4) {
+							System.out.println(Jarvis.PISTA1);
+						} else if (opcion < 6) {
+							System.out.println(Jarvis.PISTA2);
+						} else if (opcion < 8) {
+							System.out.println(Jarvis.PISTA3);
+						} else if (opcion < 10) {
+							System.out.println(Jarvis.PISTA4);
+						} else {
+							System.out.println(Jarvis.PISTA5);
+						}
+						break;
+					case 5:
+						for (String linea : Individuo.getHistorial()) {
+							System.out.println(linea);
+						}
+						break;
+					default:
+						break;
+					}
+
+				case 4:
+					salirDelsistema();
+					break;
+				}
+			}
+		}
 		// mensajes finales
 		if (intruso.getObjectInventory().contains(mascaraIronMan)) {
-			System.out.println("Despues de un arduo trabajo conseguiste lo que buscabas, la mascara de Ironman te permitio abrir un hueco en la pared y huir."
-                                + "\nPor fin podras añadir esto a tu mesa de trofeos, tu proximo objetivo: La Capa de Dr Strange... pero eso sera en otra ocasion."
-                                + "\nBuen trabajo y Gracias por Jugar!!!");
+			System.out.println(
+					"Despues de un arduo trabajo conseguiste lo que buscabas, la mascara de Ironman te permitio abrir un hueco en la pared y huir."
+							+ "\nPor fin podras añadir esto a tu mesa de trofeos, tu proximo objetivo: La Capa de Dr Strange... pero eso sera en otra ocasion."
+							+ "\nBuen trabajo y Gracias por Jugar!!!");
 		} else {
-			System.out.println("Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad."
-                                + "\nParece que estaras aqui por un buen tiempo."
-                                + "\nFin del Juego.");
+			System.out.println(
+					"Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad."
+							+ "\nParece que estaras aqui por un buen tiempo." + "\nFin del Juego.");
 		}
 
 	}

@@ -32,7 +32,7 @@ public class Serializador {
 			
 		}
 		for(File file:docs) {
-			if(file.getAbsolutePath().contains("Ahorro")){
+			if(file.getAbsolutePath().contains("ahorros")){
 				try {
 					fos = new FileOutputStream(file);
 					oos = new ObjectOutputStream(fos);
@@ -45,7 +45,7 @@ public class Serializador {
 					e.printStackTrace();
 				}
 					
-				}else if(file.getAbsolutePath().contains("Armas")) {
+				}else if(file.getAbsolutePath().contains("armas")) {
 					try {
 						fos = new FileOutputStream(file);
 						oos = new ObjectOutputStream(fos);
@@ -60,7 +60,7 @@ public class Serializador {
 					
 					
 				}
-				else if(file.getAbsolutePath().contains("Habitacion")) {
+				else if(file.getAbsolutePath().contains("habitaciones")) {
 					try {
 						fos = new FileOutputStream(file);
 						oos = new ObjectOutputStream(fos);
@@ -76,7 +76,7 @@ public class Serializador {
 					
 				
 			}
-				else if(file.getAbsolutePath().contains("Individuo")) {
+				else if(file.getAbsolutePath().contains("individuos")) {
 					try {
 						fos = new FileOutputStream(file);
 						oos = new ObjectOutputStream(fos);
@@ -92,7 +92,7 @@ public class Serializador {
 					
 				
 			}
-				else if(file.getAbsolutePath().contains("Intruso")) {
+				else if(file.getAbsolutePath().contains("intrusos")) {
 					try {
 						fos = new FileOutputStream(file);
 						oos = new ObjectOutputStream(fos);
@@ -108,7 +108,7 @@ public class Serializador {
 					
 				
 			}
-				else if(file.getAbsolutePath().contains("Robot")) {
+				else if(file.getAbsolutePath().contains("robots")) {
 					try {
 						fos = new FileOutputStream(file);
 						oos = new ObjectOutputStream(fos);

@@ -1,6 +1,7 @@
 package gestorAplicacion.clasesLogicasHerencia;
 import gestorAplicacion.clasesLogicas.*;
 import java.io.Serializable;
+import baseDatos.Deserializador;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -9,10 +10,14 @@ import uiMain.Main;
 
 
 public class Robot extends Individuo implements Serializable {
+	
+	private static final long serialVersionUID= 1L;
 	private static List<Robot> robots = new ArrayList<Robot>();
 		public static List<Robot> getRobots() {
 		return robots;
 	}
+		
+		
 		public static void setRobots(List<Robot> robots) {
 			Robot.robots = robots;
 		}
