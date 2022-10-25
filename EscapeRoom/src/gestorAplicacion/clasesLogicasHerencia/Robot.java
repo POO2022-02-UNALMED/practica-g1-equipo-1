@@ -28,6 +28,7 @@ public class Robot extends Individuo implements Serializable {
     
     //Metodos de busqueda
     public void escuchar(Habitacion[] casa){
+        if (this.getHealth() > 0){
             for (Habitacion hab : casa) {
                 if (hab.getAlarma().equals(Ahorro.ENCENDIDO)) {
                     this.aware = true;
@@ -37,30 +38,36 @@ public class Robot extends Individuo implements Serializable {
                     this.aware = false;
                 }
             }
+        }
+            
     }
     public void escanear(){
-        ArrayList<Habitacion> disponibles = new ArrayList<>();
-	disponibles.add(this.getUbicacion().getNorte());
-	disponibles.add(this.getUbicacion().getSur());
-	disponibles.add(this.getUbicacion().getEste());
-	disponibles.add(this.getUbicacion().getOeste());
-        for(Habitacion Hab: disponibles) {
-            if (!Objects.isNull(Hab) && Hab.getLuces().equals(Ahorro.ENCENDIDO)) {
-                nextTo = true;
-                goingTo = Hab;
-                break;
-	    } else {
-                nextTo = false;
-            }
-	}
+        if (this.getHealth() > 0){
+            ArrayList<Habitacion> disponibles = new ArrayList<>();
+            disponibles.add(this.getUbicacion().getNorte());
+	    disponibles.add(this.getUbicacion().getSur());
+	    disponibles.add(this.getUbicacion().getEste());
+	    disponibles.add(this.getUbicacion().getOeste());
+            for(Habitacion Hab: disponibles) {
+                if (!Objects.isNull(Hab) && Hab.getLuces().equals(Ahorro.ENCENDIDO)) {
+                    nextTo = true;
+                    goingTo = Hab;
+                    break;
+	        } else {
+                    nextTo = false;
+                }
+	    }
+        }
+        
     }
     public void apagarAlarma(){
-        if (this.getUbicacion().getAlarma().equals(Ahorro.ENCENDIDO)){
+        if (this.getHealth() > 0 && this.getUbicacion().getAlarma().equals(Ahorro.ENCENDIDO)){
             this.getUbicacion().setAlarma(Ahorro.ACTIVADO);
         }
     }
     public Habitacion buscar(Habitacion[] casa){//busqueda en casa 3x3 habitaciones
-        ArrayList<Habitacion> disponibles = new ArrayList<>();
+        if (this.getHealth() > 0){
+            ArrayList<Habitacion> disponibles = new ArrayList<>();
 	disponibles.add(this.getUbicacion().getNorte());
 	disponibles.add(this.getUbicacion().getSur());
 	disponibles.add(this.getUbicacion().getEste());
@@ -78,6 +85,10 @@ public class Robot extends Individuo implements Serializable {
         } else {
             return casa[4];
         }
+        } else {
+            return casa[8];
+        }
+        
     }
 
 
@@ -86,9 +97,9 @@ public class Robot extends Individuo implements Serializable {
     public void atacar(Individuo i) {
         i.setHealth(i.getHealth()-ATTACK);
     }
-    public String ataqueCargado(Individuo i, int bloquear){
+    public String ataqueCargado(Individuo i){
         cargaRobot = false;
-        if (Main.lanzarDados(5) >= i.getArmor() + bloquear) {
+        if (Main.lanzarDados(5) >= i.getArmor()) {
             this.atacar(i);
             this.atacar(i);
             this.atacar(i);
@@ -97,9 +108,9 @@ public class Robot extends Individuo implements Serializable {
             return "El robot lanza un poderoso laser hacia ti! Por suerte, logras esquivarlo";
 	}
     }
-    public String turno(int desicion,Individuo i, int bloquear){
+    public String turno(int desicion,Individuo i){
         if (desicion < 6) {// del 1 al 5 ataque normal
-            if (Main.lanzarDados(5) >= i.getArmor() + bloquear) {
+            if (Main.lanzarDados(5) >= i.getArmor()) {
                 this.atacar(i);
                 return "El robot te acaba de asestar un golpe";
             } else {
@@ -110,7 +121,7 @@ public class Robot extends Individuo implements Serializable {
             cargaRobot = true;
             return "El pecho del robot comienza a brillar con fuerza";
 	} else if (desicion == 8 || desicion == 9) {// 8 o 9 stunear
-            if (Main.lanzarDados(5) >= i.getArmor() + bloquear) {
+            if (Main.lanzarDados(5) >= i.getArmor()) {
                 i.stun(true);
                 return "El robot te electrocutó, estarás aturdido por el siguiente turno";
 	    } else {
@@ -157,7 +168,11 @@ public class Robot extends Individuo implements Serializable {
         } else {
             a = "no nota tu presencia... aún.";
         }
-        return "El robot se encuentra en la habitacion " + this.getUbicacion().getNumero() + ", tiene " + this.getHealth() + " puntos de vida y " + a;
+        if (this.getHealth() > 0){
+                    return "El robot se encuentra en la habitacion " + this.getUbicacion().getNumero() + ", tiene " + this.getHealth() + " puntos de vida y " + a;
+        } else {
+            return "El robot ya ha sido destruido";
+        }
     }
     
     @Override
@@ -167,10 +182,14 @@ public class Robot extends Individuo implements Serializable {
 
     @Override
     public void mover(Habitacion hab) {
-        this.getUbicacion().setRobot(null);
-        this.setUbicacion(hab);
-        this.getUbicacion().setRobot(this);
-        this.addHistorial();   
+        if (this.getHealth() > 0){
+            this.getUbicacion().setRobot(null);
+            this.setUbicacion(hab);
+            this.getUbicacion().setRobot(this);
+            this.addHistorial(); 
+        } else {
+            this.setUbicacion(null);
+        }  
     }
 
    public int decidirDireccion(){

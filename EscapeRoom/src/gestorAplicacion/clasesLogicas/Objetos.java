@@ -68,6 +68,7 @@ public class Objetos implements Herramientas, Serializable{
         } else {
             i.setArmor(i.getArmor()+bonusArmor);
             i.setHealth(i.getHealth()+bonusHealth);
+            if (i.getHealth() > 100){i.setHealth(100);}
             
         }
     }
