@@ -19,13 +19,12 @@ public class Main {
 	
 	private static void salirDelsistema() {
 		System.out.println("Vuelva pronto");
-		Serializador.serializar();
+		Serializador.serializarDatos();
 		System.exit(0);
 	}
 
 	
 	public static void main(String[] args) {
-		
 		Scanner in = new Scanner(System.in);
 		int opcion; // aqui se guardan las opciones que va seleccionando el jugador
 		boolean x = true; // mientras el robot este vivo
@@ -156,7 +155,7 @@ public class Main {
 		// Hacer un input de usar cosas
 
 		// ciclo de turnos del jugador
-		Deserializador.deserializar();
+		Deserializador.deserializarDatos();
 		while (!intruso.getObjectInventory().contains(mascaraIronMan) && intruso.getHealth() > 0) {// hasta que gane o
 																									// quede sin vida
 			boolean huir = true;
@@ -412,6 +411,7 @@ public class Main {
 					"Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad."
 							+ "\nParece que estaras aqui por un buen tiempo." + "\nFin del Juego.");
 		}
+                Main.salirDelsistema();
 
 	}
 

@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import baseDatos.Deserializador;
 
 public class Habitacion implements Jarvis, Serializable{
-	private static List<Habitacion> habitaciones = new ArrayList<Habitacion>();
-	public static List<Habitacion> getHabitaciones() {//xddd
+	private static ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
+	public static ArrayList<Habitacion> getHabitaciones() {//xddd
 		return habitaciones;
 	}
 	private static final long serialVersionUID= 1L;
 
-	public static void setHabitaciones(List<Habitacion> habitaciones) {
-		Habitacion.habitaciones = habitaciones;
-	}
+        /*public static void setHabitaciones(ArrayList<Habitacion> habitaciones) {
+        Habitacion.habitaciones = habitaciones;
+        }*/
 
 
 	private int numero; //Que numero es la habitacion
@@ -31,7 +31,7 @@ public class Habitacion implements Jarvis, Serializable{
 		this.robot = robot;
                 this.luces = Ahorro.APAGADO;
                 this.alarma = Ahorro.APAGADO;
-                
+                habitaciones.add(this);
                // Individuo.habitacionesJarvis.add(this);
 	}
 	

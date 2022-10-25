@@ -10,17 +10,17 @@ public class Armas implements Herramientas, Serializable {
     private String description = "objeto generico";
     private final String name;
     private final int bonusDamage, bonusSpeed;
-    private static List<Armas> armas = new ArrayList<Armas>();
+    private static ArrayList<Armas> armas = new ArrayList<Armas>();
     
     private static final long serialVersionUID= 1L;
     
-    public static List<Armas> getArmas() {
+    public static ArrayList<Armas> getArmas() {
 		return armas;
 	}
 
-	public static void setArmas(List<Armas> armas) {
-		Armas.armas = armas;
-	}
+    /*	public static void setArmas(ArrayList<Armas> armas) {
+    Armas.armas = armas;
+    }*/
 
 
 
@@ -28,13 +28,15 @@ public class Armas implements Herramientas, Serializable {
     	this.name = name;
         this.bonusDamage = bdamage;
         this.bonusSpeed = bspeed;
+        armas.add(this);
+        
     }
     
-    public Armas(String name){//para crear objetos como computadores,ventanas o cosas que no se puedan recoger.
-    	this.name = name;
+        /*    public Armas(String name){//para crear objetos como computadores,ventanas o cosas que no se puedan recoger.
+        this.name = name;
         this.bonusDamage = 0;
         this.bonusSpeed = 0;
-    }
+        }*/
     
     //METODOS GET
     

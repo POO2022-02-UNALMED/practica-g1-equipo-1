@@ -7,16 +7,16 @@ import baseDatos.Deserializador;
 
 
 public class Objetos implements Herramientas, Serializable{
-	private static List<Objetos> objetos = new ArrayList<Objetos>();
-    public static List<Objetos> getObjetos() {
+	private static ArrayList<Objetos> objetos = new ArrayList<Objetos>();
+    public static ArrayList<Objetos> getObjetos() {
 		return objetos;
 	}
     
     private static final long serialVersionUID= 1L;
 
-	public static void setObjetos(List<Objetos> objetos) {
-		Objetos.objetos = objetos;
-	}
+    /*	public static void setObjetos(List<Objetos> objetos) {
+    Objetos.objetos = objetos;
+    }*/
 
 
 	private String description = "objeto generico";
@@ -29,15 +29,17 @@ public class Objetos implements Herramientas, Serializable{
         this.shocker = shocker;
         this.bonusArmor = barmor;
         this.bonusHealth = bhealth;
-		this.numero = numero;
+        this.numero = numero;
+        objetos.add(this);
     }
     
-    public Objetos(String name){//para crear objetos como computadores,ventanas o cosas que no se puedan recoger.
+    public Objetos(String name){
     	this.name = name;
         this.shocker = false;
         this.bonusArmor = 0;
         this.bonusHealth = 0;
-		this.numero = 0;
+	this.numero = 0;
+        objetos.add(this);
     }
     
     //METODOS GET

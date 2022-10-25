@@ -12,15 +12,15 @@ import uiMain.Main;
 public class Robot extends Individuo implements Serializable {
 	
 	private static final long serialVersionUID= 1L;
-	private static List<Robot> robots = new ArrayList<Robot>();
-		public static List<Robot> getRobots() {
+	private static ArrayList<Robot> robots = new ArrayList<Robot>();
+		public static ArrayList<Robot> getRobots() {
 		return robots;
 	}
 		
 		
-		public static void setRobots(List<Robot> robots) {
-			Robot.robots = robots;
-		}
+                /*		public static void setRobots(List<Robot> robots) {
+                Robot.robots = robots;
+                }*/
 
 
 		private static final int ATTACK = 12;
@@ -34,6 +34,7 @@ public class Robot extends Individuo implements Serializable {
         aware = false;
         nextTo = false;
         cargaRobot = false;
+        robots.add(this);
     }
     
     //Metodos de busqueda

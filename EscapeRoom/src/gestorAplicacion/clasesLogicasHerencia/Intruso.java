@@ -8,18 +8,18 @@ import baseDatos.Deserializador;
 import gestorAplicacion.clasesLogicas.*;
 
 public class Intruso extends Individuo implements Serializable{
-	private static List<Intruso> intrusos = new ArrayList<Intruso>();
+	private static ArrayList<Intruso> intrusos = new ArrayList<Intruso>();
 	
 	private static final long serialVersionUID= 1L;
 	
-	public static List<Intruso> getIntrusos() {
+	public static ArrayList<Intruso> getIntrusos() {
 		return intrusos;
 	}
 	
 
-	public static void setIntrusos(List<Intruso> intrusos) {
-		Intruso.intrusos = intrusos;
-	}
+        /*public static void setIntrusos(List<Intruso> intrusos) {
+        Intruso.intrusos = intrusos;
+        }*/
 
 	
     private ArrayList<Armas> weaponInventory = new ArrayList<>(); //inventario armas
@@ -28,7 +28,7 @@ public class Intruso extends Individuo implements Serializable{
     
     public Intruso(int health, int armor, int speed) {
 		super(health, armor, speed);
-		
+		intrusos.add(this);
 	}
 
 	public Intruso() {
