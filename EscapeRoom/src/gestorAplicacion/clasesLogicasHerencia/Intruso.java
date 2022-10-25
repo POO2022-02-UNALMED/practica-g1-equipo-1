@@ -115,7 +115,12 @@ public class Intruso extends Individuo implements Serializable{
     }
     
     //METODOS SET
-    
+    public void setWeaponInventory(ArrayList<Armas> a){
+        weaponInventory = a;
+    }
+    public void setObjectInventory(ArrayList<Objetos> o){
+        objectInventory = o;
+    }
 
     @Override
     public void addHistorial() {
@@ -179,6 +184,9 @@ public class Intruso extends Individuo implements Serializable{
             }            
         } else {
             mensaje += "\nNo hay luz, por lo que no ves nada.";
+        }
+        if (this.getUbicacion().getAlarma().equals(Ahorro.ENCENDIDO)){
+            mensaje += "\nUna alarma esta sonando en la habitacion.";
         }
         return mensaje;
     }

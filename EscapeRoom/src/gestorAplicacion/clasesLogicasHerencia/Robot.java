@@ -1,9 +1,7 @@
 package gestorAplicacion.clasesLogicasHerencia;
 import gestorAplicacion.clasesLogicas.*;
 import java.io.Serializable;
-import baseDatos.Deserializador;
-
-import java.util.List;
+import java.util.Objects;
 import java.util.ArrayList;
 import java.util.Objects;
 import uiMain.Main;
@@ -77,30 +75,40 @@ public class Robot extends Individuo implements Serializable {
         }
     }
     public Habitacion buscar(Habitacion[] casa){//busqueda en casa 3x3 habitaciones
+        Habitacion hab = null;
         if (this.getHealth() > 0){
             ArrayList<Habitacion> disponibles = new ArrayList<>();
 	disponibles.add(this.getUbicacion().getNorte());
 	disponibles.add(this.getUbicacion().getSur());
 	disponibles.add(this.getUbicacion().getEste());
 	disponibles.add(this.getUbicacion().getOeste());
-        if (disponibles.contains(goingTo.getNorte())){
-            return goingTo.getNorte();
-        } else if (disponibles.contains(goingTo.getSur())){
-            return goingTo.getSur();
-        } else if (disponibles.contains(goingTo.getEste())){
-            return goingTo.getEste();
-        } else if (disponibles.contains(goingTo.getOeste())){
-            return goingTo.getOeste();
-        } else if(disponibles.size() == 2){
-            return disponibles.get(0);
-        } else {
-            return casa[4];
+        int j = 0;
+        for (Habitacion d : disponibles){
+            if(Objects.isNull(d)){
+                j++;
+            }
         }
+        if (!Objects.isNull(goingTo.getNorte()) && disponibles.contains(goingTo.getNorte())){
+            hab = goingTo.getNorte();
+        } else if (!Objects.isNull(goingTo.getSur()) && disponibles.contains(goingTo.getSur())){
+            hab = goingTo.getSur();
+        } else if (!Objects.isNull(goingTo.getEste()) && disponibles.contains(goingTo.getEste())){
+            hab = goingTo.getEste();
+        } else if (!Objects.isNull(goingTo.getOeste()) && disponibles.contains(goingTo.getOeste())){
+            hab = goingTo.getOeste();
+        } else if(j == 2){
+            for (Habitacion d : disponibles){
+            if(!Objects.isNull(d)){
+                hab = d;
+            }
+            }
         } else {
-            return casa[8];
+            hab = casa[4];
         }
-        
+        } 
+        return hab;
     }
+    
 
 
     //METODOS PELEAR
@@ -139,11 +147,16 @@ public class Robot extends Individuo implements Serializable {
 		return "Bloqueaste el golpe del robot";
 	    }
 	} else if (desicion == 10) {// 10 roba un objeto
+            if (!((Intruso)i).getObjectInventory().isEmpty()){
             int dados = Main.lanzarDados(((Intruso)i).getObjectInventory().size())-1;
             Herramientas quitada = ((Intruso)i).getObjectInventory().get(dados);
             this.getUbicacion().getListaObjetos().add(quitada);
             ((Intruso)i).getObjectInventory().remove(dados);
 	    return "El robot logra quitarte " + ((Objetos)quitada).getName() + " y lo arroja al suelo.";
+            } else {
+                return "El robot intenta quitarte algo... pero aun no has recogido nada.";
+            }
+            
 	} else {
             return "";
         }

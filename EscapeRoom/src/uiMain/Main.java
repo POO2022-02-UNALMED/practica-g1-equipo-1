@@ -1,15 +1,11 @@
 package uiMain;
 
 import baseDatos.*;
-import java.io.*;
-import java.nio.*;
 
 import gestorAplicacion.clasesLogicas.*;
 import gestorAplicacion.clasesLogicasHerencia.*;
-
 import java.util.ArrayList;
 import java.util.Scanner;
-import gestorAplicacion.*;
 
 public class Main {
 
@@ -30,7 +26,6 @@ public class Main {
 		boolean x = true; // mientras el robot este vivo
 		Individuo iniciativa[] = new Individuo[2]; // organiza los turnos de combate
 		int desicionRobot; // se utiliza para el turno de robot en la pelea
-		// boolean huir = true;
 
 		System.out.println(
 				"Bienvenidos, Te encuentras en la casa de Tony Stark y tu misión es conseguir la mascara de Ironman. Pero no creas que será tan sencillo, en tu recorrido tendrás diferentes obstáculos como objetos que te activarán alarmas, puertas con su acceso bloqueado y  un robot que te buscará cuando actives una alarma.\r\n"
@@ -128,7 +123,7 @@ public class Main {
 		Habitacion[] casa = new Habitacion[] { Numero1, Numero2, Numero3, Numero4, Numero5, Numero6, Numero7, Numero8,
 				Numero9 };
 
-		ArrayList<Habitacion> habitacionesJarvis = new ArrayList<>();
+		//ArrayList<Habitacion> habitacionesJarvis = new ArrayList<>();
 
 		Numero1.setHabitacionesContiguas(Numero4, null, Numero2, null);
 		Numero2.setHabitacionesContiguas(Numero5, null, Numero3, Numero1);
@@ -243,6 +238,7 @@ public class Main {
 							System.out.println("Es el turno del robot:");
 							if (robot.isStunned()) {
 								System.out.println("El robot esta aturdido, no puede hacer nada.");
+                                                                robot.stun(false);
 							} else {
 								if (robot.isCargaRobot()) {
 									desicionRobot = 100;
@@ -276,17 +272,21 @@ public class Main {
 					intruso.mover(casa[opcionHab - 1]);
 
 					// Movimiento del robot
-					robot.apagarAlarma();
+                                        if(robot.getHealth() > 0){
+                                            robot.apagarAlarma();
 					robot.escuchar(casa);
 					robot.escanear();
 					if (robot.isNextTo()) {
 						robot.mover(robot.getGoingTo());
 
 					} else if (robot.isAware()) {
+                                                System.out.println(robot.buscar(casa).getNumero());
 						robot.mover(robot.buscar(casa));// camino mas corto a la habitacion con alarma
 					} else {
 						robot.mover(casa[robot.decidirDireccion() - 1]);// movimiento aleatorio
-					}
+					} 
+                                        }
+					
 					break;
 				case 2:
 					System.out.println("¿Que deseas hacer?" + "\n1. Desbloquear una puerta."
@@ -393,10 +393,36 @@ public class Main {
 					default:
 						break;
 					}
+                                        break;
 
 				case 4:
 					salirDelsistema();
 					break;
+                                        
+                                //codigos para pruebas
+                                case 100: //fuerza batalla con robot
+                                    robot.setUbicacion(intruso.getUbicacion());
+                                    System.out.println("CHEAT: TRAJISTE AL ROBOT A ESTA HABITACION.");
+                                    break;
+                                case 200://anadir todo a inventario
+                                    intruso.setWeaponInventory(Armas.getArmas());
+                                    intruso.setObjectInventory(Objetos.getObjetos());
+                                    intruso.getObjectInventory().remove(mascaraIronMan);
+                                    System.out.println("CHEAT: TU INVENTARIO CONTIENE TODOS LOS OBJETOS.");
+                                    break;
+                                case 300: //el robot se autodestruye
+                                    robot.setHealth(0);
+                                    System.out.println("CHEAT: EL ROBOT SE AUTODESTRUYE.");
+                                    break;
+                                case 400: //perder
+                                    intruso.setHealth(0);
+                                    System.out.println("CHEAT: FORZASTE DERROTA.");
+                                    break;
+                                case 500://ganar
+                                    intruso.getObjectInventory().add(mascaraIronMan);
+                                    System.out.println("CHEAT: FORZASTE VICTORIA.");
+                                case 600://activas alarma
+                                    intruso.getUbicacion().setAlarma(Ahorro.ENCENDIDO);
 				}
 			}
 		}
@@ -406,12 +432,14 @@ public class Main {
 					"Despues de un arduo trabajo conseguiste lo que buscabas, la mascara de Ironman te permitio abrir un hueco en la pared y huir."
 							+ "\nPor fin podras añadir esto a tu mesa de trofeos, tu proximo objetivo: La Capa de Dr Strange... pero eso sera en otra ocasion."
 							+ "\nBuen trabajo y Gracias por Jugar!!!");
+                        Main.salirDelsistema();
 		} else {
 			System.out.println(
 					"Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad."
 							+ "\nParece que estaras aqui por un buen tiempo." + "\nFin del Juego.");
+                        Main.salirDelsistema();
 		}
-                Main.salirDelsistema();
+                
 
 	}
 
