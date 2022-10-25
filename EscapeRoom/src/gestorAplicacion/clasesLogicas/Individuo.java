@@ -90,8 +90,7 @@ public abstract class Individuo implements Jarvis{
     public static ArrayList<String> getHistorial(){
         return historial;
     }
-    
-    
+   
     //METODOS SET
     public void setHealth(int i){
         health = i;
@@ -105,4 +104,6 @@ public abstract class Individuo implements Jarvis{
     public void stun(boolean i){
         stunned = i;
     }
+    
+
 }

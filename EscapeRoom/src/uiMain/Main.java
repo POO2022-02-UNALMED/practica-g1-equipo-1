@@ -4,8 +4,6 @@ import gestorAplicacion.clasesLogicas.*;
 import gestorAplicacion.clasesLogicasHerencia.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Objects;
 import java.util.Scanner;
 import gestorAplicacion.*;
 
@@ -92,7 +90,7 @@ public class Main {
 				+ "\nSi lo usas recuperarás tu salud.");
 		objetosh4.add(inyeccion);
 
-		System.out.println("Ahora iniciaras en la habitaci�n 1 ");
+		//System.out.println("Ahora iniciaras en la habitaci�n 1 ");
 
 		// Jarvis
 
@@ -145,7 +143,7 @@ public class Main {
 																									// quede sin vida
 			boolean huir = true;
 
-			System.out.println("Descripcion de la escena que ve");
+			System.out.println(intruso.ayudaJarvis());
 
 			if (robot.getUbicacion() == intruso.getUbicacion()) {// si la ubicacion del jugador == ubicacion robot
 				System.out.println("El robot te ha encontrado! preparate para luchar!!");
@@ -348,24 +346,40 @@ public class Main {
 					System.out.println("J.A.R.V.I.S.: Luces apagadas.");
 					break;
 				case 4:
-					// pista dependiendo del avance o al azar
-					break;
-				case 5:
-					for (String linea : Individuo.getHistorial()) {
-						System.out.println(linea);
-					}
-					break;	
-				}
-			default:
-				break;
+					opcion = Main.lanzarDados(10);
+                                        if(opcion < 4){
+                                            System.out.println(Jarvis.PISTA1);
+                                        } else if (opcion < 6){
+                                            System.out.println(Jarvis.PISTA2);
+                                        } else if (opcion < 8){
+                                            System.out.println(Jarvis.PISTA3);                                           
+                                        } else if (opcion < 10) {
+                                            System.out.println(Jarvis.PISTA4);
+                                        } else {
+                                            System.out.println(Jarvis.PISTA5);
+                                        }
+                                    break;
+                                case 5:
+                                    for (String linea: Individuo.getHistorial()){
+                                        System.out.println(linea);
+                                    }
+                                    break;
+			        default:
+				    break;
+				}	
+                                
 			}
 		}
 
 		// mensajes finales
-		if (x) {
-			System.out.println("mensaje de Ganaste y descripcion del final");
+		if (intruso.getObjectInventory().contains(mascaraIronMan)) {
+			System.out.println("Despues de un arduo trabajo conseguiste lo que buscabas, la mascara de Ironman te permitio abrir un hueco en la pared y huir."
+                                + "\nPor fin podras añadir esto a tu mesa de trofeos, tu proximo objetivo: La Capa de Dr Strange... pero eso sera en otra ocasion."
+                                + "\nBuen trabajo y Gracias por Jugar!!!");
 		} else {
-			System.out.println("mensaje de perdiste");
+			System.out.println("Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad."
+                                + "\nParece que estaras aqui por un buen tiempo."
+                                + "\nFin del Juego.");
 		}
 
 	}
