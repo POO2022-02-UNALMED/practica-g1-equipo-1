@@ -35,7 +35,7 @@ public abstract class Individuo implements Jarvis{
                 mensaje += Hab.getNumero() + " ";
             }
         }
-        return mensaje+"/n"+mensaje2;
+        return mensaje+"\n"+mensaje2;
 	}
     
     public String habitacionesaDesbloquear() {

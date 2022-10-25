@@ -174,21 +174,19 @@ public class Main {
 							}
 							switch (opcion) {
 							case 1:
-								intruso.mostrarArmas();
+                                                                System.out.println("¿Con que deseas atacar?" + "\n0. A puñetazos.");
+								System.out.println(intruso.mostrarArmas());
 								opcion = in.nextInt();
-                                int dados = Main.lanzarDados(5);
-								if (opcion == 1 && dados >= robot.getArmor()) {
-									intruso.atacar(robot);// ataca a punetazos
+                                                                int dados = Main.lanzarDados(5);
+								if (opcion == 0 && dados >= robot.getArmor()) {
+									intruso.atacar(robot);
 									System.out.println("Le diste un puño al robot, probablemente te dolió mas a ti que a él.");
 									System.out.println("Te sobas la mano.");
-								} else if (opcion != 1 && dados >= robot.getArmor()) {// se a�ade opcion diferente de 1
-									intruso.atacar(robot,intruso.getWeaponInventory().get(opcion - 2).getBonusDamage());// ataca + el
-																											// bonus del
-																											// arma
+								} else if (opcion != 0 && dados >= robot.getArmor()) {
+									intruso.atacar(robot,intruso.getWeaponInventory().get(opcion - 1).getBonusDamage());											// arma
 									System.out.println("Atacaste al robot exitosamente");
 								} else {
-									System.out.println("El Robot bloqueo tu ataque!");// hay una probabilidad de que el
-																						// robot bloquee
+									System.out.println("El Robot bloqueo tu ataque!");
 								}
 								break;
 							case 2:
@@ -196,36 +194,40 @@ public class Main {
 								bloquear = 2;
 								break;
 							case 3:
-								intruso.mostrarObjetos();
+								System.out.println(intruso.mostrarObjetos());
 								opcion = in.nextInt();
-								if (intruso.getObjectInventory().get(opcion).isShocker()) {
-									intruso.getObjectInventory().get(opcion).usar(robot);
+								if (intruso.getObjectInventory().get(opcion - 1).isShocker()) {
+									intruso.getObjectInventory().get(opcion - 1).usar(robot);
+                                                                        System.out.println("Aturdiste al robot.");
 								} else {
-									intruso.getObjectInventory().get(opcion).usar(intruso);
+									intruso.getObjectInventory().get(opcion - 1).usar(intruso);
+                                                                        System.out.println("Recibiste la bonificacion de este objeto.");
 								}
 								break;
 							case 4:
 								if (intruso.getSpeed() + Main.lanzarDados(5) >= 4) {
 									huir = false;
-									System.out.print("Tu agilidad te permitió saltar fuera del combate");
+									System.out.print("Tu agilidad te permitió saltar fuera del combate.");
 								} else {
-									System.out.println(
-											"Intentas huir, pero el robot te cierra el paso, mas suerte la proxima vez");
+									System.out.println("Intentas huir, pero el robot te cierra el paso, mas suerte la proxima vez.");
 								}
 								break;
 							default:
 								break;
 							}
-						} else {// acciones del robot
+						} else {
 							System.out.println("Es el turno del robot:");
-							if (robot.isCargaRobot()) {// ataque cargado
-								desicionRobot = 100;// esta linea evita que haga otra cosa en el turno
+                                                        if (robot.isStunned()){
+                                                            System.out.println("El robot esta aturdido, no puede hacer nada.");
+                                                        } else {
+                                                            if (robot.isCargaRobot()) {
+								desicionRobot = 100;
 								System.out.println(robot.ataqueCargado(intruso, bloquear));
 							} else {
 								desicionRobot = Main.lanzarDados(10);
 							}
-							// otras acciones
-							System.out.println(robot.turno(desicionRobot, intruso, bloquear));
+							System.out.println(robot.turno(desicionRobot, intruso, bloquear));    
+                                                        }
 							bloquear = 0;
 						}
 					}

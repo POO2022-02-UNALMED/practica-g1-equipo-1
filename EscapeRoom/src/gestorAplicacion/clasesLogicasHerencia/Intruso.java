@@ -22,15 +22,19 @@ public class Intruso extends Individuo{
 	
 	public String mostrarArmas() {
 		String mensaje = "Tienes estas armas:  ";
+                int i = 1;
         for(Armas arma: weaponInventory) {
-            mensaje += arma.getName();
+            mensaje +=  "\n" + i + ". " + arma.getName()+ ".";
+            i++;
 	    }
         return mensaje;
 	}
 	public String mostrarObjetos() {
-		String mensaje = "Tienes estos objetos: ";
+		String mensaje = "Tienes estos objetos:";
+                int i = 1;
         for(Objetos objeto: objectInventory) {
-            mensaje += objeto.getName() + " ";
+            mensaje += "\n" + i + ". " + objeto.getName() + ".";
+            i++;
 	    }
         return mensaje;
 	}
