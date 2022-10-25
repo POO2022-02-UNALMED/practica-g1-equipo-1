@@ -1,20 +1,19 @@
 package gestorAplicacion.clasesLogicas;
 import java.io.Serializable;
-
-
+import java.util.List;
 import java.util.ArrayList;
 
 public class Armas implements Herramientas, Serializable {
     private String description = "objeto generico";
     private final String name;
     private final int bonusDamage, bonusSpeed;
-    private static ArrayList<Armas> armas = new ArrayList<>();
+    private static List<Armas> armas = new ArrayList<Armas>();
     
-    public static ArrayList<Armas> getArmas() {
+    public static List<Armas> getArmas() {
 		return armas;
 	}
 
-	public static void setArmas(ArrayList<Armas> armas) {
+	public static void setArmas(List<Armas> armas) {
 		Armas.armas = armas;
 	}
 
