@@ -19,13 +19,16 @@ public class Robot extends Individuo implements Serializable {
         private boolean cargaRobot; //para ataque cargado
         private Habitacion goingTo;//hacia donde se va a mover
 
-    
-    public Robot() {
-        super(150, 3, 7);
-        aware = false;
-        nextTo = false;
-        cargaRobot = false;
-        robots.add(this);
+    public Robot(int health, int armor, int speed, boolean aware, boolean nextTo, boolean cargaRobot) {
+			super(health, armor, speed);
+			this.aware = aware;
+			this.nextTo = nextTo;
+			this.cargaRobot = cargaRobot;
+			robots.add(this);
+		}
+
+	public Robot() {
+        this(150, 3, 7, false, false, false);
     }
     
     //Metodos de busqueda

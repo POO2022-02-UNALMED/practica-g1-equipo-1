@@ -64,7 +64,7 @@ public abstract class Individuo implements Jarvis, Serializable{
             return "no hay habitaciones bloqueadas alrededor";
         }
     }
-    public abstract void addHistorial();
+    protected abstract void addHistorial();
  
     
     // METODOS PELEAR
