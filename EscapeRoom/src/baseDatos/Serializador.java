@@ -45,7 +45,7 @@ public class Serializador {
 					e.printStackTrace();
 				}
 					
-				}else if(file.getAbsolutePath().contains("armas")) {
+				}else if(file.getAbsolutePath().contains("Armas")) {
 					try {
 						fos = new FileOutputStream(file);
 						oos = new ObjectOutputStream(fos);
