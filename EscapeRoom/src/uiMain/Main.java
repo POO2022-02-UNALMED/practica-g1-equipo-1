@@ -12,8 +12,8 @@ public class Main {
 	public static int lanzarDados(int caras) {// retorna un numero aleatorio del 1 a caras
 		return (int) Math.floor(Math.random() * (caras) + 1);
 	}
-	
-	private static void salirDelsistema(Departamento dpto) {
+        
+        private static void salirDelsistema(Departamento dpto) {
         System.out.println("Vuelva pronto");
         Serializador.serializar();
         System.exit(0);
@@ -22,21 +22,21 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		int opcion; // aqui se guardan las opciones que va seleccionando el jugador
-		boolean x = true; // variable temporal, mientras colocamos bien las condiciones
+		boolean x = true; // mientras el robot este vivo
 		Individuo iniciativa[] = new Individuo[2]; // organiza los turnos de combate
 		int desicionRobot; // se utiliza para el turno de robot en la pelea
-		int bloquear; // variables de apoyo para ciclos
 		// boolean huir = true;
 
 
 		System.out.println(
-				"Bienvenidos, aquí inicia nuestro juego el cual consiste en que te encuentras en la casa de tony stark, tu misión es conseguir la mascara de iron man. Pero no creas que será tan sencillo, en tu recorrido tendrás diferentes obstáculos como objetos que te activarán alarmas, puertas con su acceso bloqueado y  un robot que te buscará cuando actives una alarma.\r\n"
+				"Bienvenidos, Te encuentras en la casa de Tony Stark y tu misión es conseguir la mascara de Ironman. Pero no creas que será tan sencillo, en tu recorrido tendrás diferentes obstáculos como objetos que te activarán alarmas, puertas con su acceso bloqueado y  un robot que te buscará cuando actives una alarma.\r\n"
 						+ "Pero no todo es malo, encontrarás objetos útiles en algunas habitaciones y quizá tengas la ayuda de alguien o algo.\r\n"
 						+ "");
 		System.out.println(
-				"como tutorial breve: debes tomar decisiones sobre tus acciones, pasar entre habitaciones, recoger objetos, utilizar estos objetos.\r\n"
-						+ "Si necesitas saber más cosas ya sabrás a quién preguntarle… Disfruta el juego.\r\n" + "");
-		System.out.println("\nPresiona cualquier tecla para comenzar");
+				"Tutorial: debes tomar decisiones sobre tus acciones, pasar entre habitaciones, recoger objetos y utilizarlos.\r\n"
+						+ "Si necesitas saber más cosas ya sabrás a quién preguntarle… Disfruta el juego.\r\n"
+						+ "");
+		System.out.println("\nPresiona Enter para comenzar");
 		in.nextLine();
 
 		// Arrays necesarios
@@ -69,13 +69,16 @@ public class Main {
 
 		objetosh8.add(Llaveh9);
 
-		Objetos mascaraIronMan = new Objetos("El objetivo final", false, 0, 0, 0); // Si algo cuadrar esto
+		Objetos mascaraIronMan = new Objetos("La mascara de Ironman", false, 0, 0, 0);
+                mascaraIronMan.setDescripion("El objetivo final.");
 		objetosh9.add(mascaraIronMan);
 
-		Objetos emulsionDeScott = new Objetos("Sano y fuerte creceras", false, 0, 30, 0);
+		Objetos emulsionDeScott = new Objetos("Emulsion de Scott", false, 0, 30, 0);
+                emulsionDeScott.setDescripion("Sano y fuerte crecerás."
+                        + "\nTe puedes curar con este objeto");
 		objetosh5.add(emulsionDeScott);
 
-		Objetos vitaminaC = new Objetos("Proteinas", false, 0, 10, 0); // Si algo cuadrar esto
+		Objetos vitaminaC = new Objetos("Proteinas", false, 0, 5, 0);
 		objetosh2.add(vitaminaC);
 
 		Objetos escudoCapitanAmerica = new Objetos("Escudo del Capitán America", false, 5, 1, 0);										// tiene alarma
@@ -91,7 +94,7 @@ public class Main {
 						+ "\nSi lo usas puedes aturdir a tu adversario con un rayo.");
 		objetosh4.add(martilloThor);
 
-		Objetos lanzaTelaranas = new Objetos("Lanza Telarañas", true, 2, 0, 0);
+		Objetos lanzaTelaranas = new Objetos("Lanza Telarañas", true, 0, 0, 0);
 		lanzaTelaranas.setDescripion("Dispositivo lanza telarañas, probablemente pertenece a Spiderman."
 				+ "\nSi lo usas lanzas una telaraña... Obviamente.");
 		objetosh1.add(lanzaTelaranas);
@@ -101,7 +104,7 @@ public class Main {
 				+ "\nSi lo usas recuperarás tu salud.");
 		objetosh4.add(inyeccion);
 
-		// System.out.println("Ahora iniciaras en la habitaci�n 1 ");
+		//System.out.println("Ahora iniciaras en la habitaci�n 1 ");
 
 		// Jarvis
 
@@ -155,7 +158,7 @@ public class Main {
 
 			System.out.println(intruso.ayudaJarvis());
 
-			if (robot.getUbicacion() == intruso.getUbicacion()) {// si la ubicacion del jugador == ubicacion robot
+			if (robot.getUbicacion() == intruso.getUbicacion() && robot.getHealth() > 0) {// si la ubicacion del jugador == ubicacion robot
 				System.out.println("El robot te ha encontrado! preparate para luchar!!");
                                 
 				while (intruso.getHealth() > 0 && robot.getHealth() > 0 && huir) {
@@ -253,7 +256,8 @@ public class Main {
                             System.out.println("Destruiste al robot, ahora solo falta obtener la mascara.");
                             x = false;
                         }
-
+                        
+                        if (intruso.getHealth() > 0) {
 			System.out.println("¿Que deseas hacer?:" + "\n1. Moverte" + "\n2. Interactuar" + "\n3. Hablar con Jarvis");
 			opcion = in.nextInt();
 			switch (opcion) {// aqui se implementan las diferentes funcionalidades
@@ -361,7 +365,7 @@ public class Main {
 					break;
 				case 4:
 					opcion = Main.lanzarDados(10);
-					if (opcion < 4) {
+ 					if (opcion < 4) {
 						System.out.println(Jarvis.PISTA1);
 					} else if (opcion < 6) {
 						System.out.println(Jarvis.PISTA2);
@@ -383,20 +387,19 @@ public class Main {
 				}
 				
 			case 4:salirDelsistema();	
-				
+					
 			}
-		}
-
+		    }
+                }
 		// mensajes finales
 		if (intruso.getObjectInventory().contains(mascaraIronMan)) {
-			System.out.println(
-					"Despues de un arduo trabajo conseguiste lo que buscabas, la mascara de Ironman te permitio abrir un hueco en la pared y huir."
-							+ "\nPor fin podras añadir esto a tu mesa de trofeos, tu proximo objetivo: La Capa de Dr Strange... pero eso sera en otra ocasion."
-							+ "\nBuen trabajo y Gracias por Jugar!!!");
+			System.out.println("Despues de un arduo trabajo conseguiste lo que buscabas, la mascara de Ironman te permitio abrir un hueco en la pared y huir."
+                                + "\nPor fin podras añadir esto a tu mesa de trofeos, tu proximo objetivo: La Capa de Dr Strange... pero eso sera en otra ocasion."
+                                + "\nBuen trabajo y Gracias por Jugar!!!");
 		} else {
-			System.out.println(
-					"Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad."
-							+ "\nParece que estaras aqui por un buen tiempo." + "\nFin del Juego.");
+			System.out.println("Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad."
+                                + "\nParece que estaras aqui por un buen tiempo."
+                                + "\nFin del Juego.");
 		}
 
 	}
