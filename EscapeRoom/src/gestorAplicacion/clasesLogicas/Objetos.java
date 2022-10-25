@@ -25,11 +25,11 @@ public class Objetos implements Herramientas{
     
     //METODOS GET
     
+    @Override
     public String getName(){
         return name;
     }
-    
-    
+    @Override
     public String getDescription(){
         return description;
     }

@@ -1,6 +1,5 @@
 package gestorAplicacion.clasesLogicasHerencia;
 import java.util.ArrayList;
-import java.util.Objects;
 
 import gestorAplicacion.clasesLogicas.*;
 
@@ -64,15 +63,15 @@ public class Intruso extends Individuo{
     		this.getUbicacion().setAlarma(Ahorro.ENCENDIDO);
                 m = "una alarma empezo a sonar.";
     	}
-    	for (Herramientas herramientas : getUbicacion().getListaObjetos() ) {
+    	for (Herramientas herramientas : this.getUbicacion().getListaObjetos() ) {
     		if( herramientas instanceof Armas ) {
     			weaponInventory.add((Armas) herramientas);
     		}
     		else {
     			objectInventory.add((Objetos) herramientas);
     		}
-    	this.getUbicacion().setListaObjetos(null);
     	}
+        this.getUbicacion().getListaObjetos().clear();
         return "Recogiste todos los objetos, " + m;
     }
    
@@ -142,15 +141,27 @@ public class Intruso extends Individuo{
     
     @Override
     public String ayudaJarvis() { //tipo dato aleatorio
-    	Habitacion habitacionAzar = habitacionesJarvis.get((int) Math.floor(Math.random() * (habitacionesJarvis.size()) -1)); //get un numero al azar, mirar bien si si retorna como quiero
+        /*Habitacion habitacionAzar = habitacionesJarvis.get((int) Math.floor(Math.random() * (habitacionesJarvis.size()) -1)); //get un numero al azar, mirar bien si si retorna como quiero
         if(habitacionAzar.getListaObjetos() == null) {
-        	return "En la habitacion "+habitacionAzar.getNumero()+" no hay objetos." ;
+        return "En la habitacion "+habitacionAzar.getNumero()+" no hay objetos." ;
         }
         else {
-        	//for (String nombres: habitacionesJarvis) { //que esto de los nombres de los objetos de las habitaciones y los returne abajo
-        		
-        	
-        	return "En la habitacion "+habitacionAzar.getNumero()+" hay estos objetos: " ; //Recorrer la lista de objetos y devolverla
+        //for (String nombres: habitacionesJarvis) { //que esto de los nombres de los objetos de las habitaciones y los returne abajo
+        
+        
+        return "En la habitacion "+habitacionAzar.getNumero()+" hay estos objetos: " ; //Recorrer la lista de objetos y devolverla
+        }*/
+        String mensaje = "Te encuentras en la habitacion " + this.getUbicacion().getNumero();
+        if (this.getUbicacion().getListaObjetos().isEmpty() && this.getUbicacion().getLuces().equals(Ahorro.ENCENDIDO)){
+            mensaje += "\nNo hay objetos que recoger en esta habitacion";
+        } else if (!this.getUbicacion().getListaObjetos().isEmpty() && this.getUbicacion().getLuces().equals(Ahorro.ENCENDIDO)) {
+            mensaje += "\nVes algunos objetos que te podrian ser utiles: ";
+            for(Herramientas h : this.getUbicacion().getListaObjetos()){
+                mensaje += "\n" + h.getName() + ": " + h.getDescription();
+            }            
+        } else {
+            mensaje += "\nNo hay luz, por lo que no ves nada.";
         }
+        return mensaje;
     }
 }
