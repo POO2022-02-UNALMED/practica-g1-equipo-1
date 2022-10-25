@@ -1,11 +1,17 @@
 package gestorAplicacion.clasesLogicas;
+import java.io.Serializable;
+
 
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public abstract class Individuo implements Jarvis{
-    public static ArrayList<Habitacion> habitacionesJarvis = new ArrayList<>();
+public abstract class Individuo implements Jarvis, Serializable{
+	private static ArrayList<Individuo> individuos = new ArrayList<>();
+    public static ArrayList<Individuo> getIndividuos() {
+		return individuos;
+	}
+	public static ArrayList<Habitacion> habitacionesJarvis = new ArrayList<>();
     private int health, armor, speed;
     private boolean stunned = false;
     private static ArrayList<String> historial = new ArrayList<>();

@@ -1,9 +1,15 @@
 package gestorAplicacion.clasesLogicas;
+import java.io.Serializable;
 
 
 import java.util.ArrayList;
 
-public class Habitacion implements Jarvis{
+public class Habitacion implements Jarvis, Serializable{
+	private static ArrayList<Habitacion> habitaciones = new ArrayList<>();
+	public static ArrayList<Habitacion> getHabitaciones() {
+		return habitaciones;
+	}
+
 	private int numero; //Que numero es la habitacion
 	private boolean bloqueada; //Si tiene bloqueo o no
 	private ArrayList<Herramientas> listaObjetos = new ArrayList<>();//El listado de objetos de cada habitacion

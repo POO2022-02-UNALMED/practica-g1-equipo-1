@@ -1,5 +1,8 @@
 package gestorAplicacion.clasesLogicas;
 import gestorAplicacion.clasesLogicasHerencia.*;
+import java.io.Serializable;
+
+import java.util.ArrayList;
 
 public interface Jarvis {
     String PISTA1 = "J.A.R.V.I.S.: Las habitaciones bloqueadas pueden ser accesadas por medio de llaves especiales, revisa cada habitacion y puede que las encuentres.";
@@ -10,6 +13,7 @@ public interface Jarvis {
 	//public String infohabitacion();
 	//public String infoRobot();
 	public String ayudaJarvis();
+	
 	
 	
 }

@@ -12,6 +12,12 @@ public class Main {
 	public static int lanzarDados(int caras) {// retorna un numero aleatorio del 1 a caras
 		return (int) Math.floor(Math.random() * (caras) + 1);
 	}
+	
+	private static void salirDelsistema(Departamento dpto) {
+        System.out.println("Vuelva pronto");
+        Serializador.serializar();
+        System.exit(0);
+    }
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
@@ -28,8 +34,7 @@ public class Main {
 						+ "");
 		System.out.println(
 				"como tutorial breve: debes tomar decisiones sobre tus acciones, pasar entre habitaciones, recoger objetos, utilizar estos objetos.\r\n"
-						+ "Si necesitas saber más cosas ya sabrás a quién preguntarle… Disfruta el juego.\r\n"
-						+ "");
+						+ "Si necesitas saber más cosas ya sabrás a quién preguntarle… Disfruta el juego.\r\n" + "");
 		System.out.println("\nPresiona cualquier tecla para comenzar");
 		in.nextLine();
 
@@ -90,7 +95,7 @@ public class Main {
 				+ "\nSi lo usas recuperarás tu salud.");
 		objetosh4.add(inyeccion);
 
-		//System.out.println("Ahora iniciaras en la habitaci�n 1 ");
+		// System.out.println("Ahora iniciaras en la habitaci�n 1 ");
 
 		// Jarvis
 
@@ -194,8 +199,7 @@ public class Main {
 								}
 								break;
 							case 2:
-								System.out
-										.println("Tomas una posición defensiva y te preparas para recibir el ataque");
+								System.out.println("Tomas una posición defensiva y te preparas para recibir el ataque");
 								bloquear = 2;
 								break;
 							case 3:
@@ -240,7 +244,7 @@ public class Main {
 				}
 			}
 
-			System.out.println("¿Que deseas hacer?:" + "\n1. Moverte" + "\n2. Interactuar" + "\n3. Hablar con Jarvis");
+			System.out.println("¿Que deseas hacer?:" + "\n1. Moverte" + "\n2. Interactuar" + "\n3. Hablar con Jarvis" + "\n4. Finalizar y guardar el progreso");
 			opcion = in.nextInt();
 			switch (opcion) {// aqui se implementan las diferentes funcionalidades
 			case 1:
@@ -347,39 +351,42 @@ public class Main {
 					break;
 				case 4:
 					opcion = Main.lanzarDados(10);
-                                        if(opcion < 4){
-                                            System.out.println(Jarvis.PISTA1);
-                                        } else if (opcion < 6){
-                                            System.out.println(Jarvis.PISTA2);
-                                        } else if (opcion < 8){
-                                            System.out.println(Jarvis.PISTA3);                                           
-                                        } else if (opcion < 10) {
-                                            System.out.println(Jarvis.PISTA4);
-                                        } else {
-                                            System.out.println(Jarvis.PISTA5);
-                                        }
-                                    break;
-                                case 5:
-                                    for (String linea: Individuo.getHistorial()){
-                                        System.out.println(linea);
-                                    }
-                                    break;
-			        default:
-				    break;
-				}	
-                                
+					if (opcion < 4) {
+						System.out.println(Jarvis.PISTA1);
+					} else if (opcion < 6) {
+						System.out.println(Jarvis.PISTA2);
+					} else if (opcion < 8) {
+						System.out.println(Jarvis.PISTA3);
+					} else if (opcion < 10) {
+						System.out.println(Jarvis.PISTA4);
+					} else {
+						System.out.println(Jarvis.PISTA5);
+					}
+					break;
+				case 5:
+					for (String linea : Individuo.getHistorial()) {
+						System.out.println(linea);
+					}
+					break;
+				default:
+					break;
+				}
+				
+			case 4:salirDelsistema();	
+				
 			}
 		}
 
 		// mensajes finales
 		if (intruso.getObjectInventory().contains(mascaraIronMan)) {
-			System.out.println("Despues de un arduo trabajo conseguiste lo que buscabas, la mascara de Ironman te permitio abrir un hueco en la pared y huir."
-                                + "\nPor fin podras añadir esto a tu mesa de trofeos, tu proximo objetivo: La Capa de Dr Strange... pero eso sera en otra ocasion."
-                                + "\nBuen trabajo y Gracias por Jugar!!!");
+			System.out.println(
+					"Despues de un arduo trabajo conseguiste lo que buscabas, la mascara de Ironman te permitio abrir un hueco en la pared y huir."
+							+ "\nPor fin podras añadir esto a tu mesa de trofeos, tu proximo objetivo: La Capa de Dr Strange... pero eso sera en otra ocasion."
+							+ "\nBuen trabajo y Gracias por Jugar!!!");
 		} else {
-			System.out.println("Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad."
-                                + "\nParece que estaras aqui por un buen tiempo."
-                                + "\nFin del Juego.");
+			System.out.println(
+					"Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad."
+							+ "\nParece que estaras aqui por un buen tiempo." + "\nFin del Juego.");
 		}
 
 	}

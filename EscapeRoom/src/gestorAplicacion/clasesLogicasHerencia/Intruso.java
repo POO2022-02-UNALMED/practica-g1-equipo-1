@@ -1,9 +1,17 @@
 package gestorAplicacion.clasesLogicasHerencia;
 import java.util.ArrayList;
+import java.io.Serializable;
+
 
 import gestorAplicacion.clasesLogicas.*;
 
-public class Intruso extends Individuo{
+public class Intruso extends Individuo implements Serializable{
+	public static ArrayList<Intruso> getIntrusos() {
+		return intrusos;
+	}
+
+	private static ArrayList<Intruso> intrusos = new ArrayList<>();
+	
     private ArrayList<Armas> weaponInventory = new ArrayList<>(); //inventario armas
     private ArrayList<Objetos> objectInventory = new ArrayList<>();//inventario objetos
     private static final int ATTACK = 10;

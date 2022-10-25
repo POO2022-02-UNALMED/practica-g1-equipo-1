@@ -1,8 +1,17 @@
 
 package gestorAplicacion.clasesLogicas;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Objetos implements Herramientas{
-    private String description = "objeto generico";
+import gestorAplicacion.clasesLogicasHerencia.Robot;
+
+public class Objetos implements Herramientas, Serializable{
+	private static ArrayList<Objetos> objetos = new ArrayList<>();
+    public static ArrayList<Objetos> getObjetos() {
+		return objetos;
+	}
+
+	private String description = "objeto generico";
     private final String name;
     private final boolean shocker;
     private final int bonusArmor, bonusHealth, numero;
