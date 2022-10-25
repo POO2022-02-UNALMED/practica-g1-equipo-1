@@ -111,6 +111,7 @@ public class Robot extends Individuo implements Serializable {
     @Override
     public void atacar(Individuo i) {
         i.setHealth(i.getHealth()-ATTACK);
+        
     }
     public String ataqueCargado(Individuo i){
         cargaRobot = false;

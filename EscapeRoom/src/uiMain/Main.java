@@ -52,6 +52,7 @@ public class Main {
 		// instancias de intruso y robot
 		Intruso intruso = new Intruso();
 		Robot robot = new Robot();
+                Robot bot = new Bot();
 
 		// instancias de Herramientas
 
@@ -241,6 +242,9 @@ public class Main {
 									desicionRobot = Main.lanzarDados(10);
 								}
 								System.out.println(robot.turno(desicionRobot, intruso));
+                                                                System.out.println(bot.turno(desicionRobot, intruso));
+                                                                bot.atacar(intruso);
+                                                                System.out.println("El bot revolotea te estorba en la batalla");
 							}
 							intruso.setArmor(0);
 						}
