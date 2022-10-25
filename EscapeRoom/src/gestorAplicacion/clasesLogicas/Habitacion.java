@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Habitacion implements Jarvis, Serializable{
 	private static ArrayList<Habitacion> habitaciones = new ArrayList<>();
-	public static ArrayList<Habitacion> getHabitaciones() {//xd
+	public static ArrayList<Habitacion> getHabitaciones() {//xddd
 		return habitaciones;
 	}
 
