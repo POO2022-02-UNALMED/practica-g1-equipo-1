@@ -99,7 +99,7 @@ public abstract class Individuo implements Jarvis, Serializable{
     public void setArmor(int i){
         armor = i;
     }
-    public void setSpeed(int i){
+    protected void setSpeed(int i){
         speed = i;
     }
     public void stun(boolean i){
