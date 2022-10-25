@@ -25,8 +25,9 @@ public class Main {
 		boolean x = true; // variable temporal, mientras colocamos bien las condiciones
 		Individuo iniciativa[] = new Individuo[2]; // organiza los turnos de combate
 		int desicionRobot; // se utiliza para el turno de robot en la pelea
-		int j, bloquear; // variables de apoyo para ciclos
+		int bloquear; // variables de apoyo para ciclos
 		// boolean huir = true;
+
 
 		System.out.println(
 				"Bienvenidos, aquí inicia nuestro juego el cual consiste en que te encuentras en la casa de tony stark, tu misión es conseguir la mascara de iron man. Pero no creas que será tan sencillo, en tu recorrido tendrás diferentes obstáculos como objetos que te activarán alarmas, puertas con su acceso bloqueado y  un robot que te buscará cuando actives una alarma.\r\n"
@@ -54,13 +55,18 @@ public class Main {
 		Robot robot = new Robot();
 
 		// instancias de Herramientas
-		Objetos Llaveh5 = new Objetos("Clave para desbloquear habitacion 5", false, 0, 0, 5);
-		objetosh6.add(Llaveh5); // Revisar
 
-		Objetos Llaveh7 = new Objetos("Clave para desbloquear habitacion 7", false, 0, 0, 7);
+		Objetos Llaveh5 = new Objetos("Llave azul.", false, 0, 0, 5);
+                Llaveh5.setDescripion("Clave para desbloquear habitacion 5.");
+		objetosh6.add(Llaveh5);
+		
+		Objetos Llaveh7 = new Objetos("Llave plateada", false, 0, 0, 7);
+                Llaveh7.setDescripion("Clave para desbloquear habitacion 7.");
 		objetosh3.add(Llaveh7);
+		
+		Objetos Llaveh9 = new Objetos("Llave dorada", false, 0, 0, 9);
+                Llaveh9.setDescripion("Clave para desbloquear habitacion 9.");
 
-		Objetos Llaveh9 = new Objetos("Clave para desbloquear habitacion 9", false, 0, 0, 9);
 		objetosh8.add(Llaveh9);
 
 		Objetos mascaraIronMan = new Objetos("El objetivo final", false, 0, 0, 0); // Si algo cuadrar esto
@@ -72,8 +78,8 @@ public class Main {
 		Objetos vitaminaC = new Objetos("Proteinas", false, 0, 10, 0); // Si algo cuadrar esto
 		objetosh2.add(vitaminaC);
 
-		Objetos escudoCapitanAmerica = new Objetos("Escudo del Capitán America", false, 2, 1, 0); // Le puse que si
-																									// tiene alarma
+		Objetos escudoCapitanAmerica = new Objetos("Escudo del Capitán America", false, 5, 1, 0);										// tiene alarma
+
 		escudoCapitanAmerica.setDescripion(
 				"Escudo de vibranium con los colores de la bandera, te sientes inspirado solo al llevarlo contigo."
 						+ "\nSi lo usas serás más difícil de golpear por ese turno.");
@@ -128,9 +134,8 @@ public class Main {
 		Numero8.setHabitacionesContiguas(null, Numero5, Numero9, Numero7);
 		Numero9.setHabitacionesContiguas(null, Numero6, null, Numero8);
 
-		// Inicio de habitaciones de intruso y robot, el intruso inicia en la
-		// habitaci�n
-		// 0 y el robot en Habitacion 8
+		// Inicio de habitaciones de intruso y robot, el intruso inicia en la habitacion
+		// 1 y el robot en Habitacion 9
 
 		intruso.setUbicacion(Numero1);
 		intruso.getUbicacion().setLuces(Ahorro.ENCENDIDO);
@@ -152,12 +157,11 @@ public class Main {
 
 			if (robot.getUbicacion() == intruso.getUbicacion()) {// si la ubicacion del jugador == ubicacion robot
 				System.out.println("El robot te ha encontrado! preparate para luchar!!");
-				while (intruso.getHealth() > 0 && robot.getHealth() > 0 && huir) {// hasta que la
-																					// vida de alguno < 0, o el jugador
-																					// logre escapar)
-					bloquear = 0;
-					System.out.println("Tienes " + intruso.getHealth() + " puntos de vida.");
-					System.out.println("El robot tiene " + robot.getHealth() + " puntos de vida.");
+                                
+				while (intruso.getHealth() > 0 && robot.getHealth() > 0 && huir) {
+
+                                        System.out.println("Tienes " + intruso.getHealth() + " puntos de vida.");
+                                        System.out.println("El robot tiene " + robot.getHealth() + " puntos de vida.");
 
 					if (robot.getSpeed() + Main.lanzarDados(5) > intruso.getSpeed() + Main.lanzarDados(5)) {// define el
 																											// orden de
@@ -200,7 +204,8 @@ public class Main {
 								break;
 							case 2:
 								System.out.println("Tomas una posición defensiva y te preparas para recibir el ataque");
-								bloquear = 2;
+								intruso.setArmor(3);
+
 								break;
 							case 3:
 								System.out.println(intruso.mostrarObjetos());
@@ -227,24 +232,29 @@ public class Main {
 							}
 						} else {
 							System.out.println("Es el turno del robot:");
-							if (robot.isStunned()) {
-								System.out.println("El robot esta aturdido, no puede hacer nada.");
-							} else {
-								if (robot.isCargaRobot()) {
-									desicionRobot = 100;
-									System.out.println(robot.ataqueCargado(intruso, bloquear));
-								} else {
-									desicionRobot = Main.lanzarDados(10);
-								}
-								System.out.println(robot.turno(desicionRobot, intruso, bloquear));
+                                                        if (robot.isStunned()){
+                                                            System.out.println("El robot esta aturdido, no puede hacer nada.");
+                                                        } else {
+                                                            if (robot.isCargaRobot()) {
+								desicionRobot = 100;
+								System.out.println(robot.ataqueCargado(intruso));
+							    } else {
+							        desicionRobot = Main.lanzarDados(10);
+						        }
+                                                            System.out.println(robot.turno(desicionRobot, intruso));    
 							}
-							bloquear = 0;
+							intruso.setArmor(0);
+                                                }
+                                                        
 						}
 					}
 				}
-			}
+                        if (robot.getHealth() <= 0 && x){
+                            System.out.println("Destruiste al robot, ahora solo falta obtener la mascara.");
+                            x = false;
+                        }
 
-			System.out.println("¿Que deseas hacer?:" + "\n1. Moverte" + "\n2. Interactuar" + "\n3. Hablar con Jarvis" + "\n4. Finalizar y guardar el progreso");
+			System.out.println("¿Que deseas hacer?:" + "\n1. Moverte" + "\n2. Interactuar" + "\n3. Hablar con Jarvis");
 			opcion = in.nextInt();
 			switch (opcion) {// aqui se implementan las diferentes funcionalidades
 			case 1:
