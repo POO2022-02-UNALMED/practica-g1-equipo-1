@@ -1,4 +1,5 @@
-#Empaquetar
+from herramientas import Herramientas
+
 class Armas(Herramientas): #Revisar lo del serializado
     _armas = []
 
@@ -8,10 +9,6 @@ class Armas(Herramientas): #Revisar lo del serializado
 
     def __init__(self, name, bdamage, bspeed):
         self._description = "objeto generico"
-        self._name = None
-        self._bonusDamage = 0
-        self._bonusSpeed = 0
-
         self._name = name
         self._bonusDamage = bdamage
         self._bonusSpeed = bspeed
@@ -33,7 +30,6 @@ class Armas(Herramientas): #Revisar lo del serializado
         self._description = i
 
     def usar(self, i):
-
         pass
 
     def toString(self):

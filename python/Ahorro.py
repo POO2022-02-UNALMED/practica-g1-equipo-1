@@ -1,4 +1,4 @@
-#Empaquetar
+
 from enum import Enum
 
 class Ahorro(Enum):

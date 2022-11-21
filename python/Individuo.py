@@ -1,20 +1,18 @@
+from jarvis import Jarvis
 class Individuo(Jarvis):
 
     _historial = []
 
     def __init__(self, health, armor, speed):
-        #instance fields found by Java to Python Converter:
-        self._health = 0
-        self._armor = 0
-        self._speed = 0
         self._stunned = False
         self._ubicacion = None
 
         self._health = health
         self._armor = armor
         self._speed = speed
+
     #Metodos para moverse
-    def mover(self, hab):
+    def mover(self):
         pass
 
     def habitacionesDisponibles(self):
@@ -26,10 +24,10 @@ class Individuo(Jarvis):
         mensaje = "Puedes moverte a la habitacion numero: "
         mensaje2 = "Aun no puedes moverte a la habitacion numero: "
         for Hab in disponibles:
-            if (not Objects.isNull(Hab)) and Hab.isBloqueada():
-                mensaje2 += Hab.getNumero() + " Porque esta Bloqueada "
-            if not Objects.isNull(Hab): #arreglar esto
-                mensaje += Hab.getNumero() + " "
+            if Hab is not None and Hab.isBloqueada():
+                mensaje2 += str(Hab.getNumero()) + " Porque esta Bloqueada "
+            if Hab is not None: 
+                mensaje += str(Hab.getNumero()) + " "
         return mensaje+"\n"+mensaje2
 
     def habitacionesaDesbloquear(self):
@@ -40,21 +38,23 @@ class Individuo(Jarvis):
         disponibles.append(self.getUbicacion().getOeste())
         mensaje = "Estas habitaciones estan bloqueada: "
         b = False
-        #  String mensaje2 = "Esta habitaciones no estan bloqueadas: "
+       
         for Hab in disponibles:
-            if (not Objects.isNull(Hab)) and Hab.isBloqueada():
-                mensaje += Hab.getNumero() + " "
+            if Hab is not None and Hab.isBloqueada():
+                mensaje += str(Hab.getNumero()) + " "
                 b = True
         if b:
             return mensaje
         else:
             return "no hay habitaciones bloqueadas alrededor"
+
     def addHistorial(self):
         pass
 
     #Pelea
-    def atacar(self, i):
+    def atacar(self):
         pass
+
     # METODOS GET
     def getHealth(self):
         return self._health
@@ -68,6 +68,7 @@ class Individuo(Jarvis):
         return self._ubicacion
     def setUbicacion(self, ubicacion):
         self._ubicacion = ubicacion
+        
     @staticmethod
     def getHistorial():
         return Individuo._historial

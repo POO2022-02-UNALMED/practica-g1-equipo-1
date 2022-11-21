@@ -1,20 +1,15 @@
+from herramientas import Herramientas
+
 class Objetos(Herramientas):
 
-    def _initialize_instance_fields(self):
-        #instance fields found by Java to Python Converter:
-        self._description = "objeto generico"
-        self._name = None
-        self._shocker = False
-        self._bonusArmor = 0
-        self._bonusHealth = 0
 
     _objetos = []
     @staticmethod
     def getObjetos():
         return Objetos._objetos
-    #Cuadrar lo de los constructores, no hay un equivalente en Python a los constructores múltiples
-    def __init__(self, name, shocker, barmor, bhealth):
-        self._initialize_instance_fields()
+
+    def __init__(self, name, shocker = False, barmor = 0, bhealth = 0):
+        self._description = "objeto generico"
 
         self._name = name
         self._shocker = shocker
@@ -22,17 +17,8 @@ class Objetos(Herramientas):
         self._bonusHealth = bhealth
         Objetos._objetos.append(self)
 
-    def __init__(self, name):
-        self._initialize_instance_fields()
-
-        self._name = name
-        self._shocker = False
-        self._bonusArmor = 0
-        self._bonusHealth = 0
-        Objetos._objetos.append(self)
     
     #METODOS GET
-
     def getName(self):
         return self._name
     def getDescription(self):

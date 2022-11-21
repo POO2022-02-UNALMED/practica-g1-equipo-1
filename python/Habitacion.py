@@ -1,23 +1,18 @@
-#Empaquetar
+from jarvis import Jarvis
+from ahorro import Ahorro
+
 class Habitacion(Jarvis):
     _habitaciones = []
+
     @staticmethod
     def getHabitaciones():
         return Habitacion._habitaciones
 
     def __init__(self, numero, bloqueada, listaObjetos, intruso, robot):
-        #instance fields found by Java to Python Converter:
-        self._numero = 0
-        self._bloqueada = False
-        self._listaObjetos = []
-        self._intruso = None
-        self._robot = None
         self._norte = None
         self._sur = None
         self._este = None
         self._oeste = None
-        self._luces = None
-        self._alarma = None
 
         self._numero = numero
         self._bloqueada = bloqueada
@@ -81,7 +76,6 @@ class Habitacion(Jarvis):
     
     #Jarvis
     def ayudaJarvis(self):
-        a = None
         if self._intruso is not None:
             a = "estas ahi"
         elif self._robot is not None:

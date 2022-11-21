@@ -1,7 +1,8 @@
-#Empaquetar y mirar que importar
+
+from robot import Robot
 
 class Bot(Robot):
-    _DUMPENER = 6
+    _DUMPENER = 10
     def __init__(self):
         super().__init__(10, 0, 0, False, False, False)
 

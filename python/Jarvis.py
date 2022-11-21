@@ -1,4 +1,4 @@
-#Empaquetar
+
 class Jarvis:
     PISTA1 = "J.A.R.V.I.S.: Las habitaciones bloqueadas pueden ser accesadas por medio de llaves especiales, revisa cada habitacion y puede que las encuentres."
     PISTA2 = "J.A.R.V.I.S.: Si tu vida es muy baja puedes intentar huir del robot, sobrevive hoy para luchar mañana."

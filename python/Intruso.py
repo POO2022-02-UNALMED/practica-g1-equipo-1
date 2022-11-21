@@ -1,35 +1,24 @@
+
+from individuo import Individuo
+from ahorro import Ahorro
+from armas import Armas
+
 class Intruso(Individuo):
 
-    def _initialize_instance_fields(self):
-        #instance fields found by Java to Python Converter:
-        self._weaponInventory = []
-        self._objectInventory = []
-
     _intrusos = []
-
 
     @staticmethod
     def getIntrusos():
         return Intruso._intrusos
 
-
-
     _ATTACK = 10
 
-#JAVA TO PYTHON CONVERTER TODO TASK: There is no Python equivalent to multiple constructors:
-#ORIGINAL LINE: public Intruso(int health, int armor, int speed)
-    def __init__(self, health, armor, speed):
-        self._initialize_instance_fields()
+    def __init__(self, health = 100, armor = 0, speed = 0):
+        self._weaponInventory = []
+        self._objectInventory = []
 
         super().__init__(health, armor, speed)
         Intruso._intrusos.append(self)
-
-#JAVA TO PYTHON CONVERTER TODO TASK: There is no Python equivalent to multiple constructors:
-#ORIGINAL LINE: public Intruso()
-    def __init__(self):
-        self(100,0,0)
-
-
 
     def mostrarArmas(self):
         mensaje = "Tienes estas armas:  "
@@ -38,6 +27,7 @@ class Intruso(Individuo):
             mensaje += "\n" + str(i) + ". " + arma.getName()+ "."
             i += 1
         return mensaje
+
     def mostrarObjetos(self):
         mensaje = "Tienes estos objetos:"
         i = 1
@@ -84,17 +74,17 @@ class Intruso(Individuo):
         self._objectInventory = o
 
     def addHistorial(self):
-        Intruso.getHistorial().add("Intruso se movio a la habitacion: " + self.getUbicacion().getNumero())
+        Intruso.getHistorial().append("Intruso se movio a la habitacion: " + str(self.getUbicacion().getNumero()))
 
     def mover(self, hab):
         if hab.isBloqueada():
-            habitacionesDisponibles()
+            super().habitacionesDisponibles()
         else:
-            if not self.getUbicacion().getLuces() is Ahorro.ROTO:
+            if self.getUbicacion().getLuces() is not Ahorro.ROTO:
                 self.getUbicacion().setLuces(Ahorro.APAGADO) #apaga las luces
             self.getUbicacion().setIntruso(None)
             self.setUbicacion(hab)
-            if not self.getUbicacion().getLuces() is Ahorro.ROTO:
+            if self.getUbicacion().getLuces() is not Ahorro.ROTO:
                 self.getUbicacion().setLuces(Ahorro.ENCENDIDO) #enciende las luces
             self.getUbicacion().setIntruso(self)
             self.addHistorial()
@@ -103,10 +93,10 @@ class Intruso(Individuo):
 
     def ayudaJarvis(self):
 
-        mensaje = "Te encuentras en la habitacion " + self.getUbicacion().getNumero()
-        if self.getUbicacion().getListaObjetos().isEmpty() and self.getUbicacion().getLuces() is Ahorro.ENCENDIDO:
+        mensaje = "Te encuentras en la habitacion " + str(self.getUbicacion().getNumero())
+        if not self.getUbicacion().getListaObjetos() and self.getUbicacion().getLuces() is Ahorro.ENCENDIDO:
             mensaje += "\nNo hay objetos que recoger en esta habitacion"
-        elif (not self.getUbicacion().getListaObjetos().isEmpty()) and self.getUbicacion().getLuces() is Ahorro.ENCENDIDO:
+        elif self.getUbicacion().getListaObjetos() and self.getUbicacion().getLuces() is Ahorro.ENCENDIDO:
             mensaje += "\nVes algunos objetos que te podrian ser utiles: "
             for h in self.getUbicacion().getListaObjetos():
                 mensaje += "\n" + h.getName() + ": " + h.getDescription()

@@ -1,7 +1,7 @@
-#Empaquetar
+
 class Herramientas:
 
-    def usar(self, i):#Corregir lo que le pasa
+    def usar(self):
         pass
     def getName(self):
         pass

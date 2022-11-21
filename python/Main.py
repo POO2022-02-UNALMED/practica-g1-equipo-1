@@ -1,5 +1,17 @@
 import random
 import math
+import sys
+from ahorro import Ahorro
+from armas import Armas
+from habitacion import Habitacion
+from individuo import Individuo
+from jarvis import Jarvis
+from objetos import Objetos
+from bot import Bot
+
+from intruso import Intruso
+from robot import Robot
+
 
 class Main:
 
@@ -8,14 +20,13 @@ class Main:
         return int(math.floor(random.random() * (caras) + 1))
 
     @staticmethod
-    def _salirDelsistema():
+    def salirDelsistema():
         print("Vuelva pronto")
-        System.exit(0)
+        sys.exit(0)
 
 
     @staticmethod
-    def main(args):
-        in_ = Scanner(System.in)
+    def main():
         opcion = None # aqui se guardan las opciones que va seleccionando el jugador
         x = True # mientras el robot este vivo
         iniciativa = [None for _ in range(2)] # organiza los turnos de combate
@@ -24,7 +35,7 @@ class Main:
         print("Bienvenidos, Te encuentras en la casa de Tony Stark y tu misión es conseguir la mascara de Ironman. Pero no creas que será tan sencillo, en tu recorrido tendrás diferentes obstáculos como objetos que te activarán alarmas, puertas con su acceso bloqueado y  un robot que te buscará cuando actives una alarma.\r\n" + "Pero no todo es malo, encontrarás objetos útiles en algunas habitaciones y quizá tengas la ayuda de alguien o algo.\r\n" + "")
         print("Tutorial: debes tomar decisiones sobre tus acciones, pasar entre habitaciones, recoger objetos y utilizarlos.\r\n" + "Si necesitas saber más cosas ya sabrás a quién preguntarle… Disfruta el juego.\r\n" + "")
         print("\nPresiona Enter para comenzar")
-        in_.nextLine()
+        input()
 
         # Arrays necesarios
         objetosh1 = []
@@ -46,16 +57,16 @@ class Main:
 
         Llaveh5 = Objetos("Llave azul.")
         Llaveh5.setDescripion("Clave para desbloquear habitacion 5.")
-        objetosh6.add(Llaveh5)
+        objetosh6.append(Llaveh5)
 
         Llaveh7 = Objetos("Llave plateada.")
         Llaveh7.setDescripion("Clave para desbloquear habitacion 7.")
-        objetosh3.add(Llaveh7)
+        objetosh3.append(Llaveh7)
 
         Llaveh9 = Objetos("Llave dorada.")
         Llaveh9.setDescripion("Clave para desbloquear habitacion 9.")
 
-        objetosh8.add(Llaveh9)
+        objetosh8.append(Llaveh9)
 
         mascaraIronMan = Objetos("La mascara de Ironman")
         mascaraIronMan.setDescripion("El objetivo final.")
@@ -63,28 +74,27 @@ class Main:
 
         emulsionDeScott = Objetos("Emulsion de Scott", False, 0, 30)
         emulsionDeScott.setDescripion("Sano y fuerte crecerás." + "\nTe puedes curar con este objeto")
-        objetosh5.add(emulsionDeScott)
+        objetosh5.append(emulsionDeScott)
 
         vitaminaC = Objetos("Proteinas", False, 0, 5)
-        objetosh2.add(vitaminaC)
+        objetosh2.append(vitaminaC)
 
         escudoCapitanAmerica = Objetos("Escudo del Capitán America", False, 5, 1) # tiene alarma
 
         escudoCapitanAmerica.setDescripion("Escudo de vibranium con los colores de la bandera, te sientes inspirado solo al llevarlo contigo." + "\nSi lo usas serás más difícil de golpear por ese turno.")
-        objetosh2.add(escudoCapitanAmerica)
+        objetosh2.append(escudoCapitanAmerica)
 
         martilloThor = Armas("Martillo de Thor", 10, 0)
         martilloThor.setDescripion("Martillo mágico con el que puedes atacar, sientes como fluye energía eléctrica por tu cuerpo." + "\nSi lo usas puedes aturdir a tu adversario con un rayo.")
-        objetosh4.add(martilloThor)
+        objetosh4.append(martilloThor)
 
         lanzaTelaranas = Objetos("Lanza Telarañas", True, 0, 0)
         lanzaTelaranas.setDescripion("Dispositivo lanza telarañas, probablemente pertenece a Spiderman." + "\nSi lo usas lanzas una telaraña... Obviamente.")
-        objetosh1.add(lanzaTelaranas)
+        objetosh1.append(lanzaTelaranas)
 
         inyeccion = Objetos("Inyección de adrenalina", False, 0, 50)
         inyeccion.setDescripion("Inyectadora con líquido verde, lleva marcada las siglas S.H.I.E.L.D." + "\nSi lo usas recuperarás tu salud.")
-        objetosh4.add(inyeccion)
-        # Jarvis
+        objetosh4.append(inyeccion)
 
         Numero1 = Habitacion(1, False, objetosh1, intruso, None)
         Numero2 = Habitacion(2, False, objetosh2, None, None)
@@ -124,24 +134,18 @@ class Main:
         robot.addHistorial()
         
         # ciclo de turnos del jugador
-        while (not intruso.getObjectInventory().contains(mascaraIronMan)) and intruso.getHealth() > 0:
-            # quede sin vida
+        while mascaraIronMan not in intruso.getObjectInventory() and intruso.getHealth() > 0:
             huir = True
-
             print(intruso.ayudaJarvis())
 
             if robot.getUbicacion() == intruso.getUbicacion() and robot.getHealth() > 0:
-                # == ubicacion robot
                 print("El robot te ha encontrado! preparate para luchar!!")
 
                 while intruso.getHealth() > 0 and robot.getHealth() > 0 and huir:
-
-                    print("Tienes " + intruso.getHealth() + " puntos de vida.")
-                    print("El robot tiene " + robot.getHealth() + " puntos de vida.")
+                    print("Tienes " + str(intruso.getHealth()) + " puntos de vida.")
+                    print("El robot tiene " + str(robot.getHealth()) + " puntos de vida.")
 
                     if robot.getSpeed() + Main.lanzarDados(5) > intruso.getSpeed() + Main.lanzarDados(5):
-                        # orden de
-                        # turnos
                         iniciativa[0] = robot
                         iniciativa[1] = intruso
                     else:
@@ -156,18 +160,18 @@ class Main:
                                 opcion = -1
                             else:
                                 print("1. Atacar" + "\n2. Bloquear" + "\n3. Usar" + "\n4. Huir")
-                                opcion = in_.nextInt()
+                                opcion = int(input())
                             if opcion == 1:
                                 print("¿Con que deseas atacar?" + "\n0. A puñetazos.")
                                 print(intruso.mostrarArmas())
-                                opcion = in_.nextInt()
+                                opcion = int(input())
                                 dados = Main.lanzarDados(5)
                                 if opcion == 0 and dados >= robot.getArmor():
                                     intruso.atacar(robot)
                                     print("Le diste un puño al robot, probablemente te dolió mas a ti que a él.")
                                     print("Te sobas la mano.")
                                 elif opcion != 0 and dados >= robot.getArmor():
-                                    intruso.atacar(robot, intruso.getWeaponInventory().get(opcion - 1).getBonusDamage()) # arma
+                                    intruso.atacar(robot, intruso.getWeaponInventory()[opcion - 1].getBonusDamage())
                                     print("Atacaste al robot exitosamente")
                                 else:
                                     print("El Robot bloqueo tu ataque!")
@@ -177,17 +181,17 @@ class Main:
 
                             elif opcion == 3:
                                 print(intruso.mostrarObjetos())
-                                opcion = in_.nextInt()
-                                if intruso.getObjectInventory().get(opcion - 1).isShocker():
-                                    intruso.getObjectInventory().get(opcion - 1).usar(robot)
+                                opcion = int(input())
+                                if intruso.getObjectInventory()[opcion - 1].isShocker():
+                                    intruso.getObjectInventory()[opcion - 1].usar(robot)
                                     print("Aturdiste al robot.")
                                 else:
-                                    intruso.getObjectInventory().get(opcion - 1).usar(intruso)
+                                    intruso.getObjectInventory()[opcion - 1].usar(intruso)
                                     print("Recibiste la bonificacion de este objeto.")
                             elif opcion == 4:
                                 if intruso.getSpeed() + Main.lanzarDados(5) >= 4:
                                     huir = False
-                                    print("Tu agilidad te permitió saltar fuera del combate.", end = '')
+                                    print("Tu agilidad te permitió saltar fuera del combate.")
                                 else:
                                     print("Intentas huir, pero el robot te cierra el paso, mas suerte la proxima vez.")
                         else:
@@ -206,18 +210,19 @@ class Main:
                                 bot.atacar(intruso)
                                 print("El bot revolotea te estorba en la batalla")
                             intruso.setArmor(0)
-            #nuevo
+
             if robot.getHealth() <= 0 and x:
                     print("Destruiste al robot, ahora solo falta obtener la mascara.")
                     x = False
 
             if intruso.getHealth() > 0:
                 print("¿Que deseas hacer?:" + "\n1. Moverte" + "\n2. Interactuar" + "\n3. Hablar con Jarvis" + "\n4. Salir del juego")
-                opcion = in_.nextInt()
+                opcion = int(input())
                 if opcion == 1:
                     # Movimiento del intruso
                     print(intruso.habitacionesDisponibles())
-                    print("Donde quieres moverte?")                        opcionHab = in_.nextInt()
+                    print("Donde quieres moverte?")
+                    opcionHab = int(input())
                     intruso.mover(casa[opcionHab - 1])
 
                     # Movimiento del robot
@@ -227,7 +232,6 @@ class Main:
                         robot.escanear()
                         if robot.isNextTo():
                             robot.mover(robot.getGoingTo())
-
                         elif robot.isAware():
                             print(robot.buscar(casa).getNumero())
                             robot.mover(robot.buscar(casa)) # camino mas corto a la habitacion con alarma
@@ -236,55 +240,59 @@ class Main:
 
                 elif opcion == 2:
                     print("¿Que deseas hacer?" + "\n1. Desbloquear una puerta." + "\n2. Recojer los objetos." + "\n3. Curar tu salud." + "\n4. Romper las luces.")
-                    opcionIntec = in_.nextInt()
+                    opcionIntec = int(input())
                     if opcionIntec == 1:
                         m = intruso.habitacionesaDesbloquear()
                         print(m)
                         if "no hay habitaciones bloqueadas alrededor" != m:
                             print("Que habitacion quieres desbloquear")
-                            opcion = in_.nextInt()
+                            opcion = int(input())
                             if opcion == 5:
-                                if intruso.getObjectInventory().contains(Llaveh5):
+                                if Llaveh5 in intruso.getObjectInventory():
                                     Numero5.setBloqueada(False)
+                                    print("Desbloqueaste la puerta con exito.")
                                 else:
                                     print("no tienes la llave de esta habitacion")
                             elif opcion == 7:
-                                if intruso.getObjectInventory().contains(Llaveh7):
+                                if Llaveh7 in intruso.getObjectInventory():
                                     Numero7.setBloqueada(False)
+                                    print("Desbloqueaste la puerta con exito.")
                                 else:
                                     print("no tienes la llave de esta habitacion")
                             elif opcion == 9:
-                                if intruso.getObjectInventory().contains(Llaveh9):
+                                if Llaveh9 in intruso.getObjectInventory():
                                     Numero9.setBloqueada(False)
+                                    print("Desbloqueaste la puerta con exito.")
                                 else:
                                     print("no tienes la llave de esta habitacion")
-                    if (opcionIntec == 1) or (opcionIntec == 2):
+
+                    elif opcionIntec == 2:
                         print(intruso.agarrar())
                     elif opcionIntec == 3:
                         print(intruso.mostrarObjetos() + "\n¿Cual deseas usar?")
-                        opcion = in_.nextInt()
-                        if intruso.getObjectInventory().get(opcion).getBonusHealth() == 0:
+                        opcion = int(input())
+                        if intruso.getObjectInventory()[opcion].getBonusHealth() == 0:
                             print("No puedes usar este objeto para curarte")
                         else:
-                            intruso.getObjectInventory().get(opcion).usar(intruso)
-                            print("Te has curado, ahora tienes " + intruso.getHealth() + "puntos de vida.")
+                            intruso.getObjectInventory()[opcion].usar(intruso)
+                            print("Te has curado, ahora tienes " + str(intruso.getHealth()) + "puntos de vida.")
                     elif opcionIntec == 4:
-                        if intruso.getWeaponInventory().isEmpty():
+                        if not intruso.getWeaponInventory():
                             print("Intentas romper las luces con tus manos, lamentablemente no tienes la fuerza suficiente para hacerlo")
                         else:
                             intruso.getUbicacion().setLuces(Ahorro.ROTO)
                             print("Las luces de esta habitacion no se volveran a encender.")
                 elif opcion == 3:
                     print("Tus habilidades en Hacking te permiten tomar control de la IA Jarvis..." + "\nJ.A.R.V.I.S.: ¿En qué te puedo asistir?" + "\n1. Dame informacion acerca de las habitaciones." + "\n2. Dame informacion acerca del robot." + "\n3. Apaga las luces para que el robot no me encuentre." + "\n4. No sé que hacer, dame una pista." + "\n5. Ver historial de movimientos.")
-                    opcion = in_.nextInt()
+                    opcion = int(input())
                     if opcion == 1:
                         print("De qué habitación necesitas saber?")
-                        opcion = in_.nextInt()
+                        opcion = int(input())
                         print(casa[opcion - 1].ayudaJarvis())
                     elif opcion == 2:
                         print(robot.ayudaJarvis())
                     elif opcion == 3:
-                        if not intruso.getUbicacion().getLuces() is Ahorro.ROTO:
+                        if intruso.getUbicacion().getLuces() is not  Ahorro.ROTO:
                             intruso.getUbicacion().setLuces(Ahorro.APAGADO)
                         print("J.A.R.V.I.S.: Luces apagadas.")
                     elif opcion == 4:
@@ -302,28 +310,19 @@ class Main:
                     elif opcion == 5:
                         for linea in Individuo.getHistorial():
                             print(linea)
-                    break
+                    
 
-                case 4:
-                    Main._salirDelsistema()
-                    break
+                elif opcion == 4:
+                    Main.salirDelsistema()
+                
         # mensajes finales
-        if intruso.getObjectInventory().contains(mascaraIronMan):
+        if mascaraIronMan in intruso.getObjectInventory():
             print("Despues de un arduo trabajo conseguiste lo que buscabas, la mascara de Ironman te permitio abrir un hueco en la pared y huir." + "\nPor fin podras añadir esto a tu mesa de trofeos, tu proximo objetivo: La Capa de Dr Strange... pero eso sera en otra ocasion." + "\nBuen trabajo y Gracias por Jugar!!!")
-            Main._salirDelsistema()
+            Main.salirDelsistema()
         else:
             print("Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad." + "\nParece que estaras aqui por un buen tiempo." + "\nFin del Juego.")
-            Main._salirDelsistema()
-
-
-
-
-
-
-# Main function added by Java to Python Converter:
-
-def main():
-    Main.main([])
+            Main.salirDelsistema()
+            
 
 if __name__ == "__main__":
-    main()
+    Main.main()
