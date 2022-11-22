@@ -1,4 +1,4 @@
-from jarvis import Jarvis
+from Jarvis import Jarvis
 class Individuo(Jarvis):
 
     _historial = []

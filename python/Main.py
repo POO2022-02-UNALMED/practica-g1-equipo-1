@@ -1,16 +1,16 @@
 import random
 import math
 import sys
-from ahorro import Ahorro
-from armas import Armas
-from habitacion import Habitacion
-from individuo import Individuo
-from jarvis import Jarvis
-from objetos import Objetos
-from bot import Bot
+from Ahorro import Ahorro
+from Armas import Armas
+from Habitacion import Habitacion
+from Individuo import Individuo
+from Jarvis import Jarvis
+from Objetos import Objetos
+from Bot import Bot
 
-from intruso import Intruso
-from robot import Robot
+from Intruso import Intruso
+from Robot import Robot
 
 from excepciones import *
 

@@ -1,5 +1,5 @@
 
-from robot import Robot
+from Robot import Robot
 
 class Bot(Robot):
     _DUMPENER = 10

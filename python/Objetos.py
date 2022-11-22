@@ -1,4 +1,4 @@
-from herramientas import Herramientas
+from Herramientas import Herramientas
 
 class Objetos(Herramientas):
 

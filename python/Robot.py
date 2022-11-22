@@ -1,7 +1,7 @@
 import math
 import random
-from individuo import Individuo
-from ahorro import Ahorro
+from Individuo import Individuo
+from Ahorro import Ahorro
 #from main import Main
 
 class Robot(Individuo):

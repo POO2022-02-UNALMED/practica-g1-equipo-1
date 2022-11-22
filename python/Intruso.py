@@ -1,7 +1,7 @@
 
-from individuo import Individuo
-from ahorro import Ahorro
-from armas import Armas
+from Individuo import Individuo
+from Ahorro import Ahorro
+from Armas import Armas
 
 class Intruso(Individuo):
 
