@@ -12,6 +12,8 @@ from bot import Bot
 from intruso import Intruso
 from robot import Robot
 
+from excepciones import *
+
 
 class Main:
 
