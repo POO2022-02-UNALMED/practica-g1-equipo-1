@@ -4,8 +4,8 @@ from tkinter import messagebox
 
 
 window = Tk()
-window.geometry('820x440')#Cuadrar geometria
-window.title('Inicio')
+window.geometry('900x600')
+window.title('Escape Room Game')
 window.option_add('*tearOff', FALSE)
 
 
@@ -14,7 +14,7 @@ def info():
     frame_P3.pack_forget()
     label_P3.place_forget()
     label_inf = Label(master=frame_P3,
-          text="agregar texto", font="Helvetica 10")
+          text="Te encuentras en la casa de Tony Stark y tu misión, si decides aceptarla, es conseguir la mascara de Ironman. Pero no creas que será tan sencillo, en tu recorrido tendrás diferentes obstáculos como objetos que te activarán alarmas, puertas con su acceso bloqueado y  un robot que te estará buscando constantemente.\r\n" + "Pero no todo es malo, encontrarás objetos útiles en algunas habitaciones y quizá tengas la ayuda de alguien o algo.\r\n" + "", font="Helvetica 10")
     label_inf.place(x=50, y=50)
     frame_P3.pack(side=TOP, fill="both", expand=True, padx=5, pady=5)
 
@@ -180,31 +180,31 @@ def show_name3(e):
 # Eventos del ratón para cambiar imágenes en ventana inicio
 def change_img2(e):
     frame_P4.pack_forget()
-    label_img['image'] = None #poner imagenes
+    label_img['image'] = img2
     frame_P4.pack(side=BOTTOM)
     label_img.bind('<Enter>', change_img3)
 
 def change_img3(e):
     frame_P4.pack_forget()
-    label_img['image'] = None #poner imagenes
+    label_img['image'] = img3
     frame_P4.pack(side=BOTTOM)
     label_img.bind('<Enter>', change_img4)
 
 def change_img4(e):
     frame_P4.pack_forget()
-    label_img['image'] = None #poner imagenes
+    label_img['image'] = img4
     frame_P4.pack(side=BOTTOM)
     label_img.bind('<Enter>', change_img5)
 
 def change_img5(e):
     frame_P4.pack_forget()
-    label_img['image'] = None #poner imagenes
+    label_img['image'] = img5
     frame_P4.pack(side=BOTTOM)
     label_img.bind('<Enter>', change_img1)
 
 def change_img1(e):
     frame_P4.pack_forget()
-    label_img['image'] = None #poner imagenes
+    label_img['image'] = img1
     frame_P4.pack(side=BOTTOM)
     label_img.bind('<Enter>', change_img2)
 
@@ -213,7 +213,7 @@ def change_img1(e):
 menubar = Menu(window)
 menu1 = Menu(menubar)
 menubar.add_cascade(menu=menu1, label='Inicio', command=evento)
-menu1.add_command(label="info", command=info)
+menu1.add_command(label="Descripcion", command=info)
 menu1.add_command(label="Salir de la aplicación", command=evento)
 window['menu'] = menubar
 
@@ -224,7 +224,8 @@ outer_frame.pack(side="top", fill="both", expand=True, padx=20, pady=20)
 
 # ------- Frame principal P1 -------
 frame_P1 = Frame(master=outer_frame, borderwidth=2, relief="groove")
-frame_P1.pack(side='left', fill="both", expand=True, padx=5, pady=5)
+frame_P1.pack(side='left', fill="both", expand=False, padx=5, pady=5)
+
 
 # Frame anidado P3
 frame_P3 = Frame(master=frame_P1, width=295, borderwidth=2, relief="groove")
@@ -237,16 +238,25 @@ frame_P4 = Frame(master=frame_P1, borderwidth=2, relief="groove")
 frame_P4.pack(side=BOTTOM)#padx=5, pady=5)
 
 # Cargar imágenes
-img2 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/crm2.png')#Cuadrar la direccion de las imagenes, crear carpetas
+img2 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/testing.png')
 img2 = img2.subsample(2)
-img3 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/crm3.png')
+img3 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/testing2.png')
 img3 = img3.subsample(2)
-img4 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/crm4.png')
+img4 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/testing3.png')
 img4 = img4.subsample(2)
-img5 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/crm5.png')
+img5 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/testing.png')
 img5 = img5.subsample(2)
-img1 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/LOGOU.png')
+img1 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/testing2.png')
 img1 = img1.subsample(2)
+
+imgLuis1 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/luis.png')
+imgLuis1 = imgLuis1.subsample(2)
+imgLuis2 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/luis2.png')
+imgLuis2 = imgLuis2.subsample(2)
+imgLuis3 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/luis3.png')
+imgLuis3 = imgLuis3.subsample(2)
+imgLuis4 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/luis4.png')
+imgLuis4 = imgLuis4.subsample(2)
 
 label_img = Label(master=frame_P4)
 label_img['image'] = img2
@@ -284,6 +294,20 @@ frame_P6 = Frame(master=frame_img)
 frame_P6.pack()
 
 # ----------- Posicionamiento Grid de fotos -----------
-#agregar
+label_photo1 = Label(master=frame_P6)
+label_photo1['image'] = imgLuis1
+label_photo1.grid(row=0, column= 0, padx=5, pady=5)
+
+label_photo2 = Label(master=frame_P6)
+label_photo2['image'] = imgLuis2
+label_photo2.grid(row=0, column= 1, padx=5, pady=5)
+
+label_photo3 = Label(master=frame_P6)
+label_photo3['image'] = imgLuis3
+label_photo3.grid(row=1, column= 0, padx=5, pady=5)
+
+label_photo4 = Label(master=frame_P6)
+label_photo4['image'] = imgLuis4
+label_photo4.grid(row=1, column= 1, padx=5, pady=5)
 
 window.mainloop()
