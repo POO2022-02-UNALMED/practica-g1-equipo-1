@@ -13,9 +13,9 @@ window.option_add('*tearOff', FALSE)
 def info():
     frame_P3.pack_forget()
     label_P3.place_forget()
-    label_inf = Label(master=frame_P3,
+    label_inf = Label(master=frame_P3, wraplength= 340, justify= 'left',
           text="Te encuentras en la casa de Tony Stark y tu misión, si decides aceptarla, es conseguir la mascara de Ironman. Pero no creas que será tan sencillo, en tu recorrido tendrás diferentes obstáculos como objetos que te activarán alarmas, puertas con su acceso bloqueado y  un robot que te estará buscando constantemente.\r\n" + "Pero no todo es malo, encontrarás objetos útiles en algunas habitaciones y quizá tengas la ayuda de alguien o algo.\r\n" + "", font="Helvetica 10")
-    label_inf.place(x=50, y=50)
+    label_inf.pack(expand=True,fill='both',padx=1,pady=1)
     frame_P3.pack(side=TOP, fill="both", expand=True, padx=5, pady=5)
 
 def evento():
@@ -118,94 +118,110 @@ def inicio():
 #Eventos del ratón (Para cambiar hojas de vida)
 def show_names(e):
     descripcion.pack_forget()
+    label_aux.pack_forget()
     frame_P6.pack_forget()
+    label_P5.pack(side=LEFT,anchor='n')
     nombres.pack()
-    #label_photo1['image'] = None #Poner las imagenes
-    #label_photo2['image'] = None
-    #label_photo3['image'] = None
-    #label_photo4['image'] = None
+    label_photo1['image'] = imgLuis1 
+    label_photo2['image'] = imgLuis2
+    label_photo3['image'] = imgLuis3
+    label_photo4['image'] = imgLuis4
     frame_P6.pack()
 
     frame_P5.bind("<Button-1>", show_nombreIntegrante)
 
 def show_nombreIntegrante(e):
     global descripcion
+    global label_P5
+    global label_aux
     nombres.pack_forget()
+    label_P5.pack_forget()
     descripcion = Label(master=frame_P5, text='Estudiante de ...', font="Helvetica 12")
     descripcion.pack()
+    label_aux = Label(master=frame_P5, text='\n Juan:', font="Helvetica 14",)
+    label_aux.pack(side=LEFT,anchor='n') 
 
     frame_P6.pack_forget()
-    #label_photo1['image'] = None
-    #label_photo2['image'] = None
-    #label_photo3['image'] = None
-    #label_photo4['image'] = None
+    label_photo1['image'] = imgLuis4
+    label_photo2['image'] = imgLuis3
+    label_photo3['image'] = imgLuis2
+    label_photo4['image'] = imgLuis1
     frame_P6.pack()
 
     frame_P5.bind("<Button-1>", show_name2)
 
 def show_name2(e):
     global descripcion
+    global label_P5
+    global label_aux
     descripcion.pack_forget()
     nombres.pack_forget()
+    label_P5.pack_forget()
+    label_aux.pack_forget()
     descripcion = Label(master=frame_P5, text="Estudiante de Ciencias ...", font="Helvetica 12")
     descripcion.pack()
+    label_aux = Label(master=frame_P5, text='\n Juan Jose:', font="Helvetica 14",)
+    label_aux.pack(side=LEFT,anchor='n') 
 
     frame_P6.pack_forget()
-    #label_photo1['image'] = None
-    #label_photo2['image'] = None
-    #label_photo3['image'] = None
-    #label_photo4['image'] = None
+    label_photo1['image'] = imgLuis2
+    label_photo2['image'] = imgLuis4
+    label_photo3['image'] = imgLuis1
+    label_photo4['image'] = imgLuis3
     frame_P6.pack()
 
     frame_P5.bind("<Button-1>", show_name3)
 
 def show_name3(e):
     global descripcion
+    global label_P5
+    global label_aux
     descripcion.pack_forget()
-    #name1.pack_forget()
-    #name2.pack_forget()
-    #name3.pack()
+    label_P5.pack_forget()
+    label_aux.pack_forget()
     descripcion = Label(master=frame_P5, text="Estudiante de ...", font="Helvetica 12")
     descripcion.pack()
+    label_aux = Label(master=frame_P5, text='\n Juan Manuel:', font="Helvetica 14",)
+    label_aux.pack(side=LEFT,anchor='n') 
 
     frame_P6.pack_forget()
-    #label_photo1['image'] = None
-    #label_photo2['image'] = None
-    #label_photo3['image'] = None
-    #label_photo4['image'] = None
+    label_photo1['image'] = imgLuis3
+    label_photo2['image'] = imgLuis1
+    label_photo3['image'] = imgLuis4
+    label_photo4['image'] = imgLuis2
     frame_P6.pack()
 
     frame_P5.bind("<Button-1>", show_names)
 
 # Eventos del ratón para cambiar imágenes en ventana inicio
 def change_img2(e):
-    frame_P4.pack_forget()
+    #frame_P4.pack_forget()
     label_img['image'] = img2
-    frame_P4.pack(side=BOTTOM)
+    #frame_P4.pack(side=BOTTOM)
     label_img.bind('<Enter>', change_img3)
 
 def change_img3(e):
-    frame_P4.pack_forget()
+    #frame_P4.pack_forget()
     label_img['image'] = img3
-    frame_P4.pack(side=BOTTOM)
+    #frame_P4.pack(side=BOTTOM)
     label_img.bind('<Enter>', change_img4)
 
 def change_img4(e):
-    frame_P4.pack_forget()
+    #frame_P4.pack_forget()
     label_img['image'] = img4
-    frame_P4.pack(side=BOTTOM)
+    #frame_P4.pack(side=BOTTOM)
     label_img.bind('<Enter>', change_img5)
 
 def change_img5(e):
-    frame_P4.pack_forget()
+    #frame_P4.pack_forget()
     label_img['image'] = img5
-    frame_P4.pack(side=BOTTOM)
+    #frame_P4.pack(side=BOTTOM)
     label_img.bind('<Enter>', change_img1)
 
 def change_img1(e):
-    frame_P4.pack_forget()
+    #frame_P4.pack_forget()
     label_img['image'] = img1
-    frame_P4.pack(side=BOTTOM)
+    #frame_P4.pack(side=BOTTOM)
     label_img.bind('<Enter>', change_img2)
 
 #Barra menu 
@@ -229,13 +245,14 @@ frame_P1.pack(side='left', fill="both", expand=False, padx=5, pady=5)
 
 # Frame anidado P3
 frame_P3 = Frame(master=frame_P1, width=295, borderwidth=2, relief="groove")
-label_P3 = Label(master=frame_P3, text='info', font="Helvetica 14")
+label_P3 = Label(master=frame_P3,wraplength= 340, text='Te damos la Bienvenida a: \r\nEscape Room Game: Ironmans Mask', font="Helvetica 14")
 frame_P3.pack(side=TOP, fill="both", expand=True, padx=5, pady=5)
-label_P3.place(x=65, y=45)
+label_P3.pack(expand=True,fill='both',padx=1,pady=5)
+
 
 # Frame anidado P4
 frame_P4 = Frame(master=frame_P1, borderwidth=2, relief="groove")
-frame_P4.pack(side=BOTTOM)#padx=5, pady=5)
+frame_P4.pack(side=BOTTOM, padx=5, pady=5)
 
 # Cargar imágenes
 img2 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/testing.png')
@@ -278,9 +295,9 @@ frame_P5 = Frame(master=frame_P2, borderwidth=2, relief="groove")
 frame_P5.pack(fill="both", expand=True, padx=5, pady=5)
 
 # Nombre de cada integrante
-label_P5 = Label(master=frame_P5, text='\n Desarrolladores:', font="Helvetica 14")
-label_P5.pack()
-nombres = Label(master=frame_P5, text="nombre", font="Helvetica 12") #copiar y poner los nombres de cada uno con su pack
+label_P5 = Label(master=frame_P5, text='\n Luis Altamar:', font="Helvetica 14")
+label_P5.pack(side=LEFT,anchor='n')
+nombres = Label(master=frame_P5, text="Estudiante de Ing. de Sistemas \n4 semestre de avance \nProfesor de matematicas a medio tiempo", font="Helvetica 12", justify='left') #copiar y poner los nombres de cada uno con su pack
 nombres.pack()
 
 
