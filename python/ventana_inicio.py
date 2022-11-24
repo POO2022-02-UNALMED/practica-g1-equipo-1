@@ -25,7 +25,7 @@ def evento():
 def inicio():
     escape = Toplevel()
     escape.geometry('900x600')
-    escape.title('CRM')
+    escape.title('Escape room game')
     window.iconify()
     escape.option_add('*tearOff', FALSE)  # Eliminar underline
 
@@ -77,7 +77,7 @@ def inicio():
     archivo.pack(side=LEFT)
     zona1.add(archivo)
 
-    procesos = Menubutton(zona1, text="def text", activebackground='lightblue')
+    procesos = Menubutton(zona1, text="Procesos y consultas", activebackground='lightblue')
     procesos.pack(side=LEFT)
     zona1.add(procesos)
 
