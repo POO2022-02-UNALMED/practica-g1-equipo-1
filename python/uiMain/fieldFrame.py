@@ -5,6 +5,7 @@ class FieldFrame(Frame):
     
     def __init__(self, ventana, tituloCriterios = "", criterios = None, tituloValores = "", valores = None, habilitado = None):
         super().__init__(ventana)
+        self.pack(expand=True,fill='both')
         self._tituloCriterios = tituloCriterios
         self._criterios = criterios
         self._tituloValores = tituloValores
