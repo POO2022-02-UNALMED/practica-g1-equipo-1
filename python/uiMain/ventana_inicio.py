@@ -76,13 +76,15 @@ class ventana1:
         self.frame_P2.pack(side='right', fill="both", expand=True, padx=5, pady=5)
 
 # Frame anidado P5
-        self.frame_P5 = Frame(master=self.frame_P2, borderwidth=2, relief="groove")
+        self.frame_P5 = Frame(master=self.frame_P2, borderwidth=2, relief="groove",bg="black")
         self.frame_P5.pack(fill="both", expand=True, padx=5, pady=5)
 
 # Nombre de cada integrante
         self.label_P5 = Label(master=self.frame_P5, text='\n Luis Altamar:', font="Helvetica 14")
+        self.label_P5.bind("<Button-1>", self.show_nombreIntegrante)
         self.label_P5.pack(side=LEFT,anchor='n')
         self.nombres = Label(master=self.frame_P5, text="Estudiante de Ing. de Sistemas \n4 semestre de avance \nProfesor de matematicas a medio tiempo", font="Helvetica 12", justify='left') #copiar y poner los nombres de cada uno con su pack
+        self.nombres.bind("<Button-1>", self.show_nombreIntegrante)
         self.nombres.pack()
 
 
@@ -248,7 +250,9 @@ class ventana1:
         self.label_P5.pack_forget()
         self.descripcion = Label(master=self.frame_P5, text='Estudiante de ...', font="Helvetica 12")
         self.descripcion.pack()
+        self.descripcion.bind("<Button-1>", self.show_name2)
         self.label_aux = Label(master=self.frame_P5, text='\n Juan:', font="Helvetica 14",)
+        self.label_aux.bind("<Button-1>", self.show_name2)
         self.label_aux.pack(side=LEFT,anchor='n') 
 
         self.frame_P6.pack_forget()
@@ -270,7 +274,9 @@ class ventana1:
         self.label_aux.pack_forget()
         self.descripcion = Label(master=self.frame_P5, text="Estudiante de Ciencias ...", font="Helvetica 12")
         self.descripcion.pack()
+        self.descripcion.bind("<Button-1>", self.show_name3)
         self.label_aux = Label(master=self.frame_P5, text='\n Juan Jose:', font="Helvetica 14",)
+        self.label_aux.bind("<Button-1>", self.show_name3)
         self.label_aux.pack(side=LEFT,anchor='n') 
 
         self.frame_P6.pack_forget()
@@ -291,7 +297,9 @@ class ventana1:
         self.label_aux.pack_forget()
         self.descripcion = Label(master=self.frame_P5, text="Estudiante de ...", font="Helvetica 12")
         self.descripcion.pack()
+        self.descripcion.bind("<Button-1>", self.show_names)
         self.label_aux = Label(master=self.frame_P5, text='\n Juan Manuel:', font="Helvetica 14",)
+        self.label_aux.bind("<Button-1>", self.show_names)
         self.label_aux.pack(side=LEFT,anchor='n') 
 
         self.frame_P6.pack_forget()
