@@ -1,7 +1,7 @@
 
-from Individuo import Individuo
-from Ahorro import Ahorro
-from Armas import Armas
+from gestorAplicacion.clasesLogicas.Individuo import Individuo
+from gestorAplicacion.clasesLogicas.Ahorro import Ahorro
+from gestorAplicacion.clasesLogicas.Armas import Armas
 
 class Intruso(Individuo):
 

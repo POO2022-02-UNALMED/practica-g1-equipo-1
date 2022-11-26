@@ -1,13 +1,13 @@
 import random
 import math
 import sys
-from Ahorro import Ahorro
-from Armas import Armas
-from Habitacion import Habitacion
-from Individuo import Individuo
-from Jarvis import Jarvis
-from Objetos import Objetos
-from Bot import Bot
+from gestorAplicacion.clasesLogicas.Ahorro import Ahorro
+from gestorAplicacion.clasesLogicas.Armas import Armas
+from gestorAplicacion.clasesLogicas.Habitacion import Habitacion
+from gestorAplicacion.clasesLogicas.Individuo import Individuo
+from gestorAplicacion.clasesLogicas.Jarvis import Jarvis
+from gestorAplicacion.clasesLogicas.Objetos import Objetos
+from gestorAplicacion.clasesLogicas.Bot import Bot
 
 from Intruso import Intruso
 from Robot import Robot

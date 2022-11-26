@@ -1,5 +1,5 @@
 
-from Robot import Robot
+from gestorAplicacion.clasesLogicasHerencia.Robot import Robot
 
 class Bot(Robot):
     _DUMPENER = 10
