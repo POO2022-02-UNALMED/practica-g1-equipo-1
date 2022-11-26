@@ -1,3 +1,4 @@
+
 from Jarvis import Jarvis
 class Individuo(Jarvis):
 

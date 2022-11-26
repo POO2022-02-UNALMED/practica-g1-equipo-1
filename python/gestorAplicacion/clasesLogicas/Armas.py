@@ -1,3 +1,4 @@
+
 from Herramientas import Herramientas
 
 class Armas(Herramientas): #Revisar lo del serializado
