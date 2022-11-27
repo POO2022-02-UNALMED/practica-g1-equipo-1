@@ -1,7 +1,7 @@
 import math
 import random
-from gestorAplicacion.clasesLogicas.Individuo import Individuo
-from gestorAplicacion.clasesLogicas.Ahorro import Ahorro
+from Individuo import Individuo
+from Ahorro import Ahorro
 #from main import Main
 
 class Robot(Individuo):

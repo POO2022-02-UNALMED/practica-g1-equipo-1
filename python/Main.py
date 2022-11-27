@@ -1,13 +1,13 @@
 import random
 import math
 import sys
-from gestorAplicacion.clasesLogicas.Ahorro import Ahorro
-from gestorAplicacion.clasesLogicas.Armas import Armas
-from gestorAplicacion.clasesLogicas.Habitacion import Habitacion
-from gestorAplicacion.clasesLogicas.Individuo import Individuo
-from gestorAplicacion.clasesLogicas.Jarvis import Jarvis
-from gestorAplicacion.clasesLogicas.Objetos import Objetos
-from gestorAplicacion.clasesLogicas.Bot import Bot
+from Ahorro import Ahorro
+from Armas import Armas
+from Habitacion import Habitacion
+from Individuo import Individuo
+from Jarvis import Jarvis
+from Objetos import Objetos
+from Bot import Bot
 
 from Intruso import Intruso
 from Robot import Robot
@@ -136,7 +136,7 @@ class Main:
         robot.addHistorial()
         
         # ciclo de turnos del jugador
-        """while mascaraIronMan not in intruso.getObjectInventory() and intruso.getHealth() > 0:
+        while mascaraIronMan not in intruso.getObjectInventory() and intruso.getHealth() > 0:
             huir = True
             print(intruso.ayudaJarvis())
 
@@ -323,7 +323,7 @@ class Main:
             Main.salirDelsistema()
         else:
             print("Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad." + "\nParece que estaras aqui por un buen tiempo." + "\nFin del Juego.")
-            Main.salirDelsistema()"""
+            Main.salirDelsistema()
             
 
 if __name__ == "__main__":

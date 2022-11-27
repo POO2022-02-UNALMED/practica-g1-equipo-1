@@ -1,18 +1,18 @@
 import pickle
 
 #Logicas
-from python.gestorAplicacion.clasesLogicas.Ahorro import Ahorro
-from python.gestorAplicacion.clasesLogicas.Armas import Armas
-from python.gestorAplicacion.clasesLogicas.Habitacion import Habitacion
-from python.gestorAplicacion.clasesLogicas.Herramientas import Herramientas #talvez esta no esta en el main
-from python.gestorAplicacion.clasesLogicas.Individuo import Individuo
-from python.gestorAplicacion.clasesLogicas.Jarvis import Jarvis
-from python.gestorAplicacion.clasesLogicas.Objetos import Objetos
-from python.gestorAplicacion.clasesLogicas.Bot import Bot
+from python.Ahorro import Ahorro
+from python.Armas import Armas
+from python.Habitacion import Habitacion
+from python.Herramientas import Herramientas #talvez esta no esta en el main
+from python.Individuo import Individuo
+from python.Jarvis import Jarvis
+from python.Objetos import Objetos
+from python.Bot import Bot
 
 #herencia
-from python.gestorAplicacion.clasesLogicasHerencia.Robot import Robot
-from python.gestorAplicacion.clasesLogicasHerencia.Intruso import Intruso
+from python.Robot import Robot
+from python.Intruso import Intruso
 import pathlib
 import os
 
