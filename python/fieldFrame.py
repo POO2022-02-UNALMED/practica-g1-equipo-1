@@ -1,5 +1,7 @@
 import os.path
 from tkinter import *
+from tkinter import messagebox
+
 from Ahorro import Ahorro
 from Armas import Armas
 from Habitacion import Habitacion
@@ -193,8 +195,22 @@ class FieldFrame(Frame):
                 self._objeto.batalla("CHEAT: TRAJISTE AL ROBOT A ESTA HABITACION.\n")
                     
         elif self._tituloCriterios == 'tu turno': 
-            if self.getValue(0) == '100':
-                pass
+            if self.getValue(0) == 'atacar':
+                dados = Main.lanzarDados(5)
+                if self.getValue(1) == 'ninguno' and dados >= Robot.getRobots()[0].getArmor():
+                    Intruso.getIntrusos()[0].atacar(Robot.getRobots()[0])
+                    m = "Le diste un puño al robot, probablemente te dolió mas a ti que a él.\nTe sobas la mano."
+                elif self.getValue(1) == 'Martillo de Thor' and dados >= Robot.getRobots()[0].getArmor():
+                    Intruso.getIntrusos()[0].atacar(Robot.getRobots()[0], Intruso.getIntrusos()[0].getWeaponInventory()[0].getBonusDamage())
+                    m = "Atacaste al robot exitosamente"
+                elif dados < Robot.getRobots()[0].getArmor():
+                    m = "El Robot bloqueo tu ataque!"
+                messagebox.showinfo(title="Ataque", message=m, detail="")
+
+            if Robot.getRobots()[0].getHealth() > 0:
+                self._objeto.batalla()
+
+                
             
 
 

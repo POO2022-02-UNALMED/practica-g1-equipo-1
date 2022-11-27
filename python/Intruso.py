@@ -53,9 +53,7 @@ class Intruso(Individuo):
 
 
     #METODOS PELEAR
-    def atacar(self, r):
-        r.setHealth(r.getHealth()-Intruso._ATTACK)
-    def atacar(self, r, bonus):
+    def atacar(self, r, bonus=0):
         r.setHealth(r.getHealth()-Intruso._ATTACK-bonus)
 
     #METODOS GET

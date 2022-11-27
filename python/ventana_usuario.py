@@ -1,4 +1,5 @@
 import os.path
+import random
 from tkinter import *
 from tkinter import messagebox
 from fieldFrame import FieldFrame
@@ -12,6 +13,7 @@ from Main import Main
 class ventana2:
 
     Main().__init__()
+    _regulador = False
 
     def iniciarMenu(self):
         self.menuUsuario = Menu(self.window,relief=RAISED)
@@ -55,9 +57,11 @@ class ventana2:
         msj='''Tu objetivo es obtener un objeto (la máscara de Iron Man) en una casa de 3x3 habitaciones mientras un robot vigilante intenta capturarte. 
 Cuando hayas logrado robar la máscara de Iron Man o cuando tu vida llegue cero termina el juego (ganas o pierdes respectivamente).
 Buena Suerte!'''
-        self.detalles = Text(self.detallesFrame,bg='black',fg='white',font='console', wrap= 'word',relief='sunken',padx=0,pady=0)
+        self.detalles = Text(self.detallesFrame,bg='black',fg='white',font='console', wrap= 'word',relief='sunken', height=6,padx=0,pady=0)
         self.detalles.grid(row=0,column=0,sticky='nsew')
         self.detalles.insert('1.0',msj)
+        ys = Scrollbar(self.detallesFrame, orient = 'vertical', command = self.detalles.yview)
+        self.detalles['yscrollcommand'] = ys.set
         self.detalles.__setitem__('state','disabled')
 
     def __init__(self):
@@ -194,41 +198,62 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
         self.detalles.__setitem__('state','normal')
         self.detalles.delete('1.0','end-1c')
         self.detalles.insert('1.0', s + 'El robot te ha encontrado! preparate para luchar!!')
+        x = True
         while x:
-            self.detalles.insert('2.0', s + "Tienes " + str(Intruso.getIntrusos()[0].getHealth()) + " puntos de vida.")
-            self.detalles.insert('3.0', s + "El robot tiene " + str(Robot.getRobots()[0].getHealth()) + " puntos de vida.")
+            print('while')
+            self.detalles.insert('end',"\nTienes " + str(Intruso.getIntrusos()[0].getHealth()) + " puntos de vida.")
+            self.detalles.insert('end',"\nEl robot tiene " + str(Robot.getRobots()[0].getHealth()) + " puntos de vida.")
             iniciativa = [None for _ in range(2)]
-            opcion = True
-            if Robot.getRobots()[0].getSpeed() + Main.lanzarDados(5) > Intruso.getIntrusos()[0].getSpeed() + Main.lanzarDados(5):
+
+            #iniciativa
+            if ventana2._regulador:
+                print('regulador')
                 iniciativa[0] = Robot.getRobots()[0]
-                iniciativa[1] = Intruso.getIntrusos()[0]
             else:
-                iniciativa[1] = Robot.getRobots()[0]
-                iniciativa[0] = Intruso.getIntrusos()[0]
+                print('iniciativa')
+                if Robot.getRobots()[0].getSpeed() + random.randint(1,5) > Intruso.getIntrusos()[0].getSpeed() + random.randint(1,5):
+                    print('robot primero')
+                    iniciativa[0] = Robot.getRobots()[0]
+                    iniciativa[1] = Intruso.getIntrusos()[0]
+                else:
+                    print('intruso primero')
+                    iniciativa[1] = Robot.getRobots()[0]
+                    iniciativa[0] = Intruso.getIntrusos()[0]
+                    ventana2._regulador = True
+
+            #turnos
             for i in range(0, 2):
+                print('turnos')
                 if iniciativa[i] is Intruso.getIntrusos()[0]:
-                    self.detalles.insert('4.0',"Es tu turno:")
+                    print('intruso')
+                    self.detalles.insert('end',"\nEs tu turno:")
                     if Intruso.getIntrusos()[0].isStunned():
-                        self.detalles.insert('5.0',"Estas aturdido, no puedes moverte")
+                        self.detalles.insert('end',"\nEstas aturdido, no puedes moverte")
                         Intruso.getIntrusos()[0].stun(False)
-                        opcion = False
                     else:
-                        self.detalles.insert('4.0',"Es el turno del robot:")
-                        if Robot.getRobots()[0].isStunned():
-                            self.detalles.insert('5.0',"El robot esta aturdido, no puede hacer nada.")
-                            Robot.getRobots()[0].stun(False)
+                        x = False
+                        break
+                else:
+                    print('robot')
+                    self.detalles.insert('end',"\nEs el turno del robot:")
+                    if Robot.getRobots()[0].isStunned():
+                        self.detalles.insert('end',"\nEl robot esta aturdido, no puede hacer nada.")
+                        Robot.getRobots()[0].stun(False)
+                    else:
+                        if Robot.getRobots()[0].isCargaRobot():
+                            desicionRobot = 100
+                            self.detalles.insert('end','\n'+Robot.getRobots()[0].ataqueCargado(Intruso.getIntrusos()[0]))
                         else:
-                            if Robot.getRobots()[0].isCargaRobot():
-                                desicionRobot = 100
-                                print(Robot.getRobots()[0].ataqueCargado(Intruso.getIntrusos()[0]))
-                            else:
-                                desicionRobot = Main.lanzarDados(10)
-                                print(Robot.getRobots()[0].turno(desicionRobot, Intruso.getIntrusos()[0]))
-                                print(Robot.getRobots()[1].turno(desicionRobot, Intruso.getIntrusos()[0]))
-                                Robot.getRobots()[1].atacar(Intruso.getIntrusos()[0])
-                                print("El bot revolotea te estorba en la batalla")
-                            Intruso.getIntrusos()[0].setArmor(0)
-        self.detalles.__setitem__('state','disabled')
+                            desicionRobot = random.randint(1,10)
+                            self.detalles.insert('end','\n'+Robot.getRobots()[0].turno(desicionRobot, Intruso.getIntrusos()[0]))
+                            self.detalles.insert('end','\n'+Robot.getRobots()[1].turno(desicionRobot, Intruso.getIntrusos()[0]))
+                            Robot.getRobots()[1].atacar(Intruso.getIntrusos()[0])
+                            self.detalles.insert('end','\n'+"El bot revolotea te estorba en la batalla")
+                        Intruso.getIntrusos()[0].setArmor(0)
+                        if ventana2._regulador:
+                            break
+                        ventana2._regulador = False
+        #self.detalles.__setitem__('state','disabled')
 
         self.field.pack_forget()
         self.fm2.pack_forget()
