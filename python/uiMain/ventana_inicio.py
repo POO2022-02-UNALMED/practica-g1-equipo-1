@@ -24,13 +24,13 @@ class ventana1:
         self.outer_frame.pack(side="top", fill="both", expand=True, padx=20, pady=20)
 
         # ------- Frame principal P1 -------
-        self.frame_P1 = Frame(master=self.outer_frame, borderwidth=2, relief="groove",bg='#BB8E4F')
+        self.frame_P1 = Frame(master=self.outer_frame, borderwidth=2, relief="groove",bg='#91B23B')
         self.frame_P1.pack(side='left', fill="both", expand=False, padx=5, pady=5)
 
 
 # Frame anidado P3
-        self.frame_P3 = Frame(master=self.frame_P1, width=295, borderwidth=2, relief="groove",bg='#D3D3D3')
-        self.label_P3 = Label(master=self.frame_P3,wraplength= 340, text='Te damos la Bienvenida a: \r\nEscape Room Game: Ironmans Mask', font="Helvetica 14",bg='#4F5CBB')
+        self.frame_P3 = Frame(master=self.frame_P1, width=295, borderwidth=2, relief="groove",bg='#B1B1B1')
+        self.label_P3 = Label(master=self.frame_P3,wraplength= 340, text='Te damos la Bienvenida a: \r\nEscape Room Game: Ironmans Mask', font="Helvetica 14",bg='#B1B1B1')
         self.frame_P3.pack(side=TOP, fill="both", expand=True, padx=5, pady=5,)
         self.label_P3.pack(expand=True,fill='both',padx=10,pady=5)
 
@@ -64,19 +64,29 @@ class ventana1:
         self.label_img['image'] = self.img2
         self.label_img.pack()
 
-        boton_ingreso = Button(master=self.frame_P4, text='Ingresar', font="Helvetica 14 bold", command=self.inicio)
+        def on_enter(e):
+            e.widget.config(bg='#B1B1B1')
+            
+
+        def on_leave(e):
+            e.widget.config(bg='white')
+            e.widget.config(padx=0, pady=0)
+        
+        boton_ingreso = Button(master=self.frame_P4, text='Ingresar', font="Helvetica 14 bold", command=self.inicio,pady=0)
         boton_ingreso.pack(side=BOTTOM)
+        boton_ingreso.bind('<Enter>', on_enter)
+        boton_ingreso.bind('<Leave>', on_leave)
 
 # Control del cursor para cambio en imagenes
         self.label_img.bind("<Enter>", self.change_img2)
 
 
 # ------- Frame principal P2 -------
-        self.frame_P2 = Frame(master=self.outer_frame, borderwidth=2, relief="groove",bg='#BB8E4F')
+        self.frame_P2 = Frame(master=self.outer_frame, borderwidth=2, relief="groove",bg='#91B23B')
         self.frame_P2.pack(side='right', fill="both", expand=True, padx=5, pady=5)
 
 # Frame anidado P5
-        self.frame_P5 = Frame(master=self.frame_P2, borderwidth=2, relief="groove",bg="#D3D3D3")
+        self.frame_P5 = Frame(master=self.frame_P2, borderwidth=2, relief="groove",bg="#B1B1B1")
         self.frame_P5.pack(fill="both", expand=True, padx=5, pady=5)
 
 # Nombre de cada integrante
