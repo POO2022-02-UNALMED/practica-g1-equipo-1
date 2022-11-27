@@ -34,6 +34,25 @@ class FieldFrame(Frame):
 
         self.map = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/map.png')
         self.map = self.map.subsample(2)
+        self.map1 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/map1.png')
+        self.map1 = self.map1.subsample(2)
+        self.map2 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/map2.png')
+        self.map2 = self.map2.subsample(2)
+        self.map3 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/map3.png')
+        self.map3 = self.map3.subsample(2)
+        self.map4 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/map4.png')
+        self.map4 = self.map4.subsample(2)
+        self.map5 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/map5.png')
+        self.map5 = self.map5.subsample(2)
+        self.map6 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/map6.png')
+        self.map6 = self.map6.subsample(2)
+        self.map7 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/map7.png')
+        self.map7 = self.map7.subsample(2)
+        self.map8 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/map8.png')
+        self.map8 = self.map8.subsample(2)
+        self.map9 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/map9.png')
+        self.map9 = self.map9.subsample(2)
+
 
         
         self._elementos = [] #Array elementos
@@ -71,7 +90,27 @@ class FieldFrame(Frame):
             labelanex.grid(column=0, row=len(self._criterios)+1, padx = (10,10), pady = (10,10),sticky='nsew')
 
             self.label_map= Label(master=self)
-            self.label_map['image'] = self.map
+            if Intruso.getIntrusos()[0].getUbicacion().getNumero() == 1:
+                self.label_map['image'] = self.map1
+            elif Intruso.getIntrusos()[0].getUbicacion().getNumero() == 2:
+                self.label_map['image'] = self.map2
+            elif Intruso.getIntrusos()[0].getUbicacion().getNumero() == 3:
+                self.label_map['image'] = self.map3
+            elif Intruso.getIntrusos()[0].getUbicacion().getNumero() == 4:
+                self.label_map['image'] = self.map4
+            elif Intruso.getIntrusos()[0].getUbicacion().getNumero() == 5:
+                self.label_map['image'] = self.map5
+            elif Intruso.getIntrusos()[0].getUbicacion().getNumero() == 6:
+                self.label_map['image'] = self.map6
+            elif Intruso.getIntrusos()[0].getUbicacion().getNumero() == 7:
+                self.label_map['image'] = self.map7
+            elif Intruso.getIntrusos()[0].getUbicacion().getNumero() == 8:
+                self.label_map['image'] = self.map8
+            elif Intruso.getIntrusos()[0].getUbicacion().getNumero() == 9:
+                self.label_map['image'] = self.map9
+            else:
+                self.label_map['image'] = self.map
+                
             self.label_map.grid(column=1, row=len(self._criterios)+1, padx = (10,10), pady = (10,10),sticky='nsew')   
         elif self._tituloCriterios == 'interaccion' or self._tituloCriterios == 'Tu turno':
             labelanex= Label(self, text = 'Tu Inventario', font = ("Helvetica 14", 12),anchor=CENTER)
