@@ -1,18 +1,18 @@
 import pickle
 
 #Logicas
-from python.Ahorro import Ahorro
-from python.Armas import Armas
-from python.Habitacion import Habitacion
-from python.Herramientas import Herramientas #talvez esta no esta en el main
-from python.Individuo import Individuo
-from python.Jarvis import Jarvis
-from python.Objetos import Objetos
-from python.Bot import Bot
+from Ahorro import Ahorro
+from Armas import Armas
+from Habitacion import Habitacion
+from Herramientas import Herramientas #talvez esta no esta en el main
+from Individuo import Individuo
+from Jarvis import Jarvis
+from Objetos import Objetos
+from Bot import Bot
 
 #herencia
-from python.Robot import Robot
-from python.Intruso import Intruso
+from Robot import Robot
+from Intruso import Intruso
 import pathlib
 import os
 
