@@ -4,6 +4,7 @@ import pickle
 from python.gestorAplicacion.clasesLogicas.Ahorro import Ahorro
 from python.gestorAplicacion.clasesLogicas.Armas import Armas
 from python.gestorAplicacion.clasesLogicas.Habitacion import Habitacion
+from python.gestorAplicacion.clasesLogicas.Herramientas import Herramientas #talvez esta no esta en el main
 from python.gestorAplicacion.clasesLogicas.Individuo import Individuo
 from python.gestorAplicacion.clasesLogicas.Jarvis import Jarvis
 from python.gestorAplicacion.clasesLogicas.Objetos import Objetos
@@ -30,4 +31,8 @@ class Serializador():
             print("Falla al serializar")
 
     def serializarTodo():
-        serializar(Ahorro)
+        Serializador.serializar(Armas.getArmas(), "armas")
+        Serializador.serializar(Habitacion.getHabitaciones(), "habitaciones")
+        Serializador.serializar(Objetos.getObjetos(), "objetos")
+        Serializador.serializar(Intruso.getIntrusos(), "intrusos ")
+        Serializador.serializar(Robot.getRobots(), "robots")
