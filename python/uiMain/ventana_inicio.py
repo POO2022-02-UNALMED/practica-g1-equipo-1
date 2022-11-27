@@ -60,6 +60,17 @@ class ventana1:
         self.imgLuis4 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/luis4.png')
         self.imgLuis4 = self.imgLuis4.subsample(2)
 
+        self.imgJuanMa1 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/juanMa1.png')
+        self.imgJuanMa1 = self.imgJuanMa1.subsample(2)
+        self.imgJuanMa2 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/juanMa2.png')
+        self.imgJuanMa2 = self.imgJuanMa2.subsample(2)
+        self.imgJuanMa3 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/juanMa3.png')
+        self.imgJuanMa3 = self.imgJuanMa3.subsample(2)
+        self.imgJuanMa4 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/juanMa4.png')
+        self.imgJuanMa4 = self.imgJuanMa4.subsample(2)
+
+        
+
         self.label_img = Label(master=self.frame_P4)
         self.label_img['image'] = self.img2
         self.label_img.pack()
@@ -314,10 +325,10 @@ class ventana1:
         self.descripcion.pack(pady=5)
 
         self.frame_P6.pack_forget()
-        self.label_photo1['image'] = self.imgLuis3
-        self.label_photo2['image'] = self.imgLuis1
-        self.label_photo3['image'] = self.imgLuis4
-        self.label_photo4['image'] = self.imgLuis2
+        self.label_photo1['image'] = self.imgJuanMa1
+        self.label_photo2['image'] = self.imgJuanMa2
+        self.label_photo3['image'] = self.imgJuanMa3
+        self.label_photo4['image'] = self.imgJuanMa4
         self.frame_P6.pack()
 
         self.frame_P5.bind("<Button-1>", self.show_name4)
