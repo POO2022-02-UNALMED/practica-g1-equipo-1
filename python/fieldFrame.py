@@ -1,4 +1,5 @@
 import os.path
+import random
 from tkinter import *
 from tkinter import messagebox
 
@@ -143,12 +144,16 @@ class FieldFrame(Frame):
                 self.textInv.delete('1.0','end-1c')
                 self.textInv.insert('1.0',Intruso.getIntrusos()[0].mostrarArmas() + '\n' + Intruso.getIntrusos()[0].mostrarObjetos())
 
+                for o in  Intruso.getIntrusos()[0].getObjectInventory():
+                    if o.getName() == "La mascara de Ironman":
+                        self._objeto.victoria()
+                        break
+
             elif self.getValue(0) == 'curar':
-                i = 0
+
                 for o in  Intruso.getIntrusos()[0].getObjectInventory():
                     if o.getName() == self.getValue(1):
-                        Intruso.getIntrusos()[0].getObjectInventory()[i].usar(Intruso.getIntrusos()[0])
-                    i += 1
+                        o.usar(Intruso.getIntrusos()[0])
                 self.actualizarDescripcion("Te has curado, ahora tienes " + str(Intruso.getIntrusos()[0].getHealth()) + " puntos de vida.")
             
             elif self.getValue(0) == 'romper luces':
@@ -188,13 +193,28 @@ class FieldFrame(Frame):
                 for linea in Individuo.getHistorial():
                     h += linea + '\n'
                 self.actualizarDescripcion(h)
-                            
+        #cheatss                    
         elif self._tituloCriterios == 'codigo': 
             if self.getValue(0) == '100':
                 Robot.getRobots()[0].setUbicacion(Intruso.getIntrusos()[0].getUbicacion())
                 self._objeto.batalla("CHEAT: TRAJISTE AL ROBOT A ESTA HABITACION.\n")
+            elif self.getValue(0) == '300':
+                Robot.getRobots()[0].setHealth(0)
+                messagebox.showinfo(title="CHEAT", message="CHEAT: EL ROBOT SE AUTODESTRUYO.", detail="")
+            elif self.getValue(0) == '400':
+                Intruso.getIntrusos()[0].setHealth(0)
+                messagebox.showinfo(title="CHEAT", message="CHEAT: FORZASTE GAME OVER.", detail="")
+                self._objeto.derrota()
+            elif self.getValue(0) == '500':
+                messagebox.showinfo(title="CHEAT", message="CHEAT: FORZASTE LA VICTORIA.", detail="")
+                self._objeto.victoria()
+            elif self.getValue(0) == '600':
+                Intruso.getIntrusos()[0].getUbicacion().setAlarma(Ahorro.ENCENDIDO)
+                messagebox.showinfo(title="CHEAT", message="CHEAT: ACTIVASTE LA ALARMA.", detail="")
+                self._objeto.moverte()
                     
         elif self._tituloCriterios == 'tu turno': 
+            huir = False
             if self.getValue(0) == 'atacar':
                 dados = Main.lanzarDados(5)
                 if self.getValue(1) == 'ninguno' and dados >= Robot.getRobots()[0].getArmor():
@@ -205,10 +225,35 @@ class FieldFrame(Frame):
                     m = "Atacaste al robot exitosamente"
                 elif dados < Robot.getRobots()[0].getArmor():
                     m = "El Robot bloqueo tu ataque!"
-                messagebox.showinfo(title="Ataque", message=m, detail="")
+            elif self.getValue(0) == 'bloquear':
+                m = "Tomas una posición defensiva y te preparas para recibir el ataque"
+                Intruso.getIntrusos()[0].setArmor(3)
+            elif self.getValue(0) == 'usar':
+                for o in  Intruso.getIntrusos()[0].getObjectInventory():
+                    if o.getName() == self.getValue(1):
+                        if o.isShocker():
+                            o.usar(Robot.getRobots()[0])
+                            m = "Aturdiste al robot."
+                        else:
+                            o.usar(Intruso.getIntrusos()[0])
+                            m = "Recibiste la bonificacion del objeto seleccionado."
+            elif self.getValue(0) == 'huir':
+                if Intruso.getIntrusos()[0].getSpeed() + random.randint(1,5) >= 4:
+                    huir = True
+                    m = "Tu agilidad te permitió saltar fuera del combate."
+                else:
+                    m = "Intentas huir, pero el robot te cierra el paso, mas suerte la proxima vez."
 
-            if Robot.getRobots()[0].getHealth() > 0:
+            messagebox.showinfo(title="Ataque", message=m, detail="")
+
+            if huir:
+                self._objeto.moverte()
+            elif Robot.getRobots()[0].getHealth() > 0:
                 self._objeto.batalla()
+            else:
+                messagebox.showinfo(title="Combate", message="Destruiste al robot, ahora solo falta obtener la mascara.", detail="")
+                self._objeto.moverte()
+
 
                 
             

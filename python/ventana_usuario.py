@@ -199,6 +199,7 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
         self.detalles.delete('1.0','end-1c')
         self.detalles.insert('1.0', s + 'El robot te ha encontrado! preparate para luchar!!')
         x = True
+        d = True
         while x:
             print('while')
             self.detalles.insert('end',"\nTienes " + str(Intruso.getIntrusos()[0].getHealth()) + " puntos de vida.")
@@ -250,14 +251,48 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
                             Robot.getRobots()[1].atacar(Intruso.getIntrusos()[0])
                             self.detalles.insert('end','\n'+"El bot revolotea te estorba en la batalla")
                         Intruso.getIntrusos()[0].setArmor(0)
+                        if Intruso.getIntrusos()[0].getHealth() <= 0:
+                            self.derrota()
+                            d = False
                         if ventana2._regulador:
                             break
                         ventana2._regulador = False
         #self.detalles.__setitem__('state','disabled')
+        if d:
+            self.field.pack_forget()
+            self.fm2.pack_forget()
+            self.field = FieldFrame(self.fm2,'tu turno',['Que desea hacer?','Seleccione un objeto'],'valores',['','ninguno'],None,self)
+            self.field.pack(expand=True)
+            self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
+            self.fm2.grid_propagate(False)
+    
+    def victoria(self):
+        self.titulo.set('VICTORIA')
+
+        self.detalles.__setitem__('state','normal')
+        self.detalles.delete('1.0','end-1c')
+        self.detalles.insert('1.0',"Despues de un arduo trabajo conseguiste lo que buscabas, la mascara de Ironman te permitio abrir un hueco en la pared y huir." + "\nPor fin podras añadir esto a tu mesa de trofeos, tu proximo objetivo: La Capa de Dr Strange... pero eso sera en otra ocasion." + "\nBuen trabajo y Gracias por Jugar!!!")
+        self.detalles.__setitem__('state','disabled')
 
         self.field.pack_forget()
         self.fm2.pack_forget()
-        self.field = FieldFrame(self.fm2,'tu turno',['Que desea hacer?','Seleccione un objeto'],'valores',['','ninguno'],None,self)
+        self.field = Label(master = self.fm2, text='PANTALLA DE VICTORIA',  bg="blue",  fg="white", font=("Courier", 20))
+        self.field.pack(expand=True)
+        self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
+        self.fm2.grid_propagate(False)
+        
+
+    def derrota(self):
+        self.titulo.set('GAME OVER')
+
+        self.detalles.__setitem__('state','normal')
+        self.detalles.delete('1.0','end-1c')
+        self.detalles.insert('1.0',"Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad." + "\nParece que estaras aqui por un buen tiempo." + "\nFin del Juego.")
+        self.detalles.__setitem__('state','disabled')
+
+        self.field.pack_forget()
+        self.fm2.pack_forget()
+        self.field = Label(master = self.fm2, text='PANTALLA DE GAME OVER',  bg="blue",  fg="white", font=("Courier", 20))
         self.field.pack(expand=True)
         self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
         self.fm2.grid_propagate(False)
