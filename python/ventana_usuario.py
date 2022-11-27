@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 from fieldFrame import FieldFrame
 
-from gestorAplicacion.clasesLogicasHerencia.Intruso import Intruso
+from Intruso import Intruso
 from Main import Main
 
 class ventana2:
