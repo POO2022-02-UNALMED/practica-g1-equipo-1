@@ -136,7 +136,7 @@ class Main:
         robot.addHistorial()
         
         # ciclo de turnos del jugador
-        while mascaraIronMan not in intruso.getObjectInventory() and intruso.getHealth() > 0:
+        """while mascaraIronMan not in intruso.getObjectInventory() and intruso.getHealth() > 0:
             huir = True
             print(intruso.ayudaJarvis())
 
@@ -323,7 +323,7 @@ class Main:
             Main.salirDelsistema()
         else:
             print("Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad." + "\nParece que estaras aqui por un buen tiempo." + "\nFin del Juego.")
-            Main.salirDelsistema()
+            Main.salirDelsistema()"""
             
 
 if __name__ == "__main__":
