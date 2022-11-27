@@ -20,19 +20,19 @@ class ventana1:
         self.window['menu'] = self.menubar
 
 # Ventana de inicio
-        self.outer_frame = Frame(self.window)
+        self.outer_frame = Frame(self.window,bg='#D3D3D3')
         self.outer_frame.pack(side="top", fill="both", expand=True, padx=20, pady=20)
 
         # ------- Frame principal P1 -------
-        self.frame_P1 = Frame(master=self.outer_frame, borderwidth=2, relief="groove")
+        self.frame_P1 = Frame(master=self.outer_frame, borderwidth=2, relief="groove",bg='#BB8E4F')
         self.frame_P1.pack(side='left', fill="both", expand=False, padx=5, pady=5)
 
 
 # Frame anidado P3
-        self.frame_P3 = Frame(master=self.frame_P1, width=295, borderwidth=2, relief="groove")
-        self.label_P3 = Label(master=self.frame_P3,wraplength= 340, text='Te damos la Bienvenida a: \r\nEscape Room Game: Ironmans Mask', font="Helvetica 14")
-        self.frame_P3.pack(side=TOP, fill="both", expand=True, padx=5, pady=5)
-        self.label_P3.pack(expand=True,fill='both',padx=1,pady=5)
+        self.frame_P3 = Frame(master=self.frame_P1, width=295, borderwidth=2, relief="groove",bg='#D3D3D3')
+        self.label_P3 = Label(master=self.frame_P3,wraplength= 340, text='Te damos la Bienvenida a: \r\nEscape Room Game: Ironmans Mask', font="Helvetica 14",bg='#4F5CBB')
+        self.frame_P3.pack(side=TOP, fill="both", expand=True, padx=5, pady=5,)
+        self.label_P3.pack(expand=True,fill='both',padx=10,pady=5)
 
 
 # Frame anidado P4
@@ -72,7 +72,7 @@ class ventana1:
 
 
 # ------- Frame principal P2 -------
-        self.frame_P2 = Frame(master=self.outer_frame, borderwidth=2, relief="groove")
+        self.frame_P2 = Frame(master=self.outer_frame, borderwidth=2, relief="groove",bg='#BB8E4F')
         self.frame_P2.pack(side='right', fill="both", expand=True, padx=5, pady=5)
 
 # Frame anidado P5
