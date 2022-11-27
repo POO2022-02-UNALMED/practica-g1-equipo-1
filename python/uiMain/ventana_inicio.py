@@ -76,13 +76,13 @@ class ventana1:
         self.frame_P2.pack(side='right', fill="both", expand=True, padx=5, pady=5)
 
 # Frame anidado P5
-        self.frame_P5 = Frame(master=self.frame_P2, borderwidth=2, relief="groove",bg="black")
+        self.frame_P5 = Frame(master=self.frame_P2, borderwidth=2, relief="groove",bg="#D3D3D3")
         self.frame_P5.pack(fill="both", expand=True, padx=5, pady=5)
 
 # Nombre de cada integrante
-        self.label_P5 = Label(master=self.frame_P5, text='\n Luis Altamar:', font="Helvetica 14")
+        self.label_P5 = Label(master=self.frame_P5, text='Luis Altamar:', font="Helvetica 14")
         self.label_P5.bind("<Button-1>", self.show_nombreIntegrante)
-        self.label_P5.pack(side=LEFT,anchor='n')
+        self.label_P5.pack(side=LEFT,anchor='w')
         self.nombres = Label(master=self.frame_P5, text="Estudiante de Ing. de Sistemas \n4 semestre de avance \nProfesor de matematicas a medio tiempo", font="Helvetica 12", justify='left') #copiar y poner los nombres de cada uno con su pack
         self.nombres.bind("<Button-1>", self.show_nombreIntegrante)
         self.nombres.pack()
@@ -232,7 +232,7 @@ class ventana1:
         self.descripcion.pack_forget()
         self.label_aux.pack_forget()
         self.frame_P6.pack_forget()
-        self.label_P5.pack(side=LEFT,anchor='n')
+        self.label_P5.pack(side=LEFT,anchor='w')
         self.nombres.pack()
         self.label_photo1['image'] = self.imgLuis1 
         self.label_photo2['image'] = self.imgLuis2
@@ -248,12 +248,13 @@ class ventana1:
         #global self.label_aux
         self.nombres.pack_forget()
         self.label_P5.pack_forget()
-        self.descripcion = Label(master=self.frame_P5, text='Estudiante de ...', font="Helvetica 12")
-        self.descripcion.pack()
-        self.descripcion.bind("<Button-1>", self.show_name2)
-        self.label_aux = Label(master=self.frame_P5, text='\n Juan:', font="Helvetica 14",)
+        self.label_aux = Label(master=self.frame_P5, text='Juan Pablo:', font="Helvetica 14",)
         self.label_aux.bind("<Button-1>", self.show_name2)
-        self.label_aux.pack(side=LEFT,anchor='n') 
+        self.label_aux.pack(side=LEFT,anchor='w')
+        self.descripcion = Label(master=self.frame_P5, text='Estudiante de Ing. de Sistemas', font="Helvetica 12")
+        self.descripcion.bind("<Button-1>", self.show_name2) 
+        self.descripcion.pack()
+        
 
         self.frame_P6.pack_forget()
         self.label_photo1['image'] = self.imgLuis4
@@ -272,12 +273,12 @@ class ventana1:
         self.nombres.pack_forget()
         self.label_P5.pack_forget()
         self.label_aux.pack_forget()
-        self.descripcion = Label(master=self.frame_P5, text="Estudiante de Ciencias ...", font="Helvetica 12")
-        self.descripcion.pack()
-        self.descripcion.bind("<Button-1>", self.show_name3)
-        self.label_aux = Label(master=self.frame_P5, text='\n Juan Jose:', font="Helvetica 14",)
+        self.label_aux = Label(master=self.frame_P5, text='Juan Jose:', font="Helvetica 14",)
         self.label_aux.bind("<Button-1>", self.show_name3)
-        self.label_aux.pack(side=LEFT,anchor='n') 
+        self.label_aux.pack(side=LEFT,anchor='w') 
+        self.descripcion = Label(master=self.frame_P5, text="Estudiante de Ciencias ...", font="Helvetica 12")
+        self.descripcion.bind("<Button-1>", self.show_name3)
+        self.descripcion.pack()
 
         self.frame_P6.pack_forget()
         self.label_photo1['image'] = self.imgLuis2
@@ -295,12 +296,12 @@ class ventana1:
         self.descripcion.pack_forget()
         self.label_P5.pack_forget()
         self.label_aux.pack_forget()
-        self.descripcion = Label(master=self.frame_P5, text="Estudiante de ...", font="Helvetica 12")
+        self.label_aux = Label(master=self.frame_P5, text='Juan Manuel:', font="Helvetica 14",)
+        self.label_aux.bind("<Button-1>", self.show_name4)
+        self.label_aux.pack(side=LEFT,anchor='w')
+        self.descripcion = Label(master=self.frame_P5, text="Estudiante de Ing. de Sistemas", font="Helvetica 12")
+        self.descripcion.bind("<Button-1>", self.show_name4)
         self.descripcion.pack()
-        self.descripcion.bind("<Button-1>", self.show_names)
-        self.label_aux = Label(master=self.frame_P5, text='\n Juan Manuel:', font="Helvetica 14",)
-        self.label_aux.bind("<Button-1>", self.show_names)
-        self.label_aux.pack(side=LEFT,anchor='n') 
 
         self.frame_P6.pack_forget()
         self.label_photo1['image'] = self.imgLuis3
@@ -309,7 +310,31 @@ class ventana1:
         self.label_photo4['image'] = self.imgLuis2
         self.frame_P6.pack()
 
-        self.frame_P5.bind("<Button-1>", self.show_names)
+        self.frame_P5.bind("<Button-1>", self.show_name4)
+
+    def show_name4(self,e):
+        #global descripcion
+        #global label_P5
+        #global label_aux
+        self.descripcion.pack_forget()
+        self.nombres.pack_forget()
+        self.label_P5.pack_forget()
+        self.label_aux.pack_forget()
+        self.label_aux = Label(master=self.frame_P5, text='Santiago:', font="Helvetica 14",)
+        self.label_aux.bind("<Button-1>", self.show_names)
+        self.label_aux.pack(side=LEFT,anchor='w')
+        self.descripcion = Label(master=self.frame_P5, text="Estudiante de Ciencias ...", font="Helvetica 12")
+        self.descripcion.bind("<Button-1>", self.show_names)
+        self.descripcion.pack()
+
+        self.frame_P6.pack_forget()
+        self.label_photo1['image'] = self.imgLuis2
+        self.label_photo2['image'] = self.imgLuis4
+        self.label_photo3['image'] = self.imgLuis1
+        self.label_photo4['image'] = self.imgLuis3
+        self.frame_P6.pack()
+
+        self.frame_P5.bind("<Button-1>", self.show_names)      
 
 # Eventos del ratón para cambiar imágenes en ventana inicio
     def change_img2(self,e):
