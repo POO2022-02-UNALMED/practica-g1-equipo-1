@@ -4,6 +4,9 @@ from tkinter import messagebox
 from fieldFrame import FieldFrame
 
 from Intruso import Intruso
+from Robot import Robot
+from Bot import Bot
+
 from Main import Main
 
 class ventana2:
@@ -71,7 +74,9 @@ Buena Suerte!'''
         self.window.grid_columnconfigure(3, weight=1,  uniform="cols_g1")
         self.iniciarMenu()
         self.iniciarFrames()
+
         self.window.mainloop()
+        
 
     def cerrar(self):
         from ventana_inicio import ventana1
@@ -133,7 +138,7 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
 
         self.field.pack_forget()
         self.fm2.pack_forget()
-        self.field = FieldFrame(self.fm2,'movimiento',['Habitaciones Contiguas','Habitaciones Bloqueadas','A donde te mueves?'],'valores',[Intruso.getIntrusos()[0].habitacionesDisponibles()[0],Intruso.getIntrusos()[0].habitacionesDisponibles()[1],''],[False,False,True])
+        self.field = FieldFrame(self.fm2,'movimiento',['Habitaciones Disponibles','Habitaciones Bloqueadas','A donde te mueves?'],'valores',[Intruso.getIntrusos()[0].habitacionesDisponibles()[0],Intruso.getIntrusos()[0].habitacionesDisponibles()[1],''],[False,False,True],self)
         self.field.pack(expand=True)
         self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
         self.fm2.grid_propagate(False)
@@ -148,7 +153,7 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
 
         self.field.pack_forget()
         self.fm2.pack_forget()
-        self.field = FieldFrame(self.fm2,'interaccion',['Que deseas hacer?','Con que Objeto?'],'valores',['','ninguno'],None)
+        self.field = FieldFrame(self.fm2,'interaccion',['Que deseas hacer?','Con que Objeto?'],'valores',['','ninguno'],None,self)
         self.field.pack(expand=True)
         self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
         self.fm2.grid_propagate(False)
@@ -163,7 +168,7 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
 
         self.field.pack_forget()
         self.fm2.pack_forget()
-        self.field = FieldFrame(self.fm2,'criterios',['Obtener informacion de:'],'valores',['pista'],None)
+        self.field = FieldFrame(self.fm2,'criterios',['Obtener informacion de:'],'valores',['pista'],None,self)
         self.field.pack(expand=True)
         self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
         self.fm2.grid_propagate(False)
@@ -178,22 +183,56 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
 
         self.field.pack_forget()
         self.fm2.pack_forget()
-        self.field = FieldFrame(self.fm2,'criterios',['Ingrese su codigo'],'valores',['1'],None)
+        self.field = FieldFrame(self.fm2,'codigo',['Ingrese su codigo'],'valores',[''],None,self)
         self.field.pack(expand=True)
         self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
         self.fm2.grid_propagate(False)
 
-    def batalla(self):
+    def batalla(self,s = ''):
         self.titulo.set('Estas en Combate')
 
         self.detalles.__setitem__('state','normal')
         self.detalles.delete('1.0','end-1c')
-        self.detalles.insert('1.0','detalles combate aqui!')
+        self.detalles.insert('1.0', s + 'El robot te ha encontrado! preparate para luchar!!')
+        while x:
+            self.detalles.insert('2.0', s + "Tienes " + str(Intruso.getIntrusos()[0].getHealth()) + " puntos de vida.")
+            self.detalles.insert('3.0', s + "El robot tiene " + str(Robot.getRobots()[0].getHealth()) + " puntos de vida.")
+            iniciativa = [None for _ in range(2)]
+            opcion = True
+            if Robot.getRobots()[0].getSpeed() + Main.lanzarDados(5) > Intruso.getIntrusos()[0].getSpeed() + Main.lanzarDados(5):
+                iniciativa[0] = Robot.getRobots()[0]
+                iniciativa[1] = Intruso.getIntrusos()[0]
+            else:
+                iniciativa[1] = Robot.getRobots()[0]
+                iniciativa[0] = Intruso.getIntrusos()[0]
+            for i in range(0, 2):
+                if iniciativa[i] is Intruso.getIntrusos()[0]:
+                    self.detalles.insert('4.0',"Es tu turno:")
+                    if Intruso.getIntrusos()[0].isStunned():
+                        self.detalles.insert('5.0',"Estas aturdido, no puedes moverte")
+                        Intruso.getIntrusos()[0].stun(False)
+                        opcion = False
+                    else:
+                        self.detalles.insert('4.0',"Es el turno del robot:")
+                        if Robot.getRobots()[0].isStunned():
+                            self.detalles.insert('5.0',"El robot esta aturdido, no puede hacer nada.")
+                            Robot.getRobots()[0].stun(False)
+                        else:
+                            if Robot.getRobots()[0].isCargaRobot():
+                                desicionRobot = 100
+                                print(Robot.getRobots()[0].ataqueCargado(Intruso.getIntrusos()[0]))
+                            else:
+                                desicionRobot = Main.lanzarDados(10)
+                                print(Robot.getRobots()[0].turno(desicionRobot, Intruso.getIntrusos()[0]))
+                                print(Robot.getRobots()[1].turno(desicionRobot, Intruso.getIntrusos()[0]))
+                                Robot.getRobots()[1].atacar(Intruso.getIntrusos()[0])
+                                print("El bot revolotea te estorba en la batalla")
+                            Intruso.getIntrusos()[0].setArmor(0)
         self.detalles.__setitem__('state','disabled')
 
         self.field.pack_forget()
         self.fm2.pack_forget()
-        self.field = FieldFrame(self.fm2,'criterios',['Que desea hacer?','Seleccione un objeto'],'valores',['1','2'],None)
+        self.field = FieldFrame(self.fm2,'tu turno',['Que desea hacer?','Seleccione un objeto'],'valores',['','ninguno'],None,self)
         self.field.pack(expand=True)
         self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
         self.fm2.grid_propagate(False)

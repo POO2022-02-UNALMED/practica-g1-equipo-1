@@ -55,15 +55,15 @@ class Main:
 
         # instancias de Herramientas
 
-        self.Llaveh5 = Objetos("Llave azul.")
+        self.Llaveh5 = Objetos("Llave azul")
         self.Llaveh5.setDescripion("Clave para desbloquear habitacion 5.")
         self.objetosh6.append(self.Llaveh5)
 
-        self.Llaveh7 = Objetos("Llave plateada.")
+        self.Llaveh7 = Objetos("Llave plateada")
         self.Llaveh7.setDescripion("Clave para desbloquear habitacion 7.")
         self.objetosh3.append(self.Llaveh7)
 
-        self.Llaveh9 = Objetos("Llave dorada.")
+        self.Llaveh9 = Objetos("Llave dorada")
         self.Llaveh9.setDescripion("Clave para desbloquear habitacion 9.")
 
         self.objetosh8.append(self.Llaveh9)
