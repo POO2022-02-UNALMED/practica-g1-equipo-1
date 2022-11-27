@@ -1,5 +1,16 @@
 import os.path
 from tkinter import *
+from Ahorro import Ahorro
+from Armas import Armas
+from Habitacion import Habitacion
+from Individuo import Individuo
+from Jarvis import Jarvis
+from Objetos import Objetos
+from Bot import Bot
+
+from Intruso import Intruso
+from Robot import Robot
+from Main import Main
 
 class FieldFrame(Frame):
 
@@ -67,12 +78,12 @@ class FieldFrame(Frame):
             self.textInv.grid(column=1, row=len(self._criterios)+1, padx = (10,10), pady = (10,10),sticky='nsew')
             self.textInv.insert('1.0','inventario')
 
-        self.crearBotones(0,'Aceptar',None)
+        self.crearBotones(0,'Aceptar',self.comando)
         self.crearBotones(1,'Borrar',self.borrar)
 
 
-    def getValue(self, criterio):
-        indice = self._criterios.index(criterio)
+    def getValue(self, indice):
+        #indice = self._criterios.index(criterio)
         return self._elementos[indice].get()
     
     def borrar(self):
@@ -81,3 +92,23 @@ class FieldFrame(Frame):
 
     def crearBotones(self, col, t, comando1):
         aceptar = Button(self, text=t, font = ("Helvetica 14", 12), fg = "white", bg = "#B1B1B1", command=comando1).grid(pady = 50, column = col, row = len(self._criterios)+2)
+
+    def comando(self):
+        
+        if self._tituloCriterios == 'movimiento':
+            #movimiento intruso
+            Intruso.getIntrusos()[0].mover(Habitacion.getHabitaciones()[int(self.getValue(2))-1])
+
+            #movimiento robot
+            if Robot.getRobots()[0].getHealth() > 0:
+                        Robot.getRobots()[0].apagarAlarma()
+                        Robot.getRobots()[0].escuchar(Habitacion.getHabitaciones())
+                        Robot.getRobots()[0].escanear()
+                        if Robot.getRobots()[0].isNextTo():
+                            Robot.getRobots()[0].mover(Robot.getRobots()[0].getGoingTo())
+                        elif Robot.getRobots()[0].isAware():
+                            #print(robot.buscar(casa).getNumero())
+                            Robot.getRobots()[0].mover(Robot.getRobots()[0].buscar(Habitacion.getHabitaciones())) # camino mas corto a la habitacion con alarma
+                        else:
+                            Robot.getRobots()[0].mover(Habitacion.getHabitaciones()[Robot.getRobots()[0].decidirDireccion() - 1]) # movimiento aleatorio
+                    

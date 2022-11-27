@@ -26,9 +26,7 @@ class Main:
         print("Vuelva pronto")
         sys.exit(0)
 
-
-    @staticmethod
-    def main():
+    def __init__(self):
         opcion = None # aqui se guardan las opciones que va seleccionando el jugador
         x = True # mientras el robot este vivo
         iniciativa = [None for _ in range(2)] # organiza los turnos de combate
@@ -37,106 +35,106 @@ class Main:
         print("Bienvenidos, Te encuentras en la casa de Tony Stark y tu misión es conseguir la mascara de Ironman. Pero no creas que será tan sencillo, en tu recorrido tendrás diferentes obstáculos como objetos que te activarán alarmas, puertas con su acceso bloqueado y  un robot que te buscará cuando actives una alarma.\r\n" + "Pero no todo es malo, encontrarás objetos útiles en algunas habitaciones y quizá tengas la ayuda de alguien o algo.\r\n" + "")
         print("Tutorial: debes tomar decisiones sobre tus acciones, pasar entre habitaciones, recoger objetos y utilizarlos.\r\n" + "Si necesitas saber más cosas ya sabrás a quién preguntarle… Disfruta el juego.\r\n" + "")
         print("\nPresiona Enter para comenzar")
-        input()
+        #input()
 
         # Arrays necesarios
-        objetosh1 = []
-        objetosh2 = []
-        objetosh3 = []
-        objetosh4 = []
-        objetosh5 = []
-        objetosh6 = []
-        objetosh7 = []
-        objetosh8 = []
-        objetosh9 = []
+        self.objetosh1 = []
+        self.objetosh2 = []
+        self.objetosh3 = []
+        self.objetosh4 = []
+        self.objetosh5 = []
+        self.objetosh6 = []
+        self.objetosh7 = []
+        self.objetosh8 = []
+        self.objetosh9 = []
 
         # instancias de intruso y robot
-        intruso = Intruso()
-        robot = Robot()
-        bot = Bot()
+        self.intruso = Intruso()
+        self.robot = Robot()
+        self.bot = Bot()
 
         # instancias de Herramientas
 
-        Llaveh5 = Objetos("Llave azul.")
-        Llaveh5.setDescripion("Clave para desbloquear habitacion 5.")
-        objetosh6.append(Llaveh5)
+        self.Llaveh5 = Objetos("Llave azul.")
+        self.Llaveh5.setDescripion("Clave para desbloquear habitacion 5.")
+        self.objetosh6.append(self.Llaveh5)
 
-        Llaveh7 = Objetos("Llave plateada.")
-        Llaveh7.setDescripion("Clave para desbloquear habitacion 7.")
-        objetosh3.append(Llaveh7)
+        self.Llaveh7 = Objetos("Llave plateada.")
+        self.Llaveh7.setDescripion("Clave para desbloquear habitacion 7.")
+        self.objetosh3.append(self.Llaveh7)
 
-        Llaveh9 = Objetos("Llave dorada.")
-        Llaveh9.setDescripion("Clave para desbloquear habitacion 9.")
+        self.Llaveh9 = Objetos("Llave dorada.")
+        self.Llaveh9.setDescripion("Clave para desbloquear habitacion 9.")
 
-        objetosh8.append(Llaveh9)
+        self.objetosh8.append(self.Llaveh9)
 
-        mascaraIronMan = Objetos("La mascara de Ironman")
-        mascaraIronMan.setDescripion("El objetivo final.")
-        objetosh9.append(mascaraIronMan)
+        self.mascaraIronMan = Objetos("La mascara de Ironman")
+        self.mascaraIronMan.setDescripion("El objetivo final.")
+        self.objetosh9.append(self.mascaraIronMan)
 
-        emulsionDeScott = Objetos("Emulsion de Scott", False, 0, 30)
-        emulsionDeScott.setDescripion("Sano y fuerte crecerás." + "\nTe puedes curar con este objeto")
-        objetosh5.append(emulsionDeScott)
+        self.emulsionDeScott = Objetos("Emulsion de Scott", False, 0, 30)
+        self.emulsionDeScott.setDescripion("Sano y fuerte crecerás." + "\nTe puedes curar con este objeto")
+        self.objetosh5.append(self.emulsionDeScott)
 
-        vitaminaC = Objetos("Proteinas", False, 0, 5)
-        objetosh2.append(vitaminaC)
+        self.vitaminaC = Objetos("Proteinas", False, 0, 5)
+        self.objetosh2.append(self.vitaminaC)
 
-        escudoCapitanAmerica = Objetos("Escudo del Capitán America", False, 5, 1) # tiene alarma
+        self.escudoCapitanAmerica = Objetos("Escudo del Capitán America", False, 5, 1) # tiene alarma
 
-        escudoCapitanAmerica.setDescripion("Escudo de vibranium con los colores de la bandera, te sientes inspirado solo al llevarlo contigo." + "\nSi lo usas serás más difícil de golpear por ese turno.")
-        objetosh2.append(escudoCapitanAmerica)
+        self.escudoCapitanAmerica.setDescripion("Escudo de vibranium con los colores de la bandera, te sientes inspirado solo al llevarlo contigo." + "\nSi lo usas serás más difícil de golpear por ese turno.")
+        self.objetosh2.append(self.escudoCapitanAmerica)
 
-        martilloThor = Armas("Martillo de Thor", 10, 0)
-        martilloThor.setDescripion("Martillo mágico con el que puedes atacar, sientes como fluye energía eléctrica por tu cuerpo." + "\nSi lo usas puedes aturdir a tu adversario con un rayo.")
-        objetosh4.append(martilloThor)
+        self.martilloThor = Armas("Martillo de Thor", 10, 0)
+        self.martilloThor.setDescripion("Martillo mágico con el que puedes atacar, sientes como fluye energía eléctrica por tu cuerpo." + "\nSi lo usas puedes aturdir a tu adversario con un rayo.")
+        self.objetosh4.append(self.martilloThor)
 
-        lanzaTelaranas = Objetos("Lanza Telarañas", True, 0, 0)
-        lanzaTelaranas.setDescripion("Dispositivo lanza telarañas, probablemente pertenece a Spiderman." + "\nSi lo usas lanzas una telaraña... Obviamente.")
-        objetosh1.append(lanzaTelaranas)
+        self.lanzaTelaranas = Objetos("Lanza Telarañas", True, 0, 0)
+        self.lanzaTelaranas.setDescripion("Dispositivo lanza telarañas, probablemente pertenece a Spiderman." + "\nSi lo usas lanzas una telaraña... Obviamente.")
+        self.objetosh1.append(self.lanzaTelaranas)
 
-        inyeccion = Objetos("Inyección de adrenalina", False, 0, 50)
-        inyeccion.setDescripion("Inyectadora con líquido verde, lleva marcada las siglas S.H.I.E.L.D." + "\nSi lo usas recuperarás tu salud.")
-        objetosh4.append(inyeccion)
+        self.inyeccion = Objetos("Inyección de adrenalina", False, 0, 50)
+        self.inyeccion.setDescripion("Inyectadora con líquido verde, lleva marcada las siglas S.H.I.E.L.D." + "\nSi lo usas recuperarás tu salud.")
+        self.objetosh4.append(self.inyeccion)
 
-        Numero1 = Habitacion(1, False, objetosh1, intruso, None)
-        Numero2 = Habitacion(2, False, objetosh2, None, None)
-        Numero3 = Habitacion(3, False, objetosh3, None, None)
-        Numero4 = Habitacion(4, False, objetosh4, None, None)
-        Numero5 = Habitacion(5, True, objetosh5, None, None)
-        Numero6 = Habitacion(6, False, objetosh6, None, None)
-        Numero7 = Habitacion(7, True, objetosh7, None, None)
-        Numero8 = Habitacion(8, False, objetosh8, None, None)
-        Numero9 = Habitacion(9, True, objetosh9, None, robot)
+        self.Numero1 = Habitacion(1, False, self.objetosh1, self.intruso, None)
+        self.Numero2 = Habitacion(2, False, self.objetosh2, None, None)
+        self.Numero3 = Habitacion(3, False, self.objetosh3, None, None)
+        self.Numero4 = Habitacion(4, False, self.objetosh4, None, None)
+        self.Numero5 = Habitacion(5, True, self.objetosh5, None, None)
+        self.Numero6 = Habitacion(6, False, self.objetosh6, None, None)
+        self.Numero7 = Habitacion(7, True, self.objetosh7, None, None)
+        self.Numero8 = Habitacion(8, False, self.objetosh8, None, None)
+        self.Numero9 = Habitacion(9, True, self.objetosh9, None, self.robot)
 
-        Numero3.setAlarma(Ahorro.ACTIVADO)
-        Numero6.setAlarma(Ahorro.ACTIVADO)
-        Numero8.setAlarma(Ahorro.ACTIVADO)
+        self.Numero3.setAlarma(Ahorro.ACTIVADO)
+        self.Numero6.setAlarma(Ahorro.ACTIVADO)
+        self.Numero8.setAlarma(Ahorro.ACTIVADO)
 
-        casa = [Numero1, Numero2, Numero3, Numero4, Numero5, Numero6, Numero7, Numero8, Numero9]
+        self.casa = [self.Numero1, self.Numero2, self.Numero3, self.Numero4, self.Numero5, self.Numero6, self.Numero7, self.Numero8, self.Numero9]
 
         #ArrayList<Habitacion> habitacionesJarvis = new ArrayList<>()
 
-        Numero1.setHabitacionesContiguas(Numero4, None, Numero2, None)
-        Numero2.setHabitacionesContiguas(Numero5, None, Numero3, Numero1)
-        Numero3.setHabitacionesContiguas(Numero6, None, None, Numero2)
-        Numero4.setHabitacionesContiguas(Numero7, Numero1, Numero5, None)
-        Numero5.setHabitacionesContiguas(Numero8, Numero2, Numero6, Numero4)
-        Numero6.setHabitacionesContiguas(Numero9, Numero3, None, Numero5)
-        Numero7.setHabitacionesContiguas(None, Numero4, Numero8, None)
-        Numero8.setHabitacionesContiguas(None, Numero5, Numero9, Numero7)
-        Numero9.setHabitacionesContiguas(None, Numero6, None, Numero8)
+        self.Numero1.setHabitacionesContiguas(self.Numero4, None, self.Numero2, None)
+        self.Numero2.setHabitacionesContiguas(self.Numero5, None, self.Numero3, self.Numero1)
+        self.Numero3.setHabitacionesContiguas(self.Numero6, None, None, self.Numero2)
+        self.Numero4.setHabitacionesContiguas(self.Numero7, self.Numero1, self.Numero5, None)
+        self.Numero5.setHabitacionesContiguas(self.Numero8, self.Numero2, self.Numero6, self.Numero4)
+        self.Numero6.setHabitacionesContiguas(self.Numero9, self.Numero3, None, self.Numero5)
+        self.Numero7.setHabitacionesContiguas(None, self.Numero4, self.Numero8, None)
+        self.Numero8.setHabitacionesContiguas(None, self.Numero5, self.Numero9, self.Numero7)
+        self.Numero9.setHabitacionesContiguas(None, self.Numero6, None, self.Numero8)
 
         # Inicio de habitaciones de intruso y robot, el intruso inicia en la habitacion
         # 1 y el robot en Habitacion 9
 
-        intruso.setUbicacion(Numero1)
-        intruso.getUbicacion().setLuces(Ahorro.ENCENDIDO)
-        intruso.addHistorial()
-        robot.setUbicacion(Numero9)
-        robot.addHistorial()
-        
+        self.intruso.setUbicacion(self.Numero1)
+        self.intruso.getUbicacion().setLuces(Ahorro.ENCENDIDO)
+        self.intruso.addHistorial()
+        self.robot.setUbicacion(self.Numero9)
+        self.robot.addHistorial()
+
         # ciclo de turnos del jugador
-        while mascaraIronMan not in intruso.getObjectInventory() and intruso.getHealth() > 0:
+        """while mascaraIronMan not in intruso.getObjectInventory() and intruso.getHealth() > 0:
             huir = True
             print(intruso.ayudaJarvis())
 
@@ -327,4 +325,4 @@ class Main:
             
 
 if __name__ == "__main__":
-    Main.main()
+    Main.main()"""

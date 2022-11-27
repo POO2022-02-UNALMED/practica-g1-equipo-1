@@ -7,10 +7,6 @@ class Intruso(Individuo):
 
     _intrusos = []
 
-    @staticmethod
-    def getIntrusos():
-        return Intruso._intrusos
-
     _ATTACK = 10
 
     def __init__(self, health = 100, armor = 0, speed = 0):
@@ -20,6 +16,10 @@ class Intruso(Individuo):
         super().__init__(health, armor, speed)
         Intruso._intrusos.append(self)
 
+    @staticmethod
+    def getIntrusos():
+        return Intruso._intrusos
+    
     def mostrarArmas(self):
         mensaje = "Tienes estas armas:  "
         i = 1

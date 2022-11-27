@@ -8,6 +8,8 @@ from Main import Main
 
 class ventana2:
 
+    Main().__init__()
+
     def iniciarMenu(self):
         self.menuUsuario = Menu(self.window,relief=RAISED)
         self.archivo = Menu(self.menuUsuario,tearoff = 0)
@@ -18,7 +20,7 @@ class ventana2:
         self.archivo.add_command(label='Salir', command = self.cerrar)
         self.acciones.add_command(label='Moverte', command=self.moverte)
         self.acciones.add_command(label='Interactuar', command = self.interactuar)
-        self.acciones.add_command(label='Hablar', command = self.hablar)
+        self.acciones.add_command(label='Hablar con Jarvis', command = self.hablar)
         self.acciones.add_command(label='Cheats', command= self.cheats)
         self.ayuda.add_command(label='Acerca de', command=self.acercaDe)
 
@@ -70,8 +72,6 @@ Buena Suerte!'''
         self.iniciarMenu()
         self.iniciarFrames()
         self.window.mainloop()
-
-        Main.main()
 
     def cerrar(self):
         from ventana_inicio import ventana1
@@ -128,12 +128,12 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
 
         self.detalles.__setitem__('state','normal')
         self.detalles.delete('1.0','end-1c')
-        self.detalles.insert('1.0',Intruso.getIntrusos[0].habitacionesDisponibles())
+        self.detalles.insert('1.0',Intruso.getIntrusos()[0].ayudaJarvis())
         self.detalles.__setitem__('state','disabled')
 
         self.field.pack_forget()
         self.fm2.pack_forget()
-        self.field = FieldFrame(self.fm2,'movimiento',['Habitaciones Disponibles','Habitaciones Bloqueadas','A donde te mueves?'],'valores',['1','2',''],None)
+        self.field = FieldFrame(self.fm2,'movimiento',['Habitaciones Contiguas','Habitaciones Bloqueadas','A donde te mueves?'],'valores',[Intruso.getIntrusos()[0].habitacionesDisponibles()[0],Intruso.getIntrusos()[0].habitacionesDisponibles()[1],''],[False,False,True])
         self.field.pack(expand=True)
         self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
         self.fm2.grid_propagate(False)
@@ -143,12 +143,12 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
 
         self.detalles.__setitem__('state','normal')
         self.detalles.delete('1.0','end-1c')
-        self.detalles.insert('1.0','detalles interactuar aqui!')
+        self.detalles.insert('1.0',Intruso.getIntrusos()[0].ayudaJarvis())
         self.detalles.__setitem__('state','disabled')
 
         self.field.pack_forget()
         self.fm2.pack_forget()
-        self.field = FieldFrame(self.fm2,'interaccion',['Que deseas hacer?','Con que Objeto?'],'valores',['1','2'],None)
+        self.field = FieldFrame(self.fm2,'interaccion',['Que deseas hacer?','Con que Objeto?'],'valores',['','ninguno'],None)
         self.field.pack(expand=True)
         self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
         self.fm2.grid_propagate(False)
@@ -158,12 +158,12 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
 
         self.detalles.__setitem__('state','normal')
         self.detalles.delete('1.0','end-1c')
-        self.detalles.insert('1.0','detalles hablar aqui!')
+        self.detalles.insert('1.0',"Tus habilidades en Hacking te permiten tomar control de la IA Jarvis..." + "\nJ.A.R.V.I.S.: ¿En qué te puedo asistir?")
         self.detalles.__setitem__('state','disabled')
 
         self.field.pack_forget()
         self.fm2.pack_forget()
-        self.field = FieldFrame(self.fm2,'criterios',['Obtener informacion de:'],'valores',['1'],None)
+        self.field = FieldFrame(self.fm2,'criterios',['Obtener informacion de:'],'valores',['pista'],None)
         self.field.pack(expand=True)
         self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
         self.fm2.grid_propagate(False)
@@ -173,7 +173,7 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
 
         self.detalles.__setitem__('state','normal')
         self.detalles.delete('1.0','end-1c')
-        self.detalles.insert('1.0','detalles cheats aqui!')
+        self.detalles.insert('1.0','Espacio de Pruebas (SOLO DESARROLLADORES)')
         self.detalles.__setitem__('state','disabled')
 
         self.field.pack_forget()

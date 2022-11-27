@@ -22,14 +22,20 @@ class Individuo(Jarvis):
         disponibles.append(self.getUbicacion().getSur())
         disponibles.append(self.getUbicacion().getEste())
         disponibles.append(self.getUbicacion().getOeste())
-        mensaje = "Puedes moverte a la habitacion numero: "
-        mensaje2 = "Aun no puedes moverte a la habitacion numero: "
+        #mensaje = "Puedes moverte a la habitacion numero: "
+        #mensaje2 = "Aun no puedes moverte a la habitacion numero: "
+        msj = ''
+        msj2 = ''
+        l = []
         for Hab in disponibles:
-            if Hab is not None and Hab.isBloqueada():
-                mensaje2 += str(Hab.getNumero()) + " Porque esta Bloqueada "
-            if Hab is not None: 
-                mensaje += str(Hab.getNumero()) + " "
-        return mensaje+"\n"+mensaje2
+            if Hab is not None and not Hab.isBloqueada():
+                msj += str(Hab.getNumero()) + ' ' #+ " Porque esta Bloqueada "
+            elif Hab is not None: 
+                msj2 += str(Hab.getNumero()) + " "
+
+        l.append(msj)
+        l.append(msj2)
+        return l
 
     def habitacionesaDesbloquear(self):
         disponibles = []
