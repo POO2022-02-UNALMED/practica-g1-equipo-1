@@ -82,10 +82,10 @@ class ventana1:
 # Nombre de cada integrante
         self.label_P5 = Label(master=self.frame_P5, text='Luis Altamar:', font="Helvetica 14")
         self.label_P5.bind("<Button-1>", self.show_nombreIntegrante)
-        self.label_P5.pack(side=LEFT,anchor='w')
+        self.label_P5.pack(side=LEFT,anchor='w', padx=5)
         self.nombres = Label(master=self.frame_P5, text="Estudiante de Ing. de Sistemas \n4 semestre de avance \nProfesor de matematicas a medio tiempo", font="Helvetica 12", justify='left') #copiar y poner los nombres de cada uno con su pack
         self.nombres.bind("<Button-1>", self.show_nombreIntegrante)
-        self.nombres.pack()
+        self.nombres.pack(pady=5)
 
 
 # Control del cursor para cambio en hojas de vida
@@ -232,8 +232,8 @@ class ventana1:
         self.descripcion.pack_forget()
         self.label_aux.pack_forget()
         self.frame_P6.pack_forget()
-        self.label_P5.pack(side=LEFT,anchor='w')
-        self.nombres.pack()
+        self.label_P5.pack(side=LEFT,anchor='w',padx=5)
+        self.nombres.pack(pady=5)
         self.label_photo1['image'] = self.imgLuis1 
         self.label_photo2['image'] = self.imgLuis2
         self.label_photo3['image'] = self.imgLuis3
@@ -253,7 +253,7 @@ class ventana1:
         self.label_aux.pack(side=LEFT,anchor='w',padx=5)
         self.descripcion = Label(master=self.frame_P5, text='Estudiante de Ing. de Sistemas', font="Helvetica 12")
         self.descripcion.bind("<Button-1>", self.show_name2) 
-        self.descripcion.pack()
+        self.descripcion.pack(pady=5)
         
 
         self.frame_P6.pack_forget()
@@ -275,10 +275,10 @@ class ventana1:
         self.label_aux.pack_forget()
         self.label_aux = Label(master=self.frame_P5, text='Juan Jose:', font="Helvetica 14",)
         self.label_aux.bind("<Button-1>", self.show_name3)
-        self.label_aux.pack(side=LEFT,anchor='w') 
+        self.label_aux.pack(side=LEFT,anchor='w',padx=5) 
         self.descripcion = Label(master=self.frame_P5, text="Estudiante de Ciencias ...", font="Helvetica 12")
         self.descripcion.bind("<Button-1>", self.show_name3)
-        self.descripcion.pack()
+        self.descripcion.pack(pady=5)
 
         self.frame_P6.pack_forget()
         self.label_photo1['image'] = self.imgLuis2
@@ -298,10 +298,10 @@ class ventana1:
         self.label_aux.pack_forget()
         self.label_aux = Label(master=self.frame_P5, text='Juan Manuel:', font="Helvetica 14",)
         self.label_aux.bind("<Button-1>", self.show_name4)
-        self.label_aux.pack(side=LEFT,anchor='w')
+        self.label_aux.pack(side=LEFT,anchor='w',padx=5)
         self.descripcion = Label(master=self.frame_P5, text="Estudiante de Ing. de Sistemas", font="Helvetica 12")
         self.descripcion.bind("<Button-1>", self.show_name4)
-        self.descripcion.pack()
+        self.descripcion.pack(pady=5)
 
         self.frame_P6.pack_forget()
         self.label_photo1['image'] = self.imgLuis3
@@ -322,10 +322,10 @@ class ventana1:
         self.label_aux.pack_forget()
         self.label_aux = Label(master=self.frame_P5, text='Santiago:', font="Helvetica 14",)
         self.label_aux.bind("<Button-1>", self.show_names)
-        self.label_aux.pack(side=LEFT,anchor='w')
+        self.label_aux.pack(side=LEFT,anchor='w',padx=5)
         self.descripcion = Label(master=self.frame_P5, text="Estudiante de Ciencias ...", font="Helvetica 12")
         self.descripcion.bind("<Button-1>", self.show_names)
-        self.descripcion.pack()
+        self.descripcion.pack(pady=5)
 
         self.frame_P6.pack_forget()
         self.label_photo1['image'] = self.imgLuis2
