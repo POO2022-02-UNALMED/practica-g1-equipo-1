@@ -177,7 +177,7 @@ class FieldFrame(Frame):
                     i = '9'
                 self.actualizarDescripcion('Desbloqueaste la habitacion '+i+' con exito!')
             
-            elif self.getValue(0) == 'recojer':
+            elif self.getValue(0) == 'recoger':
                 self.actualizarDescripcion(Intruso.getIntrusos()[0].agarrar())
 
                 self.textInv.delete('1.0','end-1c')

@@ -239,7 +239,7 @@ class Main:
                             robot.mover(casa[robot.decidirDireccion() - 1]) # movimiento aleatorio
 
                 elif opcion == 2:
-                    print("¿Que deseas hacer?" + "\n1. Desbloquear una puerta." + "\n2. Recojer los objetos." + "\n3. Curar tu salud." + "\n4. Romper las luces.")
+                    print("¿Que deseas hacer?" + "\n1. Desbloquear una puerta." + "\n2. Recoger los objetos." + "\n3. Curar tu salud." + "\n4. Romper las luces.")
                     opcionIntec = int(input())
                     if opcionIntec == 1:
                         m = intruso.habitacionesaDesbloquear()
