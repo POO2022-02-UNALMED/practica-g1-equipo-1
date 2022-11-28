@@ -79,13 +79,13 @@ class ventana1:
         self.imgJuanPa4 = self.imgJuanPa4.subsample(2)
 
         self.imgJose1 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/jose1.png')
-        self.imgJose1 = self.imgJuanPa1.subsample(2)
+        self.imgJose1 = self.imgJose1.subsample(2)
         self.imgJose2 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/jose2.png')
-        self.imgJose2 = self.imgJuanPa2.subsample(2)
+        self.imgJose2 = self.imgJose2.subsample(2)
         self.imgJose3 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/jose3.png')
-        self.imgJose3 = self.imgJuanPa3.subsample(2)
+        self.imgJose3 = self.imgJose3.subsample(2)
         self.imgJose4 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/jose4.png')
-        self.imgJose4 = self.imgJuanPa4.subsample(2)
+        self.imgJose4 = self.imgJose4.subsample(2)
 
         
 
@@ -315,7 +315,7 @@ class ventana1:
         self.label_aux = Label(master=self.frame_P5, text='Juan Jose:', font="Helvetica 14",)
         self.label_aux.bind("<Button-1>", self.show_name3)
         self.label_aux.pack(side=LEFT,anchor='w',padx=5) 
-        self.descripcion = Label(master=self.frame_P5, text="Estudiante de Ing. de Sistemas \n4 semestre de avance \nProfesor de matematicas a medio tiempo", font="Helvetica 12")
+        self.descripcion = Label(master=self.frame_P5, text="Estudiante de Ing. de Sistemas \n4 semestre de avance \nSoy un buen comunicador", font="Helvetica 12")
         self.descripcion.bind("<Button-1>", self.show_name3)
         self.descripcion.pack(pady=5)
 
@@ -323,7 +323,7 @@ class ventana1:
         self.label_photo1['image'] = self.imgJose1
         self.label_photo2['image'] = self.imgJose2
         self.label_photo3['image'] = self.imgJose3
-        self.label_photo4['image'] = self.imgJose3
+        self.label_photo4['image'] = self.imgJose4
         self.frame_P6.pack()
 
         self.frame_P5.bind("<Button-1>", self.show_name3)
