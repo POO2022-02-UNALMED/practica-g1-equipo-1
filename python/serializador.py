@@ -18,21 +18,21 @@ import os
 
 class Serializador():
     
-    def serializar(lista, className):
-        def camino(className):
-            return os.path.join(pathlib.Path(__file__).parent.absolute(), "temp\\"+className+".txt")
-            
-        try:
-            picklefile = open(camino(className), 'wb')
-            pickle.dump(lista, picklefile)
-            picklefile.close()
-            
-        except:
-            print("Falla al serializar")
+    def serializar():
+        """ Método encargado de guardar los datos del
+            sistema al cerrar la app"""
 
-    def serializarTodo():
-        Serializador.serializar(Armas.getArmas(), "armas")
-        Serializador.serializar(Habitacion.getHabitaciones(), "habitaciones")
-        Serializador.serializar(Objetos.getObjetos(), "objetos")
-        Serializador.serializar(Intruso.getIntrusos(), "intrusos ")
-        Serializador.serializar(Robot.getRobots(), "robots")
+        datos = {
+                "armas": Armas.getArmas(),
+                "habitaciones": Habitacion.getHabitaciones(),
+                "objetos": Objetos.getObjetos(),
+                "intrusos ": Intruso.getIntrusos(), 
+                "robots": Robot.getRobots(), 
+                }
+
+        for archivo, dato in datos.items():
+            picklefile = open(os.path.join(pathlib.Path(__file__).parent.absolute(), f"temp\\{archivo}"),"wb")
+            pickle.dump(dato, picklefile)
+            picklefile.close()
+
+
