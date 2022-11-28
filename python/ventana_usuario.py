@@ -124,8 +124,8 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
     def acercaDe(self):
         msj = '''Desarrolladores:
         •Luis Altamar Romero
-        •
-        •
+        •Juan Pablo Gómez
+        •Juan Manuel Ortiz
         •
         •
         
