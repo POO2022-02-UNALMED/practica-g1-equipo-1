@@ -16,23 +16,23 @@ from Intruso import Intruso
 import pathlib
 import os
 
-class Serializador():
+
     
-    def serializar():
-        """ Método encargado de guardar los datos del
-            sistema al cerrar la app"""
+def serializar():
+    """ Método encargado de guardar los datos del
+        sistema al cerrar la app"""
 
-        datos = {
-                "armas": Armas.getArmas(),
-                "habitaciones": Habitacion.getHabitaciones(),
-                "objetos": Objetos.getObjetos(),
-                "intrusos ": Intruso.getIntrusos(), 
-                "robots": Robot.getRobots(), 
-                }
+    datos = {
+            "armas": Armas.getArmas(),
+            "habitaciones": Habitacion.getHabitaciones(),
+            "objetos": Objetos.getObjetos(),
+            "intrusos ": Intruso.getIntrusos(), 
+            "robots": Robot.getRobots(), 
+            }
 
-        for archivo, dato in datos.items():
-            picklefile = open(os.path.join(pathlib.Path(__file__).parent.absolute(), f"temp\\{archivo}"),"wb")
-            pickle.dump(dato, picklefile)
-            picklefile.close()
+    for archivo, dato in datos.items():
+        picklefile = open(os.path.join(pathlib.Path(__file__).parent.absolute(), f"temp\\{archivo}"),"wb")
+        pickle.dump(dato, picklefile)
+        picklefile.close()
 
 
