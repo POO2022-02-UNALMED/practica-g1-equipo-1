@@ -204,20 +204,6 @@ class ventana1:
         self.window.deiconify()
         self.window.destroy()
 
-    def venta():
-        pass
-
-    def dev():
-        pass
-
-    def ejec_contra():
-        pass
-
-    def fin_contra():
-        pass
-
-    def masivo():
-        pass
 
     #def inf():
     #    messagebox.showinfo(title="Definir info",
