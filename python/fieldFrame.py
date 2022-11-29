@@ -14,6 +14,7 @@ from Bot import Bot
 from Intruso import Intruso
 from Robot import Robot
 from Main import Main
+from excepciones.excepciones import CamposFaltantes, OpcionInvalida, ExcepcionMovimiento, ErrorTipoDeDato, ExcepcionInventario, ExcepcionObjetos
 
 class FieldFrame(Frame):
 
@@ -112,14 +113,14 @@ class FieldFrame(Frame):
                 self.label_map['image'] = self.map
                 
             self.label_map.grid(column=1, row=len(self._criterios)+1, padx = (10,10), pady = (10,10),sticky='nsew')   
-        elif self._tituloCriterios == 'interaccion' or self._tituloCriterios == 'Tu turno':
+        elif self._tituloCriterios == 'interaccion' or self._tituloCriterios == 'tu turno':
             labelanex= Label(self, text = 'Tu Inventario', font = ("Helvetica 14", 12),anchor=CENTER)
             labelanex.grid(column=0, row=len(self._criterios)+1, padx = (10,10), pady = (10,10),sticky='nsew')
 
             self.textInv = Text(master=self,width=20,height=5)
             self.textInv.grid(column=1, row=len(self._criterios)+1, padx = (10,10), pady = (10,10),sticky='nsew')
             self.textInv.insert('1.0',Intruso.getIntrusos()[0].mostrarArmas() + '\n' + Intruso.getIntrusos()[0].mostrarObjetos())
-
+        
         self.crearBotones(0,'Aceptar',self.comando)
         self.crearBotones(1,'Borrar',self.borrar)
     
@@ -139,160 +140,271 @@ class FieldFrame(Frame):
 
     def crearBotones(self, col, t, comando1):
         aceptar = Button(self, text=t, font = ("Helvetica 14", 12), fg = "white", bg = "#B1B1B1", command=comando1).grid(pady = 50, column = col, row = len(self._criterios)+2)
-
+    
+    def camposVacios(self,entrys):
+        for e in entrys:
+            if e.get() == '':
+                raise CamposFaltantes()
     def comando(self):
+        try:
+            self.camposVacios(self._elementos)
         
-        if self._tituloCriterios == 'movimiento':
-            #movimiento intruso
-            Intruso.getIntrusos()[0].mover(Habitacion.getHabitaciones()[int(self.getValue(2))-1])
+        
+            if self._tituloCriterios == 'movimiento':
+                #movimiento intruso
+                try:
+                    num = int(self.getValue(2))
+                except:
+                    raise ErrorTipoDeDato()
+                
+                hab = ['1','2','3','4','5','6','7','8','9']
+                if self.getValue(2) not in hab:
+                    raise OpcionInvalida()
+                
+                if self.getValue(2) not in Intruso.getIntrusos()[0].habitacionesDisponibles()[0]: 
+                    raise ExcepcionMovimiento()
 
-            #movimiento robot
-            if Robot.getRobots()[0].getHealth() > 0:
-                        Robot.getRobots()[0].apagarAlarma()
-                        Robot.getRobots()[0].escuchar(Habitacion.getHabitaciones())
-                        Robot.getRobots()[0].escanear()
-                        if Robot.getRobots()[0].isNextTo():
-                            Robot.getRobots()[0].mover(Robot.getRobots()[0].getGoingTo())
-                        elif Robot.getRobots()[0].isAware():
-                            #print(robot.buscar(casa).getNumero())
-                            Robot.getRobots()[0].mover(Robot.getRobots()[0].buscar(Habitacion.getHabitaciones())) # camino mas corto a la habitacion con alarma
-                        else:
-                            Robot.getRobots()[0].mover(Habitacion.getHabitaciones()[Robot.getRobots()[0].decidirDireccion() - 1]) # movimiento aleatorio
-            if Robot.getRobots()[0].getUbicacion() == Intruso.getIntrusos()[0].getUbicacion() and Robot.getRobots()[0].getHealth() > 0:
-                self._objeto.batalla()
-            else:
-                self._objeto.moverte()
+                Intruso.getIntrusos()[0].mover(Habitacion.getHabitaciones()[int(self.getValue(2))-1])
 
-        #interactuar
-        elif self._tituloCriterios == 'interaccion':
-            if self.getValue(0) == 'desbloquear':
-                if self.getValue(1) == 'llave azul' and '5' in Intruso.getIntrusos()[0].habitacionesDisponibles()[1]:
-                    Habitacion.getHabitaciones()[4].setBloqueada(False)
-                    i ='5'
-                elif self.getValue(1) == 'llave plateada' and '7' in Intruso.getIntrusos()[0].habitacionesDisponibles()[1]:
-                    Habitacion.getHabitaciones()[6].setBloqueada(False)
-                    i = '7'
-                elif self.getValue(1) == 'llave dorada' and '9' in Intruso.getIntrusos()[0].habitacionesDisponibles()[1]:
-                    Habitacion.getHabitaciones()[8].setBloqueada(False)
-                    i = '9'
-                self.actualizarDescripcion('Desbloqueaste la habitacion '+i+' con exito!')
-            
-            elif self.getValue(0) == 'recoger':
-                self.actualizarDescripcion(Intruso.getIntrusos()[0].agarrar())
-
-                self.textInv.delete('1.0','end-1c')
-                self.textInv.insert('1.0',Intruso.getIntrusos()[0].mostrarArmas() + '\n' + Intruso.getIntrusos()[0].mostrarObjetos())
-
-                for o in  Intruso.getIntrusos()[0].getObjectInventory():
-                    if o.getName() == "La mascara de Ironman":
-                        self._objeto.victoria()
-                        break
-
-            elif self.getValue(0) == 'curar':
-
-                for o in  Intruso.getIntrusos()[0].getObjectInventory():
-                    if o.getName() == self.getValue(1):
-                        o.usar(Intruso.getIntrusos()[0])
-                self.actualizarDescripcion("Te has curado, ahora tienes " + str(Intruso.getIntrusos()[0].getHealth()) + " puntos de vida.")
-            
-            elif self.getValue(0) == 'romper luces':
-                if self.getValue(1) == 'ninguno':
-                    self.actualizarDescripcion("Intentas romper las luces con tus manos, lamentablemente no tienes la fuerza suficiente para hacerlo")
-                elif self.getValue(1) == 'Martillo de Thor':
-                    Intruso.getIntrusos()[0].getUbicacion().setLuces(Ahorro.ROTO)
-                    self.actualizarDescripcion("Las luces de esta habitacion no se volveran a encender.")
-
-        #jarvis
-        elif self._tituloCriterios == 'criterios':   
-            if 'habitacion' in self.getValue(0):
-                e = self.getValue(0).split()
-                self.actualizarDescripcion(Habitacion.getHabitaciones()[int(e[1]) - 1].ayudaJarvis())
-            elif self.getValue(0) == 'robot':
-                self.actualizarDescripcion(Robot.getRobots()[0].ayudaJarvis())
-            elif self.getValue(0) == 'apagar luces':
-                if Intruso.getIntrusos()[0].getUbicacion().getLuces() is not  Ahorro.ROTO:
-                    Intruso.getIntrusos()[0].getUbicacion().setLuces(Ahorro.APAGADO)
-                    self.actualizarDescripcion("J.A.R.V.I.S.: Luces apagadas.")
+                #movimiento robot
+                if Robot.getRobots()[0].getHealth() > 0:
+                            Robot.getRobots()[0].apagarAlarma()
+                            Robot.getRobots()[0].escuchar(Habitacion.getHabitaciones())
+                            Robot.getRobots()[0].escanear()
+                            if Robot.getRobots()[0].isNextTo():
+                                Robot.getRobots()[0].mover(Robot.getRobots()[0].getGoingTo())
+                            elif Robot.getRobots()[0].isAware():
+                                #print(robot.buscar(casa).getNumero())
+                                Robot.getRobots()[0].mover(Robot.getRobots()[0].buscar(Habitacion.getHabitaciones())) # camino mas corto a la habitacion con alarma
+                            else:
+                                Robot.getRobots()[0].mover(Habitacion.getHabitaciones()[Robot.getRobots()[0].decidirDireccion() - 1]) # movimiento aleatorio
+                if Robot.getRobots()[0].getUbicacion() == Intruso.getIntrusos()[0].getUbicacion() and Robot.getRobots()[0].getHealth() > 0:
+                    self._objeto.batalla()
                 else:
-                    self.actualizarDescripcion("J.A.R.V.I.S.: Las luces ya estan rotas.")
-            elif self.getValue(0) == 'pista':
-                opcion = Main.lanzarDados(10)
-                if opcion < 4:
-                    self.actualizarDescripcion(Jarvis.PISTA1)
-                elif opcion < 6:
-                    self.actualizarDescripcion(Jarvis.PISTA2)
-                elif opcion < 8:
-                    self.actualizarDescripcion(Jarvis.PISTA3)
-                elif opcion < 10:
-                    self.actualizarDescripcion(Jarvis.PISTA4)
-                else:
-                    self.actualizarDescripcion(Jarvis.PISTA5)
-            elif self.getValue(0) == 'historial':
-                h = ''
-                for linea in Individuo.getHistorial():
-                    h += linea + '\n'
-                self.actualizarDescripcion(h)
-        #cheatss                    
-        elif self._tituloCriterios == 'codigo': 
-            if self.getValue(0) == '100':
-                Robot.getRobots()[0].setUbicacion(Intruso.getIntrusos()[0].getUbicacion())
-                self._objeto.batalla("CHEAT: TRAJISTE AL ROBOT A ESTA HABITACION.\n")
-            elif self.getValue(0) == '300':
-                Robot.getRobots()[0].setHealth(0)
-                messagebox.showinfo(title="CHEAT", message="CHEAT: EL ROBOT SE AUTODESTRUYO.", detail="")
-            elif self.getValue(0) == '400':
-                Intruso.getIntrusos()[0].setHealth(0)
-                messagebox.showinfo(title="CHEAT", message="CHEAT: FORZASTE GAME OVER.", detail="")
-                self._objeto.derrota()
-            elif self.getValue(0) == '500':
-                messagebox.showinfo(title="CHEAT", message="CHEAT: FORZASTE LA VICTORIA.", detail="")
-                self._objeto.victoria()
-            elif self.getValue(0) == '600':
-                Intruso.getIntrusos()[0].getUbicacion().setAlarma(Ahorro.ENCENDIDO)
-                messagebox.showinfo(title="CHEAT", message="CHEAT: ACTIVASTE LA ALARMA.", detail="")
-                self._objeto.moverte()
-                    
-        elif self._tituloCriterios == 'tu turno': 
-            huir = False
-            if self.getValue(0) == 'atacar':
-                dados = Main.lanzarDados(5)
-                if self.getValue(1) == 'ninguno' and dados >= Robot.getRobots()[0].getArmor():
-                    Intruso.getIntrusos()[0].atacar(Robot.getRobots()[0])
-                    m = "Le diste un puño al robot, probablemente te dolió mas a ti que a él.\nTe sobas la mano."
-                elif self.getValue(1) == 'Martillo de Thor' and dados >= Robot.getRobots()[0].getArmor():
-                    Intruso.getIntrusos()[0].atacar(Robot.getRobots()[0], Intruso.getIntrusos()[0].getWeaponInventory()[0].getBonusDamage())
-                    m = "Atacaste al robot exitosamente"
-                elif dados < Robot.getRobots()[0].getArmor():
-                    m = "El Robot bloqueo tu ataque!"
-            elif self.getValue(0) == 'bloquear':
-                m = "Tomas una posición defensiva y te preparas para recibir el ataque"
-                Intruso.getIntrusos()[0].setArmor(3)
-            elif self.getValue(0) == 'usar':
-                for o in  Intruso.getIntrusos()[0].getObjectInventory():
-                    if o.getName() == self.getValue(1):
-                        if o.isShocker():
-                            o.usar(Robot.getRobots()[0])
-                            m = "Aturdiste al robot."
-                        else:
+                    self._objeto.moverte()
+
+            #interactuar
+            elif self._tituloCriterios == 'interaccion':
+                if self.getValue(0) == 'desbloquear':
+                    if self.getValue(1) == 'Llave azul' and '5' in Intruso.getIntrusos()[0].habitacionesDisponibles()[1] and Objetos.getObjetos()[0] in Intruso.getIntrusos()[0].getObjectInventory():
+                        Habitacion.getHabitaciones()[4].setBloqueada(False)
+                        i ='5'
+                    elif self.getValue(1) == 'Llave plateada' and '7' in Intruso.getIntrusos()[0].habitacionesDisponibles()[1] and Objetos.getObjetos()[1] in Intruso.getIntrusos()[0].getObjectInventory():
+                        Habitacion.getHabitaciones()[6].setBloqueada(False)
+                        i = '7'
+                    elif self.getValue(1) == 'Llave dorada' and '9' in Intruso.getIntrusos()[0].habitacionesDisponibles()[1] and Objetos.getObjetos()[2] in Intruso.getIntrusos()[0].getObjectInventory():
+                        Habitacion.getHabitaciones()[8].setBloqueada(False)
+                        i = '9'
+                    else:
+                        for o in  Intruso.getIntrusos()[0].getWeaponInventory():
+                            if o.getName() == self.getValue(1):
+                                raise ExcepcionObjetos()
+                        for o in  Intruso.getIntrusos()[0].getObjectInventory():
+                            if o.getName() == self.getValue(1):
+                                raise ExcepcionObjetos()
+                        if self.getValue(1)=='ninguno':
+                            raise ExcepcionObjetos()
+                        raise ExcepcionInventario()
+                    self.actualizarDescripcion('Desbloqueaste la habitacion '+i+' con exito!')
+                
+                elif self.getValue(0) == 'recoger':
+                    self.actualizarDescripcion(Intruso.getIntrusos()[0].agarrar())
+
+                    self.textInv.delete('1.0','end-1c')
+                    self.textInv.insert('1.0',Intruso.getIntrusos()[0].mostrarArmas() + '\n' + Intruso.getIntrusos()[0].mostrarObjetos())
+
+                    for o in  Intruso.getIntrusos()[0].getObjectInventory():
+                        if o.getName() == "La mascara de Ironman":
+                            self._objeto.victoria()
+                            break
+
+                elif self.getValue(0) == 'curar':
+                    esta = False
+                    for o in  Intruso.getIntrusos()[0].getWeapontInventory():
+                        if o.getName() == self.getValue(1):
+                            raise ExcepcionObjetos()
+                    for o in  Intruso.getIntrusos()[0].getObjectInventory():
+                        if o.getName() == self.getValue(1):
+                            if o.getBonusHealth() == 0:
+                                raise ExcepcionObjetos()
                             o.usar(Intruso.getIntrusos()[0])
-                            m = "Recibiste la bonificacion del objeto seleccionado."
-            elif self.getValue(0) == 'huir':
-                if Intruso.getIntrusos()[0].getSpeed() + random.randint(1,5) >= 4:
-                    huir = True
-                    m = "Tu agilidad te permitió saltar fuera del combate."
+                            esta = True
+                    if not esta and not self.getValue(1)=='ninguno':
+                        raise ExcepcionInventario()
+                    else:
+                        raise ExcepcionObjetos()
+                    self.actualizarDescripcion("Te has curado, ahora tienes " + str(Intruso.getIntrusos()[0].getHealth()) + " puntos de vida.")
+                
+                elif self.getValue(0) == 'romper luces':
+                    if self.getValue(1) == 'ninguno':
+                        self.actualizarDescripcion("Intentas romper las luces con tus manos, lamentablemente no tienes la fuerza suficiente para hacerlo")
+                    elif self.getValue(1) == 'Martillo de Thor':
+                        Intruso.getIntrusos()[0].getUbicacion().setLuces(Ahorro.ROTO)
+                        self.actualizarDescripcion("Las luces de esta habitacion no se volveran a encender.")
+                    else:
+                        esta = False
+                        for o in  Intruso.getIntrusos()[0].getObjectInventory():
+                            if o.getName() == self.getValue(1):
+                                esta = True
+                                raise ExcepcionObjetos()
+                        if not esta and not self.getValue(1)=='ninguno':
+                            raise ExcepcionInventario()
                 else:
-                    m = "Intentas huir, pero el robot te cierra el paso, mas suerte la proxima vez."
+                    ni = True
+                    try:
+                        num = int(self.getValue(0))
+                    except:
+                        ni = False
+                    if ni:
+                        raise ErrorTipoDeDato()
 
-            messagebox.showinfo(title="Ataque", message=m, detail="")
+                    raise OpcionInvalida()
+            #jarvis
+            elif self._tituloCriterios == 'criterios':   
+                if 'habitacion' in self.getValue(0):
+                    e = self.getValue(0).split()
+                    if len(e) != 2:
+                        raise OpcionInvalida()
+                    self.actualizarDescripcion(Habitacion.getHabitaciones()[int(e[1]) - 1].ayudaJarvis())
+                elif self.getValue(0) == 'robot':
+                    self.actualizarDescripcion(Robot.getRobots()[0].ayudaJarvis())
+                elif self.getValue(0) == 'apagar luces':
+                    if Intruso.getIntrusos()[0].getUbicacion().getLuces() is not  Ahorro.ROTO:
+                        Intruso.getIntrusos()[0].getUbicacion().setLuces(Ahorro.APAGADO)
+                        self.actualizarDescripcion("J.A.R.V.I.S.: Luces apagadas.")
+                    else:
+                        self.actualizarDescripcion("J.A.R.V.I.S.: Las luces ya estan rotas.")
+                elif self.getValue(0) == 'pista':
+                    opcion = Main.lanzarDados(10)
+                    if opcion < 4:
+                        self.actualizarDescripcion(Jarvis.PISTA1)
+                    elif opcion < 6:
+                        self.actualizarDescripcion(Jarvis.PISTA2)
+                    elif opcion < 8:
+                        self.actualizarDescripcion(Jarvis.PISTA3)
+                    elif opcion < 10:
+                        self.actualizarDescripcion(Jarvis.PISTA4)
+                    else:
+                        self.actualizarDescripcion(Jarvis.PISTA5)
+                elif self.getValue(0) == 'historial':
+                    h = ''
+                    for linea in Individuo.getHistorial():
+                        h += linea + '\n'
+                    self.actualizarDescripcion(h)
+                else:
+                    ni = True
+                    try:
+                        num = int(self.getValue(0))
+                    except:
+                        ni = False
+                    if ni:
+                        raise ErrorTipoDeDato()
+                    raise OpcionInvalida()
+            #cheatss                    
+            elif self._tituloCriterios == 'codigo': 
+                if self.getValue(0) == '100':
+                    Robot.getRobots()[0].setUbicacion(Intruso.getIntrusos()[0].getUbicacion())
+                    self._objeto.batalla("CHEAT: TRAJISTE AL ROBOT A ESTA HABITACION.\n")
+                elif self.getValue(0) == '300':
+                    Robot.getRobots()[0].setHealth(0)
+                    messagebox.showinfo(title="CHEAT", message="CHEAT: EL ROBOT SE AUTODESTRUYO.", detail="")
+                elif self.getValue(0) == '400':
+                    Intruso.getIntrusos()[0].setHealth(0)
+                    messagebox.showinfo(title="CHEAT", message="CHEAT: FORZASTE GAME OVER.", detail="")
+                    self._objeto.derrota()
+                elif self.getValue(0) == '500':
+                    messagebox.showinfo(title="CHEAT", message="CHEAT: FORZASTE LA VICTORIA.", detail="")
+                    self._objeto.victoria()
+                elif self.getValue(0) == '600':
+                    Intruso.getIntrusos()[0].getUbicacion().setAlarma(Ahorro.ENCENDIDO)
+                    messagebox.showinfo(title="CHEAT", message="CHEAT: ACTIVASTE LA ALARMA.", detail="")
+                    self._objeto.moverte()
+                else:
+                    try:
+                        num = int(self.getValue(0))
+                    except:
+                        raise ErrorTipoDeDato()
+                    raise OpcionInvalida()
+                        
+            elif self._tituloCriterios == 'tu turno': 
+                huir = False
+                if self.getValue(0) == 'atacar':
+                    dados = Main.lanzarDados(5)
+                    esta = False
+                    for o in  Intruso.getIntrusos()[0].getWeaponInventory():
+                        if o.getName() == self.getValue(1):
+                            esta = True
+                    for o in  Intruso.getIntrusos()[0].getObjectInventory():
+                        if o.getName() == self.getValue(1):
+                            raise ExcepcionObjetos()
+                            esta = True
+                    if not esta and not self.getValue(1)=='ninguno':
+                        raise ExcepcionInventario()
+                    if self.getValue(1) == 'ninguno' and dados >= Robot.getRobots()[0].getArmor():
+                        Intruso.getIntrusos()[0].atacar(Robot.getRobots()[0])
+                        m = "Le diste un puño al robot, probablemente te dolió mas a ti que a él.\nTe sobas la mano."
+                    elif self.getValue(1) == 'Martillo de Thor' and dados >= Robot.getRobots()[0].getArmor():
+                        Intruso.getIntrusos()[0].atacar(Robot.getRobots()[0], Intruso.getIntrusos()[0].getWeaponInventory()[0].getBonusDamage())
+                        m = "Atacaste al robot exitosamente"
+                    elif dados < Robot.getRobots()[0].getArmor():
+                        m = "El Robot bloqueo tu ataque!"
+                elif self.getValue(0) == 'bloquear':
+                    m = "Tomas una posición defensiva y te preparas para recibir el ataque"
+                    Intruso.getIntrusos()[0].setArmor(3)
+                elif self.getValue(0) == 'usar':
+                    esta = False
+                    if self.getValue(1) == 'Martillo de Thor' or self.getValue(1)=='ninguno':
+                        raise ExcepcionObjetos()
+                    for o in  Intruso.getIntrusos()[0].getObjectInventory():
+                        if o.getName() == self.getValue(1):
+                            esta = True
+                            if o.isShocker():
+                                o.usar(Robot.getRobots()[0])
+                                m = "Aturdiste al robot."
+                            elif o.getBonusHealth() != 0 or o.getBonusArmor() != 0:
+                                o.usar(Intruso.getIntrusos()[0])
+                                m = "Recibiste la bonificacion del objeto seleccionado."
+                            else:
+                                raise ExcepcionObjetos()
+                        if not esta:
+                            raise ExcepcionInventario()
+                elif self.getValue(0) == 'huir':
+                    if Intruso.getIntrusos()[0].getSpeed() + random.randint(1,5) >= 4:
+                        huir = True
+                        m = "Tu agilidad te permitió saltar fuera del combate."
+                    else:
+                        m = "Intentas huir, pero el robot te cierra el paso, mas suerte la proxima vez."
+                else:
+                    ni = True
+                    try:
+                        num = int(self.getValue(0))
+                    except:
+                        ni = False
+                    if ni:
+                        raise ErrorTipoDeDato()
+                    raise OpcionInvalida()
+                messagebox.showinfo(title="Ataque", message=m, detail="")
 
-            if huir:
-                self._objeto.moverte()
-            elif Robot.getRobots()[0].getHealth() > 0:
-                self._objeto.batalla()
-            else:
-                messagebox.showinfo(title="Combate", message="Destruiste al robot, ahora solo falta obtener la mascara.", detail="")
-                self._objeto.moverte()
-
+                if huir:
+                    self._objeto.moverte()
+                elif Robot.getRobots()[0].getHealth() > 0:
+                    self._objeto.batalla()
+                else:
+                    messagebox.showinfo(title="Combate", message="Destruiste al robot, ahora solo falta obtener la mascara.", detail="")
+                    self._objeto.moverte()
+        
+        except CamposFaltantes as e:
+            messagebox.showerror(title='Campos Vacios', message= e)
+        except ErrorTipoDeDato as e:
+            messagebox.showerror(title='Error Tipo de Dato', message= e)
+        except OpcionInvalida as e:
+            messagebox.showerror(title='Opcion Invalida', message= e)
+        except ExcepcionMovimiento as e:
+            messagebox.showerror(title='Error Movimiento', message= e)
+        except ExcepcionInventario as e:
+            messagebox.showerror(title='Error de Inventario', message= e)
+        except ExcepcionObjetos as e:
+            messagebox.showerror(title='Error de Objeto', message= e)
 
                 
             

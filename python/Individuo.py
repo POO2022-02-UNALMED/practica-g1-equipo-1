@@ -25,7 +25,7 @@ class Individuo(Jarvis):
         #mensaje = "Puedes moverte a la habitacion numero: "
         #mensaje2 = "Aun no puedes moverte a la habitacion numero: "
         msj = ''
-        msj2 = ''
+        msj2 = ' '
         l = []
         for Hab in disponibles:
             if Hab is not None and not Hab.isBloqueada():

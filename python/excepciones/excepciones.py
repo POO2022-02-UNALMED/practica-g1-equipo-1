@@ -38,7 +38,7 @@ class ErrorTipoDeDato(ExcepcionC1): #ingresas un tipo de dato diferente al que s
 
 class ExcepcionMovimiento(ExcepcionC2): #te intentas mover a una habitacion no disponible
     def __init__(self):
-        super().__init__("Esta habitacion no existe o no esta disponible.")
+        super().__init__("Esta habitacion no esta disponible para ir en estos momentos.")
 
 class OpcionInvalida(ExcepcionC2): #seleccionas una opcion no valida en el menu
     def __init__(self):
