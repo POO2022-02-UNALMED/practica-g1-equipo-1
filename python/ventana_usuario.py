@@ -135,8 +135,8 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
         •Luis Altamar Romero
         •Juan Pablo Gómez
         •Juan Manuel Ortiz
-        •
-        •
+        •Juan José Echavarria
+        •Santiago Molina
         
         '''
         messagebox.showinfo(title="Acerca de", message=msj, detail="Universidad Nacional De Colombia")
