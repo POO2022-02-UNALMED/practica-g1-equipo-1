@@ -51,8 +51,17 @@ class ventana2:
         self.titulo = StringVar() 
         self.titulo.set('La Aventura Ha Comenzado')
         Label(self.tituloFrame, textvariable=self.titulo, font=("Courier", 20),relief='solid',pady=2).pack(expand=True)
-        self.field = Label(master = self.fm2, text='Field frame here',  bg="blue",  fg="white", font=("Courier", 20))
-        self.field.pack(expand=True)
+        # self.field = Label(master = self.fm2, text='Field frame here',  bg="blue",  fg="white", font=("Courier", 20))
+        # self.field.pack(expand=True)
+
+        self.imginicio = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/welcome.png')
+        #self.imgvictory= self.imgvictory.subsample(2)
+
+    
+        self.field = Label(master = self.fm2)
+        self.field['image'] = self.imginicio
+        self.field.pack(fill='both',expand=True)
+        self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
         
         msj='''Tu objetivo es obtener un objeto (la máscara de Iron Man) en una casa de 3x3 habitaciones mientras un robot vigilante intenta capturarte. 
 Cuando hayas logrado robar la máscara de Iron Man o cuando tu vida llegue cero termina el juego (ganas o pierdes respectivamente).
