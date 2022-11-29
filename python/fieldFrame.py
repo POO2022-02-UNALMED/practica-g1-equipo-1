@@ -220,7 +220,7 @@ class FieldFrame(Frame):
 
                 elif self.getValue(0) == 'curar':
                     esta = False
-                    for o in  Intruso.getIntrusos()[0].getWeapontInventory():
+                    for o in  Intruso.getIntrusos()[0].getWeaponInventory():
                         if o.getName() == self.getValue(1):
                             raise ExcepcionObjetos()
                     for o in  Intruso.getIntrusos()[0].getObjectInventory():
