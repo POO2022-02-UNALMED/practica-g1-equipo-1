@@ -70,7 +70,7 @@ Buena Suerte!'''
         self.window.title('Escape Room Game')
         self.window.option_add('*tearOff', FALSE)
         self.window.grid_rowconfigure(0, weight=1, uniform="rows_g1")
-        self.window.grid_rowconfigure(1, weight=4, uniform="rows_g1")
+        self.window.grid_rowconfigure(1, weight=1, uniform="rows_g1")
         self.window.grid_rowconfigure(2, weight=12, uniform="rows_g1")
         self.window.grid_columnconfigure(0, weight = 1, uniform="cols_g1")
         self.window.grid_columnconfigure(1, weight=5,  uniform="cols_g1")
@@ -144,7 +144,7 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
         self.fm2.pack_forget()
         self.field = FieldFrame(self.fm2,'movimiento',['Habitaciones Disponibles','Habitaciones Bloqueadas','A donde te mueves?'],'valores',[Intruso.getIntrusos()[0].habitacionesDisponibles()[0],Intruso.getIntrusos()[0].habitacionesDisponibles()[1],''],[False,False,True],self)
         self.field.pack(expand=True)
-        self.fm2.grid(row=2, column=2,columnspan=0, sticky='nsew')
+        self.fm2.grid(row=2, column=2, sticky='nsew')
         self.fm2.grid_propagate(False)
 
     def interactuar(self):
@@ -160,7 +160,7 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
         self.field = FieldFrame(self.fm2,'interaccion',['Que deseas hacer?','Con que Objeto?'],'valores',['','ninguno'],None,self)
         self.field.pack(expand=True)
         
-        self.fm2.grid(row=2, column=2,columnspan=0, sticky='nsew')
+        self.fm2.grid(row=2, column=2, sticky='nsew')
         # self.fm2.grid_columnconfigure(0, weight=1)
         # self.fm2.grid_propagate(False)
 
@@ -176,7 +176,7 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
         self.fm2.pack_forget()
         self.field = FieldFrame(self.fm2,'criterios',['Obtener informacion de:'],'valores',['pista'],None,self)
         self.field.pack(expand=True)
-        self.fm2.grid(row=2, column=2,columnspan=0, sticky='nsew')
+        self.fm2.grid(row=2, column=2 ,sticky='nsew')
         self.fm2.grid_propagate(False)
 
     def cheats(self):
@@ -191,7 +191,7 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
         self.fm2.pack_forget()
         self.field = FieldFrame(self.fm2,'codigo',['Ingrese su codigo'],'valores',[''],None,self)
         self.field.pack(expand=True)
-        self.fm2.grid(row=2, column=2,columnspan=0, sticky='nsew')
+        self.fm2.grid(row=2, column=2, sticky='nsew')
         self.fm2.grid_propagate(False)
 
     def batalla(self,s = ''):
@@ -265,7 +265,7 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
             self.fm2.pack_forget()
             self.field = FieldFrame(self.fm2,'tu turno',['Que desea hacer?','Seleccione un objeto'],'valores',['','ninguno'],None,self)
             self.field.pack(expand=True)
-            self.fm2.grid(row=2, column=2,columnspan=0, sticky='nsew')
+            self.fm2.grid(row=2, column=2, sticky='nsew')
             self.fm2.grid_propagate(False)
     
     def victoria(self):
@@ -296,7 +296,7 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
         self.fm2.pack_forget()
         self.field = Label(master = self.fm2, text='PANTALLA DE GAME OVER',  bg="blue",  fg="white", font=("Courier", 20))
         self.field.pack(expand=True)
-        self.fm2.grid(row=2, column=2,columnspan=0, sticky='nsew')
+        self.fm2.grid(row=2, column=2, sticky='nsew')
         self.fm2.grid_propagate(False)
 
     def getFm2(self):
