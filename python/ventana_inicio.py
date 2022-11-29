@@ -334,7 +334,7 @@ class ventana1:
         self.label_aux = Label(master=self.frame_P5, text='Juan Manuel:', font="Helvetica 14",)
         self.label_aux.bind("<Button-1>", self.show_name4)
         self.label_aux.pack(side=LEFT,anchor='w',padx=5)
-        self.descripcion = Label(master=self.frame_P5, text="Estudiante y a veces no de Ing. de Sistemas\n Me gusta la piratería, los doritos y  hacer chistes ", font="Helvetica 12")
+        self.descripcion = Label(master=self.frame_P5, text="Estudiante y a veces no de Ing. de Sistemas \n Me gusta la piratería, los doritos y  hacer chistes.", font="Helvetica 11")
         self.descripcion.bind("<Button-1>", self.show_name4)
         self.descripcion.pack(pady=5)
 

@@ -103,23 +103,23 @@ Moverte:
 • Puedes cambiar de ubicación a otra habitación disponible seleccionando el numero de la habitación.
 
 Interactuar:
-• Desbloquear: desbloquea una habitación adyacente (si tienes la llave en tu inventario).
-• Recoger: recoge todos los objetos de la habitación actual.
-• Curar: eliges el objeto con el cual deseas curar tu salud y te curas.
-• Romper luces: rompes las luces de la habitación actual (requiere un arma).
+• desbloquear: desbloquea una habitación adyacente (si tienes la llave en tu inventario).
+• recoger: recoge todos los objetos de la habitación actual.
+• curar: eliges el objeto con el cual deseas curar tu salud y te curas.
+• romper luces: rompes las luces de la habitación actual (requiere un arma).
 
 Hablar con Jarvis:
-• Habitacion i: dependiendo la habitación que le pidas te muestra cuantos objetos hay en la habitación y si tu o el robot están ahí.
-• Robot: te muestra en que habitación esta el robot, sus puntos de vida y si nota o no tu presencia.
-• Apagar luces: Las luces de la habitación se apagan.
-• Pista: te muestra una pista aleatoria.
-• Historial: te muestra el historial de movimientos
+• habitacion i: dependiendo la habitación que le pidas te muestra cuantos objetos hay en la habitación y si tu o el robot están ahí.
+• robot: te muestra en que habitación esta el robot, sus puntos de vida y si nota o no tu presencia.
+• apagar luces: Las luces de la habitación se apagan.
+• pista: te muestra una pista aleatoria.
+• historial: te muestra el historial de movimientos
 
 En Batalla:
-• Atacar: atacas al robot con o sin armas.
-• Bloquear: obtienes una bonificación de armadura hasta tu siguiente turno.
-• Usar: usas un objeto de tu inventario, ya sea para aturdir al robot, bloquear o para curarte.
-• Huir: tienes una probabilidad para terminar el combate y continuar con el juego.
+• atacar: atacas al robot con o sin armas.
+• bloquear: obtienes una bonificación de armadura hasta tu siguiente turno.
+• usar: usas un objeto de tu inventario, ya sea para aturdir al robot, bloquear o para curarte.
+• huir: tienes una probabilidad para terminar el combate y continuar con el juego.
 
 CHEATS: esto nos ayudara a probar ciertas funcionalidades
 • 100: fuerza batalla con robot
