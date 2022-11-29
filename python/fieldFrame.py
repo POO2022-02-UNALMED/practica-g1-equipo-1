@@ -236,9 +236,13 @@ class FieldFrame(Frame):
                     self.actualizarDescripcion("Te has curado, ahora tienes " + str(Intruso.getIntrusos()[0].getHealth()) + " puntos de vida.")
                 
                 elif self.getValue(0) == 'romper luces':
+                    s = False
+                    for o in  Intruso.getIntrusos()[0].getObjectInventory():
+                        if o.getName() == 'Martillo de Thor':
+                            s = True
                     if self.getValue(1) == 'ninguno':
                         self.actualizarDescripcion("Intentas romper las luces con tus manos, lamentablemente no tienes la fuerza suficiente para hacerlo")
-                    elif self.getValue(1) == 'Martillo de Thor':
+                    elif self.getValue(1) == 'Martillo de Thor' and s:
                         Intruso.getIntrusos()[0].getUbicacion().setLuces(Ahorro.ROTO)
                         self.actualizarDescripcion("Las luces de esta habitacion no se volveran a encender.")
                     else:
