@@ -133,6 +133,9 @@ class Main:
         self.robot.setUbicacion(self.Numero9)
         self.robot.addHistorial()
 
+        #serials
+
+
         # ciclo de turnos del jugador
         """while mascaraIronMan not in intruso.getObjectInventory() and intruso.getHealth() > 0:
             huir = True

@@ -2,8 +2,12 @@ import os.path
 from tkinter import *
 from tkinter import messagebox
 from ventana_usuario import ventana2
+from deserializador import deserializar
+from serializador import serializar
 
 class ventana1:
+
+    #deserializador.deserializar()
 
     def __init__(self):
         self.window = Tk()
