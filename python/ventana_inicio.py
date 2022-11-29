@@ -86,6 +86,15 @@ class ventana1:
         self.imgJose3 = self.imgJose3.subsample(2)
         self.imgJose4 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/jose4.png')
         self.imgJose4 = self.imgJose4.subsample(2)
+        
+        self.imgsanti1 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/santi1.png')
+        self.imgsanti1 = self.imgsanti1.subsample(2)
+        self.imgsanti2 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/santi2.png')
+        self.imgsanti2 = self.imgsanti2.subsample(2)
+        self.imgsanti3 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/santi3.png')
+        self.imgsanti3 = self.imgsanti3.subsample(2)
+        self.imgsanti4 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/santi4.png')
+        self.imgsanti4 = self.imgsanti4.subsample(2)
 
         
 
@@ -359,18 +368,18 @@ class ventana1:
         self.nombres.pack_forget()
         self.label_P5.pack_forget()
         self.label_aux.pack_forget()
-        self.label_aux = Label(master=self.frame_P5, text='Santiago:', font="Helvetica 14",)
+        self.label_aux = Label(master=self.frame_P5, text='Santiago:', font="Helvetica 12",)
         self.label_aux.bind("<Button-1>", self.show_names)
         self.label_aux.pack(side=LEFT,anchor='w',padx=5)
-        self.descripcion = Label(master=self.frame_P5, text="Estudiante de Ciencias ...", font="Helvetica 12")
+        self.descripcion = Label(master=self.frame_P5, text="Estudiante de Ing. de Sistemas \n5 semestre de avance \nSoy un hombre dedicado en lo que me gusta", font="Helvetica 12")
         self.descripcion.bind("<Button-1>", self.show_names)
         self.descripcion.pack(pady=5)
 
         self.frame_P6.pack_forget()
-        self.label_photo1['image'] = self.imgLuis2
-        self.label_photo2['image'] = self.imgLuis4
-        self.label_photo3['image'] = self.imgLuis1
-        self.label_photo4['image'] = self.imgLuis3
+        self.label_photo1['image'] = self.imgsanti2
+        self.label_photo2['image'] = self.imgsanti4
+        self.label_photo3['image'] = self.imgsanti1
+        self.label_photo4['image'] = self.imgsanti3
         self.frame_P6.pack()
 
         self.frame_P5.bind("<Button-1>", self.show_names)      
