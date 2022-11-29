@@ -96,6 +96,7 @@ class ventana1:
         self.imgsanti4 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/santi4.png')
         self.imgsanti4 = self.imgsanti4.subsample(2)
 
+
         
 
         self.label_img = Label(master=self.frame_P4)

@@ -276,10 +276,14 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
         self.detalles.insert('1.0',"Despues de un arduo trabajo conseguiste lo que buscabas, la mascara de Ironman te permitio abrir un hueco en la pared y huir." + "\nPor fin podras añadir esto a tu mesa de trofeos, tu proximo objetivo: La Capa de Dr Strange... pero eso sera en otra ocasion." + "\nBuen trabajo y Gracias por Jugar!!!")
         self.detalles.__setitem__('state','disabled')
 
+        self.imgvictory = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/winner.gif')
+        #self.imgvictory= self.imgvictory.subsample(2)
+
         self.field.pack_forget()
         self.fm2.pack_forget()
-        self.field = Label(master = self.fm2, text='PANTALLA DE VICTORIA',  bg="blue",  fg="white", font=("Courier", 20))
-        self.field.pack(expand=True)
+        self.field = Label(master = self.fm2)
+        self.field['image'] = self.imgvictory
+        self.field.pack(fill='both',expand=True)
         self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
         self.fm2.grid_propagate(False)
         
@@ -292,11 +296,21 @@ CHEATS: esto nos ayudara a probar ciertas funcionalidades
         self.detalles.insert('1.0',"Todo se volvio negro, y cuando abriste los ojos te encontraste en una celda de maxima seguridad." + "\nParece que estaras aqui por un buen tiempo." + "\nFin del Juego.")
         self.detalles.__setitem__('state','disabled')
 
+        self.imgdefeat = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/gameover.png')
+
+        # self.field.pack_forget()
+        # self.fm2.pack_forget()
+        # self.field = Label(master = self.fm2, text='PANTALLA DE GAME OVER',  bg="blue",  fg="white", font=("Courier", 20))
+        # self.field.pack(expand=True)
+        # self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
+        # self.fm2.grid_propagate(False)
+
         self.field.pack_forget()
         self.fm2.pack_forget()
-        self.field = Label(master = self.fm2, text='PANTALLA DE GAME OVER',  bg="blue",  fg="white", font=("Courier", 20))
-        self.field.pack(expand=True)
-        self.fm2.grid(row=2, column=2, sticky='nsew')
+        self.field = Label(master = self.fm2)
+        self.field['image'] = self.imgdefeat
+        self.field.pack(fill='both',expand=True)
+        self.fm2.grid(row=2, column=1,columnspan=2, sticky='nsew')
         self.fm2.grid_propagate(False)
 
     def getFm2(self):
