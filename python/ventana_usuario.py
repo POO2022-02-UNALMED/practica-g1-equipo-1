@@ -70,7 +70,7 @@ Buena Suerte!'''
         self.window.title('Escape Room Game')
         self.window.option_add('*tearOff', FALSE)
         self.window.grid_rowconfigure(0, weight=1, uniform="rows_g1")
-        self.window.grid_rowconfigure(1, weight=1, uniform="rows_g1")
+        self.window.grid_rowconfigure(1, weight=4, uniform="rows_g1")
         self.window.grid_rowconfigure(2, weight=12, uniform="rows_g1")
         self.window.grid_columnconfigure(0, weight = 1, uniform="cols_g1")
         self.window.grid_columnconfigure(1, weight=5,  uniform="cols_g1")
