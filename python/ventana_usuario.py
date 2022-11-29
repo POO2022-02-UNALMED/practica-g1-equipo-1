@@ -6,17 +6,19 @@ from fieldFrame import FieldFrame
 
 from Intruso import Intruso
 from Robot import Robot
-from deserializador import deserializar
+from deserializador import deserializarTodo
 from serializador import serializar
 
-from Main import Main
+
 
 class ventana2:
+    deserializarTodo()
 
-    Main().__init__()
+    
     _regulador = False
 
     def iniciarMenu(self):
+
         self.menuUsuario = Menu(self.window,relief=RAISED)
         self.archivo = Menu(self.menuUsuario,tearoff = 0)
         self.acciones = Menu(self.menuUsuario,tearoff = 0)
@@ -95,6 +97,7 @@ Buena Suerte!'''
     def cerrar(self):
         from ventana_inicio import ventana1
         self.window.destroy()
+        serializar()
         continuar = ventana1()
 
     def aplicacion(self):

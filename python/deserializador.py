@@ -18,7 +18,7 @@ import os
 
 def deserializar(listaObjetos, className):
         def camino(className):
-            return os.path.join(pathlib.Path(__file__).parent.absolute(), f"temp\{className}.txt")
+            return ("python/baseDatos/temp/"+className+".txt")
 
         #read
         try:

@@ -4,11 +4,14 @@ from tkinter import messagebox
 from ventana_usuario import ventana2
 from deserializador import deserializar
 from serializador import serializar
+from Main import Main
 
 class ventana1:
 
-    #deserializador.deserializar()
+    Main().__init__()
 
+    #deserializador.deserializar()
+    
     def __init__(self):
         self.window = Tk()
         self.window.geometry('900x600')
@@ -50,9 +53,9 @@ class ventana1:
         self.img3 = self.img3.subsample(2)
         self.img4 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/testing3.png')
         self.img4 = self.img4.subsample(2)
-        self.img5 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/testing.png')
+        self.img5 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/iron.png')
         self.img5 = self.img5.subsample(2)
-        self.img1 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/testing2.png')
+        self.img1 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/jarvis.png')
         self.img1 = self.img1.subsample(2)
 
         self.imgLuis1 = PhotoImage(file=f'{os.path.dirname(os.path.abspath(__file__))}/images/luis.png')

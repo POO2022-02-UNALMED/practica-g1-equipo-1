@@ -31,7 +31,7 @@ def serializar():
             }
 
     for archivo, dato in datos.items():
-        picklefile = open(os.path.join(pathlib.Path(__file__).parent.absolute(), f"temp\\{archivo}"),"wb")
+        picklefile = open("python/baseDatos/temp/"+archivo+".txt","wb")
         pickle.dump(dato, picklefile)
         picklefile.close()
 

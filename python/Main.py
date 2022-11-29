@@ -26,6 +26,8 @@ class Main:
         print("Vuelva pronto")
         sys.exit(0)
 
+    
+    
     def __init__(self):
         opcion = None # aqui se guardan las opciones que va seleccionando el jugador
         x = True # mientras el robot este vivo
